@@ -1,0 +1,59 @@
+.breadcrumbs a, .breadcrumbs{
+	color: #262626;
+}
+
+.breadcrumbs .bread-sep svg path{
+	fill: #262626;
+}
+
+.title{
+	margin-top: 40px;
+}
+
+.examples{
+	margin: 60px 0 100px 0;
+}
+
+.examples .btn{
+	margin-top: 40px;
+	justify-content: center;
+}
+
+.examples__items{
+	display: flex;
+	flex-wrap: wrap;
+	
+}
+.examples__item{
+	margin-bottom: 5px;
+    width: calc(25% - 10px);
+    margin: 5px;
+}
+.examples__item a{
+	display: flex;
+	align-items: center;
+}
+.examples__item img{
+
+}
+
+.examples-body{
+	border-top: 2px solid #C71F25;
+}
+
+.examples-body__content .title{
+	justify-content: center;
+	margin-bottom: 40px;
+}
+
+@media(max-width: 568px){
+	.examples__item{
+		width: calc( 50% - 10px );
+	}
+}
+
+@media(max-width: 320px){
+	.examples__item{
+		width: 100%;
+	}
+}

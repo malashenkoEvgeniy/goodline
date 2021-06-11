@@ -1,0 +1,239 @@
+/* social button */
+
+.social-items-bg{
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	display: none;
+	background-color: transparent;
+	transition: background .4s;
+	z-index: 30;
+}
+
+.social-items-bg.active{
+	transition: background .4s;
+	background-color: rgba(41, 41, 41,0.6);
+}
+
+.social-items-wrapper{
+	position: fixed;
+    right: 20px;
+    bottom: 100px;
+	z-index: 34;
+}
+
+.social-items-menu{
+	display: none;
+}
+
+.social-item{
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin: 15px 0px;
+	position: relative;
+}
+
+
+
+.social-item__description{
+	cursor: pointer;
+	background-color: white;
+	text-align: center;
+	padding: 5px 10px;
+	border-radius: 20px;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	transform: translate(0%,-50%);
+	opacity: 0;
+	transition: all .3s linear;
+	width: 100%;
+}
+
+.social-item:hover .social-item__description{
+	transform: translate(-100%,-50%);
+	opacity: 1;
+}
+
+.social-item .social-item__description a{
+	color: #000;
+}
+
+
+.item-icon{
+	background-position: center;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+}
+
+.item-icon-telegram{
+    background-color: #2fc6f6;
+    background-image: url(/frontend/images/social_buttons/telegram.svg);
+}
+
+.item-icon-viber{
+	background-image: url(/frontend/images/social_buttons/viber.svg);
+	background-color: #995aca;
+}
+
+.item-icon-phone{
+	background-color: #C71F25;                       
+	background-image: url(/frontend/images/social_buttons/telephone.svg);
+	background-size: 50%;
+}
+
+.item-icon-chat{
+	background-color: rgb(63, 139, 205);
+	background-image: url(/frontend/images/social_buttons/chat.svg);
+}
+
+.item-icon{
+	transition: all .6s;
+}
+
+.item-icon:hover{
+	transition: all .6s;
+	-webkit-filter: brightness(1.2);
+	filter: brightness(1.2);
+}
+
+.social-btn-bg{
+	padding: 5px;
+	background: rgba(199, 31, 37, 0.4);
+	border-radius: 100%;
+	transition: all .3s;
+	cursor: pointer;
+}
+
+.social-btn-bg.active{
+	transition: all .3s;
+	transform: scale(0.8);
+	background: rgba(214, 214, 214, 0.7);
+}
+
+.social-btn-bg.active:hover{
+	cursor: pointer;
+}
+
+.social-btn{
+	width: 56px;
+    height: 56px;
+    border-radius: 100%;
+    background: #C71F25;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background .3s linear, transform .3s;
+	position: relative;
+}
+
+.social-btn .btn-1.close ,.social-btn .btn-2.close{
+	visibility: hidden;
+}
+
+.social-btn .s-btn-close svg{
+	width: 24px;
+    height: 25px;
+}
+
+.social-btn-bg.active .s-btn-close{
+	display: unset;
+}
+
+.social-btn .s-btn-close{
+	display: none;
+}
+
+.social-btn.active{
+	transform: scale(0.9);
+	transition: background .3s linear , transform .3s;
+	background: #d6d6d6;
+}
+
+
+
+.s-btn{
+	position: absolute;
+    left: 50%;
+    bottom: 50%;
+    transform: translate(-50%, 50%);
+}
+.btn-1{
+	display: none;
+}
+
+.btn-2{
+	display: block;
+}
+
+
+.btn-2 svg ,.btn-1 svg{
+	height: 24px;
+    width: 24px;
+}
+
+.btn-1.active , .btn-2.active{
+	display: none;
+}
+
+
+.social-btn-pulse{
+	position: fixed;
+	width: 66px;
+	height: 66px;
+	right: 19px;
+    bottom: 99px;
+}
+
+.social-btn-pulse.active{
+	border: 1px solid #C71F25;
+	border-radius: 100%;
+	z-index: 9;
+	opacity: 1;
+	animation: Pulse 1.5s ease infinite;
+}
+
+@keyframes Pulse {
+	0% {
+    	transform: scale(1.0);
+    	opacity: 1;
+    }
+  	100% {
+      	transform: scale(1.8);
+      	opacity: 0;
+  	}
+}
+
+
+
+/* social button END */
+
+
+@media (min-width: 990px){
+	.social-items-menu .social-item:nth-child(3){
+		display: none;
+	} 
+}
+
+@media (max-width: 990px){
+	.social-item .social-item__description{
+		transform: translate(-100%,-50%);
+		opacity: 1;
+	}
+}
+
+@media (max-width: 360px){
+	.social-btn-pulse {
+	    bottom: 19px;
+	}
+
+	.social-items-wrapper {
+	    bottom: 20px;
+	}
+}

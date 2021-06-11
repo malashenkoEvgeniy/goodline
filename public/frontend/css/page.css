@@ -1,0 +1,22 @@
+.breadcrumbs a, .breadcrumbs{
+	color: #262626;
+}
+
+.breadcrumbs .bread-sep svg path{
+	fill: #262626;
+}
+
+.page__body{
+	margin: 30px 0 60px 0;
+}
+
+.page__body img{
+	padding: 10px;
+}
+
+@media (max-width:  580px){
+	.page__body img {
+	    padding: unset;
+	    float: unset!important;
+	}
+}

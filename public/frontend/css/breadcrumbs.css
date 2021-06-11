@@ -1,0 +1,40 @@
+.breadcrumbs{
+	padding: 20px 0;
+}
+
+.breadcrumbs ol{
+	font-family: 'Roboto Condensed', sans-serif;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	list-style-type: none;
+	margin: unset;
+	padding: unset;
+}
+
+.breadcrumbs a,.breadcrumbs{
+	color: #FFFFFF;
+}
+
+.breadcrumbs a:hover{
+	color:#C71F25;
+}
+
+.breadcrumbs ol li{
+	margin-right: 12px;
+}
+
+.breadcrumbs .bread-sep{
+	line-height: 1;
+}
+
+.breadcrumbs .bread-sep svg{
+	transform: rotate(-90deg);
+}
+.breadcrumbs .bread-sep svg path{
+	fill: #FFFFFF;
+}
+
+.breadcrumbs .current{
+	color: #C71F25;
+}
