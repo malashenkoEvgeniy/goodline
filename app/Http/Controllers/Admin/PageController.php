@@ -28,7 +28,8 @@ class PageController extends Controller
      */
     public function create()
     {
-        $pages = Page::where('parent_id', null)->get();
+        $pages = Page::whereIn('id', [1, 2])->get();
+
         return view('admin.pages.create', compact('pages'));
     }
 
@@ -40,35 +41,24 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'parent_id' => 'required',
+        ], [
+            'parent_id.required' => 'Поле "родительская страница" обязательно для заполнения',
+        ]);
         $req = $request->only('parent_id');
         $req['url'] = SlugService :: createSlug ( Page :: class, 'url' , $request->title );
         $page = Page::create(['parent_id'=>$req['parent_id'], 'url'=>$req['url']]);
         $pageTranslate = $page->pageTranslate()->create($request->except('url', 'parent_id'));
 
-        return redirect()->back();
+        return redirect()->route('pages.index')->with('success', 'Запись успешно создана');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Page  $page
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Page $page)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Page  $page
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $page = Page::find($id);
-        return view('admin.pages.edit',compact('page'));
+        $page_parents = ($id>5) ? Page::whereIn('id', [1, 2])->get() : null;
+        return view('admin.pages.edit',compact('page', 'page_parents'));
     }
 
     /**
@@ -83,8 +73,8 @@ class PageController extends Controller
         $page = Page::find($id);
         $language = App::getLocale();
         $pageTranslate = $page->translate($request['language']); // ищем запись по нашему языку
-        $pageRequestData = request()->only('url');
-        $pageTranslateRequestData = request()->except('url');
+        $pageRequestData = request()->only('parent_id');
+        $pageTranslateRequestData = request()->except( 'parent_id');
 
 
         if ($pageTranslate != null && $pageTranslate->language == $language) { // текущий язык сайта совпадает с языком записи (перевод есть) -> обновляем
@@ -110,6 +100,6 @@ class PageController extends Controller
     {
         $page = Page::destroy($id);
 
-        return redirect()->route('pages.index');
+        return redirect()->route('pages.index')->with('success', 'Запись успешно удалена');
     }
 }

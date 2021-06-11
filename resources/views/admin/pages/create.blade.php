@@ -1,5 +1,9 @@
 @extends('admin.layouts')
-
+<style>
+    .parent_id-wrap-item {
+        margin-left: 50px;
+    }
+</style>
 @section('content')
 <div class="container col-8">
     <div class="row justify-content-center">
@@ -8,26 +12,40 @@
                 <div class="card-header">Создание страницы</div>
 
                 <div class="card-body">
+                    @include('admin.includes.alerts')
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
                     <form action="{{route('pages.store')}}" method="POST">
                         {!! csrf_field() !!}
 
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">Выбрать родительскую страницу</span>
-                            </div>
-                                <select name="parent_id"  >
-                                    <option value="0" >Выбрать страницу</option>
-                                    @foreach($pages as  $page)
-                                        <option value="{{$page->id}}">{{$page->translate()->title}}</option>
-                                    @endforeach
-                                </select>
-                        </div>
+
                         <div class="input-group mb-3">
                           <div class="input-group-prepend">
                             <span class="input-group-text">Название страницы</span>
                           </div>
                           <input type="text" class="form-control translit" name="title" required >
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Выбрать родительскую страницу</span>
+                            </div>
+                            <div class="parent_id-wrap">
+                                @foreach($pages as  $page)
+                                    <div class="parent_id-wrap-item">
+                                        <input type="radio" value="{{$page->id}}" id="p{{$page->id}}" name="parent_id">
+                                        <label for="p{{$page->id}}">{{$page->translate()->title}}</label>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
 
                         <h5 class="card-title">Описание</h5>

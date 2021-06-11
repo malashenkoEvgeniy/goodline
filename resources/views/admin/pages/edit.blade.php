@@ -8,7 +8,17 @@
                 <div class="card-header">Редактирование страницы</div>
 
                 <div class="card-body">
-                    
+                    @include('admin.includes.alerts')
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     <form action="{{route('pages.update',$page->id)}}" method="POST">
                         {!! csrf_field() !!}
                         {{ method_field('PUT') }}
@@ -20,24 +30,27 @@
                           </div>
                           <input type="text" class="form-control" name="title" value=" @isset($page->translate()->title){{$page->translate()->title}}@endisset">
                         </div>
-
+                        @if($page_parents !== null)
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Сменить родительскую страницу</span>
+                            </div>
+                            <div class="parent_id-wrap">
+                                @foreach($page_parents as  $item)
+                                    <div class="parent_id-wrap-item">
+                                        <input type="radio" value="{{$item->id}}" id="p{{$item->id}}" name="parent_id" @if($page->parent_id ==$item->id)checked @endif>
+                                        <label for="p{{$item->id}}">{{$item->translate()->title}}</label>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        @endif
                         <h5 class="card-title">Описание</h5>
                         <div class="mb-3">
                           <textarea  name="body" id="editor1" >
                             @isset($page->translate()->body){{$page->translate()->body}}@endisset
                           </textarea>
                         </div>
-
-                        <div class="input-group mb-3">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text">Url</span>
-                          </div>
-                          <input type="text" class="form-control" name="url" value="@isset($page->url){{$page->url}}@endisset">
-                        </div>
-
-
-
-
                         <div class="input-group mb-3">
                           <div class="input-group-prepend">
                             <span class="input-group-text">Seo Заголовок</span>
@@ -51,7 +64,7 @@
                             @isset($page->translate()->seo_description){{$page->translate()->seo_description}}@endisset
                           </textarea>
                         </div>
-                        
+
                         <h5 class="card-title">Seo ключевые слова</h5>
 
                         <div class="mb-3">
@@ -63,7 +76,7 @@
                         <input type="hidden" name="language" value="{{ LaravelLocalization::getCurrentLocale() }}">
                         <button type="submit" class="btn btn-primary">Обновить</button>
 
-                          
+
                     </form>
 
                     <form class="mt-4" action="{{route('pages.destroy',$page->id)}}" method="POST" onsubmit="return confirm('Удалить?') ? true : false;">
@@ -71,7 +84,7 @@
                         {{ method_field('DELETE') }}
                         <button type="submit" class="btn btn-danger btn-delete">Удалить</button>
                     </form>
-                    
+
 
 
                 </div>

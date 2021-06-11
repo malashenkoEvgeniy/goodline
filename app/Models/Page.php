@@ -25,4 +25,9 @@ class Page extends BaseModel
     {
         return $this->hasMany('App\Models\PageTranslate');
     }
+
+    public function page_parent()
+    {
+        return $this->belongsTo('App\Models\Page', 'parent_id');
+    }
 }

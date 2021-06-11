@@ -1,7 +1,4 @@
-
 <div class="sidebar">
-
-<!-- Sidebar Menu -->
 <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="active"><a href="{{route('pages.index')}}"><i class="fa fa-link"></i> <span>Страницы</span></a></li>
