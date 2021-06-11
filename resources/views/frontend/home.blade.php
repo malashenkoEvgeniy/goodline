@@ -2,7 +2,7 @@
 
 
 @section('links')
-	
+
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 	<link rel="stylesheet" href="/frontend/css/home.css">
 	<link rel="stylesheet" href="/frontend/css/trust_us.css">
@@ -60,17 +60,17 @@
 <div class="catalog">
 	<div class="catalog-items content-wrapper">
 
-        @foreach ($category as $item) 
-           
-            @if ( $item->parent_id === null) 
-            
+        @foreach ($categories as $item)
+
+            @if ( $item->parent_id === null)
+
                 <div class="catalog-item shadow">
 					<a href='{{ LaravelLocalization::localizeUrl("$item->url") }}'><img src="{{$item->image}}" alt="{{ $item->translate()->page_title }}"></a>
 					<a class="catalog-item__title" href='{{ LaravelLocalization::localizeUrl("$item->url") }}'>{{ $item->translate()->page_title }}</a>
 				</div>
 
 			@endif
-            
+
         @endforeach
 
 	</div>
@@ -80,7 +80,7 @@
 	<h2 class="title"><span>@lang('main.work_examples') </span></h2>
 	<div class="examples-work__slider">
 		<div class="examples-work__slider-items">
-			
+
 			@foreach($workExamples as $key => $item)
 			<div class="examples-work__slider-item">
 				<a data-fancybox="gallery" href="{{$item->image}}" >
@@ -98,7 +98,7 @@
 	<div class="btn btn-white show-more shadow">
 		<a href="/examples">@lang('main.see_more') @include('frontend.includes.svg.slider-arrow')</a>
 	</div>
-	
+
 </div>
 
 @include('frontend.includes.trust_us')
@@ -114,7 +114,7 @@
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 	<script src="/frontend/js/lazy_load.js"></script>
 	<script>
-		
+
 		$('.slider-items').slick({
 			dots: false,
 			infinite: false,
@@ -124,7 +124,7 @@
 			slidesToShow: 1,
 			slidesToScroll: 1,
 			prevArrow: ".home-slider .switch-left",
-			nextArrow: ".home-slider .switch-right"	
+			nextArrow: ".home-slider .switch-right"
 		});
 
 		$('.examples-work__slider-items').slick({
@@ -138,7 +138,7 @@
 			slidesToShow: 4,
 			slidesToScroll: 1,
 			prevArrow: ".examples-work__slider .switch-left",
-			nextArrow: ".examples-work__slider .switch-right"	
+			nextArrow: ".examples-work__slider .switch-right"
 		});
 
 
@@ -183,6 +183,6 @@
 
 	</script>
 
-	<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
 
 @endsection

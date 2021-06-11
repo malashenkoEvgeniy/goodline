@@ -37,21 +37,6 @@ class PageController extends BaseFrontendController
         return view('frontend.home',compact('homeSliders','workExamples','trustUs','seo'));
     }
 
-    public function aboutUs(){
-    	$aboutUs = AboutUs::find(1);
-		$aboutUsItems = AboutUsItems::all();
-    	$seo = (object) [
-            'title' => strip_tags($aboutUs->translate()->seo_title),
-            'description' => strip_tags($aboutUs->translate()->seo_description),
-            'keywords' => strip_tags($aboutUs->translate()->seo_keywords)
-        ];
-
-        $breadcrumbs = (object) [
-            'current' => strip_tags($aboutUs->translate()->page_title),
-            'parent' => null
-        ];
-        return view('frontend.about_us',compact('seo','aboutUs','aboutUsItems','breadcrumbs'));
-    }
 
 
     public function page($url){

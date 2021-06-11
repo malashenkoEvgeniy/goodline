@@ -33,6 +33,11 @@ class Category extends BaseModel
         return $this->hasMany(Category::class, 'parent_id');
     }
 
+    public function hasKids(): bool
+    {
+        return count($this->children()) > 0;
+    }
+
     public function scopeIsLive($query)
     {
         return $query->where('live', true);
