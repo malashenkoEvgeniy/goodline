@@ -28,4 +28,9 @@ class BaseModel extends Model
 
         return $response;
     }
+
+    public function translations()
+    {
+        return $this->hasMany($this->translateTable);
+    }
 }

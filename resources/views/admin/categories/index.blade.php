@@ -11,46 +11,61 @@
         <div class="card-header">Категории</div>
 
         <div class="card-body">
-            <ul class="navbar-nav mr-auto" id="mainMenu">
-                @php
-                function buildMenu($items, $parent)
-                {
-                    foreach ($items as $item) {
-                       
-                        if (isset($item->children)) {
-                        @endphp
-                            <li class="nav-item">
-                                <a href="{{route('categories.edit',$item->id)}}"
-                                    class="nav-link"
-                                    
-                                    
-                                >
-                                    {{ $item->translate()->page_title }}
-                                </a>
-                                <ul class="navbar-collapse"
-                                    
-                                    
-                                >
-                                    @php buildMenu($item->children, 'subnav-'.$item->id) @endphp
-                                </ul>
-                            </li>
-                        @php
-                        } else {
-                        @endphp
-                            <li class="nav-item 12312">
-                                <a href="{{ $item->url }}" class="nav-link">{{ $item->translate()->page_title }}</a>
-                            </li>
-                        @php
-                        }
-                    }
-                }
-                buildMenu($menuitems, 'mainMenu')
-                @endphp
-            </ul>
-            
             <a href="{{ route('categories.create') }}" class="btn btn-primary mt-4" >Создать</a>
+            @include('admin.includes.alerts')
+            @if (count($categories))
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover text-nowrap">
+                        <thead>
+                        <tr>
+                            <th style="width: 30px">#</th>
+                            <th>Наименование</th>
+                            <th>Изображение</th>
+                            <th>Иконка для меню</th>
+                            <th>Slug</th>
+                            <th>Родительская категория</th>
+                            <th>Actions</th>
+                            {{--                                                <th>Количество единиц</th>--}}
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($categories as $category)
+                            <tr>
+                                <td>{{$loop->iteration}}</td>
+                                <td>{{ $category->translate()->title }}</td>
+                                <td><img src="{{$category->image !== null ? $category->image : '/uploads/category/a.jpg'}}" alt="img" width="100" height="50"></td>
+{{--                                <td><img src="{{$category->icon !== null ? $category->icon : '/uploads/category/a.jpg'}}" alt="img" width="100" height="50"></td>--}}
+                                <td>{!! file_get_contents(public_path().$category->icon) !!}</td>
+                                <td>{{ $category->url }}</td>
+                                <td>{{ $category->parent_id ? $category->parent->translate()->title : 'not parent'}}</td>
+
+                                <td>
+                                    <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-info btn-sm float-left mr-1">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </a>
+
+                                    <form action="{{ route('categories.destroy', ['id' => $category->id]) }}" method="post" class="float-left">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm"
+                                                onclick="return confirm('Подтвердите удаление')">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            @else
+                <p>Категорий пока нет...</p>
+            @endif
 
         </div>
+      <div class="card-footer clearfix">
+          {{ $categories->links() }}
+      </div>
       </div>
     </div>
   </div>
@@ -58,6 +73,6 @@
 @endsection
 
 @section('scripts')
-  
+
 
 @endsection

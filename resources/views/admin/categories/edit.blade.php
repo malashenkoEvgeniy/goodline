@@ -8,14 +8,20 @@
                 <div class="card-header">Редактирование категории</div>
 
                 <div class="card-body">
-                    
+                    @include('admin.includes.alerts')
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     <form action="{{route('categories.update',$category->id)}}" method="POST" enctype="multipart/form-data">
                         {!! csrf_field() !!}
                         {{ method_field('PUT') }}
-                        <div class="mb-4 col-4">
-                            <img style="width: 100%; height: auto;" src="{{$category->image}}">
-                        </div>
-
                         <div class="input-group mb-3">
                           <div class="input-group-prepend">
                             <span class="input-group-text">Картинка</span>
@@ -25,12 +31,20 @@
                             <label class="custom-file-label" for="inputGroupFile01">Выберите файл</label>
                           </div>
                         </div>
-
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Иконка для меню</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" name="icon" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                <label class="custom-file-label" for="inputGroupFile01">Выберите файл</label>
+                            </div>
+                        </div>
                         <div class="input-group mb-3">
                           <div class="input-group-prepend">
                             <span class="input-group-text">Название страницы</span>
                           </div>
-                          <input type="text" class="form-control" name="page_title" value=" @isset($category->translate()->page_title){{$category->translate()->page_title}}@endisset">
+                          <input type="text" class="form-control" name="title" value=" @isset($category->translate()->title){{$category->translate()->title}}@endisset">
                         </div>
 
                         <h5 class="card-title">Описание</h5>
@@ -42,41 +56,17 @@
 
                         <div class="input-group mb-3">
                           <div class="input-group-prepend">
-                            <span class="input-group-text">Url</span>
-                          </div>
-                          <input type="text" class="form-control" name="url" value="@isset($category->url){{$category->url}}@endisset">
-                        </div>
-
-                        <!-- <div class="input-group mb-3">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text">Порядок</span>
-                          </div>
-                          <input type="text" class="form-control" name="sort_order">
-                        </div> -->
-
-
-
-                        <!-- <div class="input-group mb-3">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text"></span>
-                          </div>
-                          <input type="text" class="form-control" name="live">
-                        </div> -->
-
-                        <div class="input-group mb-3">
-                          <div class="input-group-prepend">
                             <span class="input-group-text">Родитель</span>
                           </div>
                           <select class="form-control" name="parent_id">
-                            @if(count($parent) > 0)
-                            <option selected="selected" value="{{$parent['0']->id}}">
-                              {{$parent['0']->translate()->page_title}}
+                            @if(count($categories_parent) > 0)
+                                @foreach($categories_parent as  $parent_item)
+                            <option selected="selected" value="{{$parent_item->id}}">
+                              {{$parent_item->translate()->title}}
                             </option>
+                                  @endforeach
                             @endif
                             <option value="">Родитель</option>
-                              @foreach($menuitems as $item)
-                                <option value="{{$item->id}}">{{ $item->translate()->page_title}}</option>
-                              @endforeach
                           </select>
                         </div>
 
@@ -94,7 +84,7 @@
                             @isset($category->translate()->seo_description){{$category->translate()->seo_description}}@endisset
                           </textarea>
                         </div>
-                        
+
                         <h5 class="card-title">Seo ключевые слова</h5>
 
                         <div class="mb-3">
@@ -106,7 +96,7 @@
                         <input type="hidden" name="language" value="{{ LaravelLocalization::getCurrentLocale() }}">
                         <button type="submit" class="btn btn-primary">Обновить</button>
 
-                          
+
                     </form>
 
                     <form class="mt-4" action="{{route('categories.destroy',$category->id)}}" method="POST" onsubmit="return confirm('Удалить?') ? true : false;">
@@ -114,7 +104,7 @@
                         {{ method_field('DELETE') }}
                         <button type="submit" class="btn btn-danger btn-delete">Удалить</button>
                     </form>
-                    
+
 
 
                 </div>
@@ -149,6 +139,6 @@
     });
   </script>
 
-  
+
 
 @endsection

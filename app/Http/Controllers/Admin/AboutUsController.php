@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-
-use App\Http\Controllers\Controller;
 use App\Models\AboutUs;
 use App\Models\AboutUsItems;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
-class AboutUsController extends Controller
+class AboutUsController extends BaseController
 {
     /**
      * Display a listing of the resource.

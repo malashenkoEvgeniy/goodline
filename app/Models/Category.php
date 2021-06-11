@@ -2,15 +2,25 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Category extends BaseModel
 {
+    use Sluggable;
 
     protected $translateTable = "App\Models\CategoryTranslate";
 
     protected $table = 'categories';
     protected $guarded = [];
+
+    public function sluggable(): array
+    {
+        return [
+            'url' => [
+                'source' => 'title'
+            ]
+        ];
+    }
 
 
     public function parent()

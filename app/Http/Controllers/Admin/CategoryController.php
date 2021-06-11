@@ -3,12 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\App;
 
-class CategoryController extends Controller
+class CategoryController extends BaseController
 {
+    protected $storePath = '/uploads/category/';
+//    public function __construct()
+//    {
+//        parent::__construct();
+//    }
     /**
      * Display a listing of the resource.
      *
@@ -16,8 +21,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $menuitems = $this->getMenu();
-        return view('admin.categories.index',compact('menuitems'));
+        $categories = Category::orderby('id', 'desc')->paginate(5);
+        return view('admin.categories.index',compact('categories'));
     }
 
     /**
@@ -27,8 +32,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $menuitems = Category::all();
-        return view('admin.categories.create', compact('menuitems'));
+        $categories_parent = Category::where('parent_id', null)->get();
+        return view('admin.categories.create', compact('categories_parent'));
     }
 
     /**
@@ -40,33 +45,31 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
 
-        $categoryRequestData = request()->only('parent_id','url','image');
+        $this->validate($request, [
+            'image' => 'nullable|mimes:jpeg,jpg,png,gif',
+            'icon' =>  'nullable|mimes:svg'
+        ], [
+            'image.mimes' => 'Поле "Иконка для меню" должны обязательно иметь расширения: jpeg,jpg,png,gif',
+            'icon.mimes' => 'Поле "Иконка для меню" должны обязательно иметь расширения: svg',
+        ]);
 
-        if (isset($categoryRequestData['image'])) {
-            $originalFile = request()->file('image');
-            $originalFileNewName = time() . $originalFile->getClientOriginalName();
-            $originalFile->move(public_path() . '/uploads/categories', $originalFileNewName);
-            $categoryRequestData['image'] = '/uploads/categories/' . $originalFileNewName;
+        $req = request()->only('parent_id','url','image', 'icon' );
+        $req['url'] = SlugService :: createSlug ( Category :: class, 'url' , $request->title );
+
+        if (request()->file('image') !== null) {
+            $file = $this->storeFile(request()->file('image'), $this->storePath);
+            $req['image'] = $file['path'];
         }
 
-        $category = Category::create($categoryRequestData);
+        if (request()->file('icon') !== null) {
+            $file = $this->storeFile(request()->file('icon'), $this->storePath);
+            $req['icon'] = $file['path'];
+        }
+        $reqT = request()->except('parent_id','url','image', 'icon' );
 
-        $categoryTranslateRequestData = request()->except('parent_id','url','image','_token');
+         $this->storeWithTranslation(new Category(), $req, $reqT);
 
-        $categoryTranslate = $category->categoryTranslate()->create($categoryTranslateRequestData);
-
-        return redirect()->back();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category)
-    {
-        //
+        return redirect()->route('categories.index')->with('success', 'Запись успешно создана');
     }
 
     /**
@@ -77,12 +80,12 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $menuitems = $this->getMenu();
         $category = Category::find($id);
 
         $parent = $category->parent()->get();
+        $categories_parent = Category::where('parent_id', null)->get();
 
-        return view('admin.categories.edit',compact('category','parent','menuitems'));
+        return view('admin.categories.edit',compact('category','parent', 'categories_parent'));
     }
 
     /**
@@ -94,39 +97,36 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $requestData = request()->all();
-        $language = App::getLocale();
-
+        $this->validate($request, [
+            'image' => 'nullable|mimes:jpeg,jpg,png,gif',
+            'icon' =>  'nullable|mimes:svg'
+        ], [
+            'image.mimes' => 'Поле "Иконка для меню" должны обязательно иметь расширения: jpeg,jpg,png,gif',
+            'icon.mimes' => 'Поле "Иконка для меню" должны обязательно иметь расширения: svg',
+        ]);
+        $req = request()->only('parent_id');
+        $reqTranslation = request()->except('image', 'icon', 'parent_id');
         $category = Category::find($id);
-
-        $categoryTranslate = $category->translate($requestData['language']); // ищем запись по нашему языку
-
-        $categoryRequestData = request()->only('parent_id','url','image');
-
-        $categoryTranslateRequestData = request()->except('parent_id','url','image','_token');
-
-
-        if ($categoryTranslate != null && $categoryTranslate->language == $language) { // текущий язык сайта совпадает с языком записи (перевод есть) -> обновляем
-
-            if (isset($requestData['image']) ) { // загрузили картинку
-                if($category->image !== null){
-                    unlink(public_path($category->image));
-                }
-                $originalFile = request()->file('image');
-                $originalFileNewName = time() . $originalFile->getClientOriginalName();
-                $originalFile->move(public_path() . '/uploads/categories', $originalFileNewName);
-                $categoryRequestData['image'] = '/uploads/categories/' . $originalFileNewName;
-            }
-
-            $category = $category->update($categoryRequestData);
-
-            $categoryTranslate = $categoryTranslate->update($categoryTranslateRequestData);
-
-        }else{ // создаём новый перевод
-            $category->categoryTranslate()->create($categoryTranslateRequestData);
+        if (request()->file('image') !== null) {
+            $this->deleteFile($category->image);
+            $file = $this->storeFile(request()->file('image'), $this->storePath);
+            $category->image = $file['path'];
+            $category->update(['image' => $category->image]);
         }
+        if (request()->file('icon') !== null) {
+            $this->deleteFile($category->icon);
+            $file = $this->storeFile(request()->file('icon'), $this->storePath);
+            $category->icon = $file['path'];
+            $category->update(['icon' => $category->icon]);
+        }
+        $category->update($req);
 
-        return redirect()->back();
+
+
+         $this->updateTranslation($category, $reqTranslation, $request);
+
+
+        return redirect()->route('categories.index')->with('success', 'Изменения сохранены');
 
     }
 
@@ -141,27 +141,22 @@ class CategoryController extends Controller
     {
 
         $category = Category::find($id);
+        if($category->has('products')){
 
-        $category->products()->detach();
-
+          $category->products()->detach();
+        }
         if($category->image !== null){
             unlink(public_path($category->image));
+        }
+        if($category->icon !== null){
+            unlink(public_path($category->icon));
         }
 
 
 
         $category->delete();
 
-        $menu = Category::all();
 
-        foreach ($menu as $item) {
-            $parent = $item->parent()->get();
-            if ( count($parent) == 0 && $item->parent_id !== null) {
-                $item->parent_id = null;
-                $item->save();
-            }
-        }
-
-        return redirect('/admin/categories');
+        return redirect()->route('categories.index')->with('success', 'Запись успешно удалена');
     }
 }
