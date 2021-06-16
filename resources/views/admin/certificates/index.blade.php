@@ -1,21 +1,19 @@
+<!-- Left Side Of Navbar -->
+
 
 @extends('admin.layouts')
 
 @section('content')
-<section class="content" style="margin-left: 250px">
-    <div class="container-fluid">
-        <div class="row">
+    <div class="container col-8">
+        <div class="row justify-content-center">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Страницы</h3>
-                    </div>
-                    <!-- /.card-header -->
+                    <div class="card-header">Категории</div>
+
                     <div class="card-body">
+                        <a href="{{ route('certificates.create') }}" class="btn btn-primary mt-4" >Создать</a>
                         @include('admin.includes.alerts')
-                        <a href="{{ route('pages.create') }}" class="btn btn-primary mb-3">Добавить
-                            страницу</a>
-                        @if (count($pages))
+                        @if (count($certificates))
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover text-nowrap">
                                     <thead>
@@ -23,30 +21,26 @@
                                         <th style="width: 30px">#</th>
                                         <th>Наименование</th>
                                         <th>Изображение</th>
-                                        <th>Slug</th>
                                         <th>Actions</th>
-                                        {{--                                                <th>Количество единиц</th>--}}
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($pages as $page)
+                                    @foreach($certificates as $certificate)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
-                                            <td>{{ $page->translate()->title }}</td>
-                                            <td><img src="{{$page->image !== null ? $page->image : '/admin/img/boxed-bg.jpg'}}" alt="img" width="100" height="50"></td>
-                                            <td>{{ $page->url }}</td>
+                                            <td>{{ $certificate->translate()->title }}</td>
+                                            <td><img src="{{$certificate->image !== null ? $certificate->image : '/uploads/category/a.jpg'}}" alt="img" width="100" height="50"></td>
                                             <td>
-                                                <a href="{{ route('pages.edit', $page->id) }}" class="btn btn-info btn-sm float-left mr-1">
+                                                <a href="{{ route('certificates.edit', $certificate->id) }}" class="btn btn-info btn-sm float-left mr-1">
                                                     <i class="fas fa-pencil-alt"></i>
                                                 </a>
 
-                                                <form action="{{ route('pages.destroy', ['id' => $page->id]) }}" method="post" class="float-left">
+                                                <form action="{{ route('certificates.destroy', ['id' => $certificate->id]) }}" method="post" class="float-left">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"
                                                             onclick="return confirm('Подтвердите удаление')">
-                                                        <i
-                                                            class="fas fa-trash-alt"></i>
+                                                        <i class="fas fa-trash-alt"></i>
                                                     </button>
                                                 </form>
                                             </td>
@@ -56,22 +50,17 @@
                                 </table>
                             </div>
                         @else
-                            <p>Категорий пока нет...</p>
+                            <p>Сертификатов пока нет...</p>
                         @endif
+
                     </div>
-                    <!-- /.card-body -->
                     <div class="card-footer clearfix">
-{{--                        {{ $pages->links() }}--}}
+                        {{ $certificates->links() }}
                     </div>
                 </div>
-                <!-- /.card -->
-
             </div>
-            <!-- /.col -->
         </div>
-        <!-- /.row -->
-    </div><!-- /.container-fluid -->
-</section>
+    </div>
 @endsection
 
 @section('scripts')

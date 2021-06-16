@@ -23,7 +23,7 @@
                         </div>
                     @endif
 
-                    <form action="{{route('pages.store')}}" method="POST">
+                    <form action="{{route('pages.store')}}" method="POST" enctype="multipart/form-data">
                         {!! csrf_field() !!}
 
 
@@ -32,6 +32,15 @@
                             <span class="input-group-text">Название страницы</span>
                           </div>
                           <input type="text" class="form-control translit" name="title" required >
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Картинка</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" name="image" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                <label class="custom-file-label" for="inputGroupFile01">Выберите файл</label>
+                            </div>
                         </div>
 
                         <div class="input-group mb-3">

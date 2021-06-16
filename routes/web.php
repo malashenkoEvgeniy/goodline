@@ -52,7 +52,7 @@ Route::group(
         Route::resource('pages','Admin\PageController');
         Route::resource('settings','Admin\SettingsController');
 
-        Route::resource('trustUs','Admin\TrustUsController');
+        Route::resource('certificates','Admin\CertificateController');
 
         Route::resource('message','Admin\FeedbackController');
 

@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Page;
-use App\Http\Controllers\Controller;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
-class PageController extends Controller
+class PageController extends  BaseController
 {
+    protected $storePath = '/uploads/pages/';
     /**
      * Display a listing of the resource.
      *
@@ -48,8 +48,12 @@ class PageController extends Controller
         ]);
         $req = $request->only('parent_id');
         $req['url'] = SlugService :: createSlug ( Page :: class, 'url' , $request->title );
-        $page = Page::create(['parent_id'=>$req['parent_id'], 'url'=>$req['url']]);
-        $pageTranslate = $page->pageTranslate()->create($request->except('url', 'parent_id'));
+        if (request()->file('image') !== null) {
+            $file = $this->storeFile(request()->file('image'), $this->storePath);
+            $req['image'] = $file['path'];
+        }
+        $page = Page::create($req);
+        $pageTranslate = $page->pageTranslate()->create($request->except('url', 'parent_id', 'image'));
 
         return redirect()->route('pages.index')->with('success', 'Запись успешно создана');
     }
@@ -75,7 +79,12 @@ class PageController extends Controller
         $pageTranslate = $page->translate($request['language']); // ищем запись по нашему языку
         $pageRequestData = request()->only('parent_id');
         $pageTranslateRequestData = request()->except( 'parent_id');
-
+        if (request()->file('image') !== null) {
+            $this->deleteFile($page->image);
+            $file = $this->storeFile(request()->file('image'), $this->storePath);
+            $page->image = $file['path'];
+            $page->update(['image' => $page->image]);
+        }
 
         if ($pageTranslate != null && $pageTranslate->language == $language) { // текущий язык сайта совпадает с языком записи (перевод есть) -> обновляем
             $pageTranslate->update($pageTranslateRequestData);

@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TrustUs extends Model
+class CertificatesTranslate extends Model
 {
-    protected $table = 'trust_us';
+    protected $table = 'certificates_translates';
     protected $guarded = [];
 }

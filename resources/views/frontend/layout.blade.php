@@ -31,7 +31,8 @@
     <meta name="robots" content="noindex, nofollow" />
       <link rel="preconnect" href="https://fonts.gstatic.com">
       <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&family=Roboto:wght@400;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
-
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
     <link rel="stylesheet" href="{{asset('/frontend/css/normalize.css')}}">
       <link rel="stylesheet" href="{{asset('/frontend/css/hamburger.css')}}">
     <link rel="stylesheet" href="{{asset('/frontend/css/layout.css')}}"> <!-- ( header - footer ) css -->
@@ -40,6 +41,7 @@
   </head>
 
   <body>
+    <div class="overflow"></div>
     <div class="site-content" id="site-content">
       @include('frontend.includes.header')
 

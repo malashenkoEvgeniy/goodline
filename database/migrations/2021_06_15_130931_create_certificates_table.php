@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAboutUsItemsTable extends Migration
+class CreateCertificatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateAboutUsItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('about_us_items', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('file_path')->nullable();
-            $table->text('link')->nullable();
-            $table->boolean('is_image');
+        Schema::create('certificates', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('image');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateAboutUsItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('about_us_items');
+        Schema::dropIfExists('cerificates');
     }
 }

@@ -10,10 +10,6 @@ use Illuminate\Support\Facades\App;
 class CategoryController extends BaseController
 {
     protected $storePath = '/uploads/category/';
-//    public function __construct()
-//    {
-//        parent::__construct();
-//    }
     /**
      * Display a listing of the resource.
      *

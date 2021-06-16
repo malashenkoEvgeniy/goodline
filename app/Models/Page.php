@@ -31,8 +31,13 @@ class Page extends BaseModel
         return $this->belongsTo('App\Models\Page', 'parent_id');
     }
 
-    public function hasKids(): bool
+    public function getKids()
     {
-        return count($this->page_parent()) > 0;
+        return $this->hasMany('App\Models\Page', 'parent_id');
     }
+
+//    public function hasKids(): bool
+//    {
+//        return count($this->getKids()) > 0;
+//    }
 }

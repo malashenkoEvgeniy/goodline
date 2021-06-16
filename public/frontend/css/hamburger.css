@@ -87,6 +87,44 @@
     transition-delay: .375s;
 }
 
+@media (max-width: 1024px){
+    #menu-toggle {
+        height: 50px;
+        top: -25px;
+    }
+
+    #menu-toggle #hamburger span {
+        width: 43px;
+        height: 4px;
+        position: relative;
+        top: 24px;
+        left: 20px;
+        margin: 10px 0;
+    }
+
+    #menu-toggle #cross span:nth-child(1) {
+        height: 0%;
+        width: 4px;
+        position: absolute;
+        top: 50%;
+        left: 56px;
+        transition-delay: 0s;
+    }
+    #menu-toggle #cross span:nth-child(2) {
+        width: 0;
+        height: 4px;
+        position: absolute;
+        left: 36%;
+        top: 43px;
+        transition-delay: .25s;
+    }
+
+    #menu-toggle.open #cross span:nth-child(2) {
+        width: 43%;
+        transition-delay: .375s;
+    }
+}
+
 @media (max-width: 568px){
 
     #menu-toggle span {

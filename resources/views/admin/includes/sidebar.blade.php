@@ -4,11 +4,8 @@
         <li class="active"><a href="{{route('pages.index')}}"><i class="fa fa-link"></i> <span>Страницы</span></a></li>
         <li><a href="{{route('categories.index')}}"><i class="fa fa-link"></i> <span>Категории</span></a></li>
         <li><a href="{{route('products.index')}}"><i class="fa fa-link"></i> <span>Продукция</span></a></li>
-        <li><a href="{{route('workExamples.index')}}"><i class="fa fa-link"></i> <span>Примеры работ</span></a></li>
         <li><a href="{{route('message.index')}}"><i class="fa fa-link"></i> <span>Заявки</span></a></li>
         <li><a href="{{route('settings.index')}}"><i class="fa fa-link"></i> <span>Контакты</span></a></li>
-        <li><a href="{{route('categories.index')}}"><i class="fa fa-link"></i> <span>Категории</span></a></li>
-        <li><a href="{{route('files.index')}}"><i class="fa fa-link"></i> <span>Картинки</span></a></li>
         <li class="treeview">
             <a href="#"><i class="fa fa-link"></i> <span>Слайдеры</span>
                 <span class="pull-right-container">
@@ -17,7 +14,7 @@
             </a>
             <ul class="treeview-menu">
                 <li><a href="{{ route('homeSliders.index') }}">Видео-слайдер</a></li>
-                <li><a href="{{ route('trustUs.index') }}">Нам доверяют</a></li>
+                <li><a href="{{ route('certificates.index') }}">Сертификаты</a></li>
             </ul>
         </li>
 {{--        <li class="nav-item">--}}

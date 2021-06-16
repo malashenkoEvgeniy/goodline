@@ -14,8 +14,8 @@ class BaseFrontendController extends Controller
 {
     function __construct(){
         $settings = Settings::find(1);
-        $categories = Category::where('parent_id', null)->get();
-        $pages = Page::where('parent_id', null)->get();
+        $categories = Category::where('parent_id', null)->with('children')->get();
+        $pages = Page::where('parent_id', null)->with('getKids')->get();
         view()->share(compact('settings','categories','pages'));
     }
 }

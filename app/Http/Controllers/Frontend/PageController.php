@@ -30,11 +30,12 @@ class PageController extends BaseFrontendController
             'description' => strip_tags($settings->translate()->seo_description),
             'keywords' => strip_tags($settings->translate()->seo_keywords)
         ];
+    	$interesting = Page::where('parent_id', 1)->get();
 
     	$homeSliders = HomeSlider::all();
     	$workExamples = WorkExampleImage::orderBy('sort')->get();
     	$trustUs = TrustUs::orderBy('sort')->get();
-        return view('frontend.home',compact('homeSliders','workExamples','trustUs','seo'));
+        return view('frontend.home',compact('homeSliders','workExamples','trustUs', 'interesting','seo'));
     }
 
 

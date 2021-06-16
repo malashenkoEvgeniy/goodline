@@ -7,6 +7,7 @@ return [
     "about_company" => "О компании",
     "they_trust_us" => "Нам доверяют",
     "about_us" => "О нас",
+    "interesting" =>"Интересное",
 
     "contacts" => "Контакты",
 
