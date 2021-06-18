@@ -38,6 +38,7 @@
             width: 50%;
             padding: 100px;
         }
+
     </style>
 
 @endif
@@ -103,6 +104,52 @@
                         background-color: #ffffff;
                         width: 50%;
                         padding: 100px;
+                    }
+
+
+                    @media (max-width: 1024px){
+                        .about-wrap {
+                            width: 100%;
+                        }
+
+                        .about-wrap-item {
+                            display: block;
+                        }
+
+                        .about-wrap-item img, .about-wrap iframe {
+                            padding: 20px;
+                            float: left;
+                        }
+
+                        .about-description {
+
+                            width: 100%;
+                            padding: 0;
+                        }
+
+
+                    }
+
+                    @media (max-width: 768px){
+
+
+                        .about-wrap iframe,
+                        .about-wrap-item img {
+                            width: 100%;
+                        }
+
+
+                    }
+
+
+                    @media (max-width: 568px){
+
+
+
+                        .about-wrap iframe,
+                        .about-wrap-item img {
+                            padding: 0;
+                        }
                     }
                 </style>
                 @if(count($certificates)>0)

@@ -22,7 +22,7 @@
 		      		<source src="{{$slide->file_path}}" type="video/mp4">
 		    	</video>
 			@endif
-			<div class="slider-item__content">
+			<div class="slider-item__content" style="display: none">
 				<h1 class="title">{!!$slide->translate()->title!!}</h1>
 				<p class="sub-title">{!!$slide->translate()->sub_title!!}</p>
 			</div>
