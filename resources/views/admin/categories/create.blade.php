@@ -21,6 +21,15 @@
 
                     <form action="{{route('categories.store')}}" method="POST" enctype="multipart/form-data">
                         {!! csrf_field() !!}
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Банер</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" name="banner" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                <label class="custom-file-label" for="inputGroupFile01">Выберите файл</label>
+                            </div>
+                        </div>
 
                         <div class="input-group mb-3">
                           <div class="input-group-prepend">

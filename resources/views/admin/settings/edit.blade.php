@@ -8,13 +8,13 @@
                 <div class="card-header">Контакты</div>
 
                 <div class="card-body">
-                    
+
                     <form action="{{route('settings.update',$settings->id)}}" method="POST">
                         {!! csrf_field() !!}
                         {{ method_field('PUT') }}
-                        
 
-                        
+
+
 
                         <div class="input-group mb-3">
                           <div class="input-group-prepend">
@@ -49,13 +49,6 @@
                             <span class="input-group-text">Телефон 2</span>
                           </div>
                           <input type="text" class="form-control" name="phone_2" value=" @isset($settings->phone_2){{$settings->phone_2}}@endisset">
-                        </div>
-
-                        <div class="input-group mb-3">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text">Телефон 3</span>
-                          </div>
-                          <input type="text" class="form-control" name="phone_3" value=" @isset($settings->phone_3){{$settings->phone_3}}@endisset">
                         </div>
 
                         <div class="input-group mb-3">
@@ -107,7 +100,7 @@
                             @isset($settings->translate()->seo_description){{$settings->translate()->seo_description}}@endisset
                           </textarea>
                         </div>
-                        
+
                         <h5 class="card-title">Seo ключевые слова (Главная страница)</h5>
 
                         <div class="mb-3">
@@ -119,7 +112,7 @@
                         <input type="hidden" name="language" value="{{ LaravelLocalization::getCurrentLocale() }}">
                         <button type="submit" class="btn btn-primary">Обновить</button>
 
-                          
+
                     </form>
 
                 </div>

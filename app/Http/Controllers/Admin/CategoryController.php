@@ -43,9 +43,11 @@ class CategoryController extends BaseController
 
         $this->validate($request, [
             'image' => 'nullable|mimes:jpeg,jpg,png,gif',
+            'banner' => 'nullable|mimes:jpeg,jpg,png,gif',
             'icon' =>  'nullable|mimes:svg'
         ], [
-            'image.mimes' => 'Поле "Иконка для меню" должны обязательно иметь расширения: jpeg,jpg,png,gif',
+            'image.mimes' => 'Поле "Картинка" должны обязательно иметь расширения: jpeg,jpg,png,gif',
+            'banner.mimes' => 'Поле "Банер" должны обязательно иметь расширения: jpeg,jpg,png,gif',
             'icon.mimes' => 'Поле "Иконка для меню" должны обязательно иметь расширения: svg',
         ]);
 
@@ -56,12 +58,17 @@ class CategoryController extends BaseController
             $file = $this->storeFile(request()->file('image'), $this->storePath);
             $req['image'] = $file['path'];
         }
+        if (request()->file('banner') !== null) {
+            $file = $this->storeFile(request()->file('banner'), $this->storePath);
+            $req['banner'] = $file['path'];
+        }
+
 
         if (request()->file('icon') !== null) {
             $file = $this->storeFile(request()->file('icon'), $this->storePath);
             $req['icon'] = $file['path'];
         }
-        $reqT = request()->except('parent_id','url','image', 'icon' );
+        $reqT = request()->except('parent_id','url','image', 'banner', 'icon' );
 
          $this->storeWithTranslation(new Category(), $req, $reqT);
 
@@ -95,19 +102,27 @@ class CategoryController extends BaseController
     {
         $this->validate($request, [
             'image' => 'nullable|mimes:jpeg,jpg,png,gif',
+            'banner' => 'nullable|mimes:jpeg,jpg,png,gif',
             'icon' =>  'nullable|mimes:svg'
         ], [
-            'image.mimes' => 'Поле "Иконка для меню" должны обязательно иметь расширения: jpeg,jpg,png,gif',
+            'image.mimes' => 'Поле "Картинка" должны обязательно иметь расширения: jpeg,jpg,png,gif',
+            'banner.mimes' => 'Поле "Банер" должны обязательно иметь расширения: jpeg,jpg,png,gif',
             'icon.mimes' => 'Поле "Иконка для меню" должны обязательно иметь расширения: svg',
         ]);
         $req = request()->only('parent_id');
-        $reqTranslation = request()->except('image', 'icon', 'parent_id');
+        $reqTranslation = request()->except('image', 'icon','banner', 'parent_id');
         $category = Category::find($id);
         if (request()->file('image') !== null) {
             $this->deleteFile($category->image);
             $file = $this->storeFile(request()->file('image'), $this->storePath);
             $category->image = $file['path'];
             $category->update(['image' => $category->image]);
+        }
+        if (request()->file('banner') !== null) {
+            $this->deleteFile($category->banner);
+            $file = $this->storeFile(request()->file('banner'), $this->storePath);
+            $category->banner = $file['path'];
+            $category->update(['banner' => $category->banner]);
         }
         if (request()->file('icon') !== null) {
             $this->deleteFile($category->icon);
@@ -117,13 +132,9 @@ class CategoryController extends BaseController
         }
         $category->update($req);
 
-
-
          $this->updateTranslation($category, $reqTranslation, $request);
 
-
         return redirect()->route('categories.index')->with('success', 'Изменения сохранены');
-
     }
 
 

@@ -16,11 +16,11 @@
 Auth::routes();
 
 Route::get('/clear', function () {
-    Artisan::call('config:cache');
+    Artisan::call('config:clear');
     Artisan::call('cache:clear');
     Artisan::call('view:clear');
-    Log::debug('CLEARED');
     Artisan::call('route:clear');
+    Log::debug('CLEARED');
 });
 
 
@@ -53,6 +53,7 @@ Route::group(
         Route::resource('settings','Admin\SettingsController');
 
         Route::resource('certificates','Admin\CertificateController');
+        Route::resource('characteristics','Admin\CharacteristicsController');
 
         Route::resource('message','Admin\FeedbackController');
 
@@ -80,13 +81,11 @@ Route::group(
 
         Route::get('/', 'Frontend\PageController@index'); // Главная
 
-        Route::get('/about-us', 'Frontend\PageController@aboutUs'); // О нас
-
-        Route::get('/examples', 'Frontend\PageController@examples'); // Примеры работ
+//        Route::get('/catalog', 'Frontend\PageController@aboutUs'); // Каталог
 
         Route::get('/contacts', 'Frontend\PageController@contacts'); // Примеры работ
 
-        Route::get('/{url}','Frontend\PageController@page'); // Текстовые страницы / каталог / товар
+        Route::get('/{url}','Frontend\PageController@page'); // Текстовые страницы / каталог / товар / Каталог
 
         Route::post('/sendForms','Frontend\Forms\BasicFormController@sendForm')->name('sendForm');
 

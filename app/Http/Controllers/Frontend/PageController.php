@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Models\AboutUs;
 use App\Models\AboutUsItems;
 use App\Models\Category;
+use App\Models\Certificates;
 use App\Models\HomeSlider;
 use App\Models\Page;
 use App\Models\Product;
@@ -30,12 +31,9 @@ class PageController extends BaseFrontendController
             'description' => strip_tags($settings->translate()->seo_description),
             'keywords' => strip_tags($settings->translate()->seo_keywords)
         ];
-    	$interesting = Page::where('parent_id', 1)->get();
 
     	$homeSliders = HomeSlider::all();
-    	$workExamples = WorkExampleImage::orderBy('sort')->get();
-    	$trustUs = TrustUs::orderBy('sort')->get();
-        return view('frontend.home',compact('homeSliders','workExamples','trustUs', 'interesting','seo'));
+        return view('frontend.home',compact('homeSliders', 'seo'));
     }
 
 
@@ -43,12 +41,25 @@ class PageController extends BaseFrontendController
     public function page($url){
     	$page = Page::where('url',$url)->first();
     	$category = Category::where('url',$url)->first();
-    	$product = Product::where('url',$url)->first();
-
+    	$product = Product::where('url',$url)->with('properties')->first();
 
     	if ($page !== null) { // Текстовая страница
 
     		return $this->showPage($page);
+
+    	}elseif($url == 'catalog' ){ // Страница каталога
+            $settings = Settings::find(1);
+            $seo = (object) [
+                'title' => strip_tags($settings->translate()->seo_title),
+                'description' => strip_tags($settings->translate()->seo_description),
+                'keywords' => strip_tags($settings->translate()->seo_keywords)
+            ];
+
+            $breadcrumbs = (object) [
+                'current' => 'Каталог',
+                'parent' => null
+            ];
+            return view('frontend.page',compact('seo','page','breadcrumbs'));
 
     	}elseif($category !== null ){ // Страница каталога
 
@@ -64,20 +75,21 @@ class PageController extends BaseFrontendController
     }
 
 
-
-
-
-
     public function showPage($page){
+
     	$seo = (object) [
             'title' => strip_tags($page->translate()->seo_title),
             'description' => strip_tags($page->translate()->seo_description),
             'keywords' => strip_tags($page->translate()->seo_keywords)
         ];
-
+        $parent = null;
+        if($page->parent_id){
+            $parent = Page::where('id', $page->parent_id)->get();
+        }
+//            dd($parent);
         $breadcrumbs = (object) [
             'current' => strip_tags($page->translate()->title),
-            'parent' => null
+            'parent' => $parent
         ];
 
         return view('frontend.page',compact('seo','page','breadcrumbs'));
@@ -108,7 +120,7 @@ class PageController extends BaseFrontendController
 
 
         $breadcrumbs = (object) [
-            'current' => strip_tags($category->translate()->page_title),
+            'current' => strip_tags($category->translate()->title),
             'parent' => $parents
         ];
 
@@ -145,12 +157,13 @@ class PageController extends BaseFrontendController
         }
 
         $category = Category::where('url', $productCategoryUrl['3'])->first();
+
         if($category !== null){ // со страницы категории
             $parents = collect([]);
 
             $parent = $category;
 
-            while(count($parent) != 0) {
+            while($parent != null) {
                 $parents->push($parent);
                 $parent = $parent->parent()->first();
             }
@@ -160,9 +173,7 @@ class PageController extends BaseFrontendController
         }else{ // по прямой ссылке
 
             $parents = $product->category()->get();
-
         }
-
 
     	$seo = (object) [
             'title' => strip_tags($product->translate()->seo_title),
@@ -175,31 +186,10 @@ class PageController extends BaseFrontendController
             'parent' => $parents
         ];
 
-    	$trustUs = TrustUs::orderBy('sort')->get();
-
-
-        return view('frontend.product',compact('seo','product','breadcrumbs','trustUs'));
+        return view('frontend.product',compact('seo','product','breadcrumbs'));
     }
 
 
-    public function examples(){
-        $page = WorkExample::find(1);
-        $images = WorkExampleImage::orderBy('sort')->paginate(24);
-
-    	$seo = (object) [
-            'title' => strip_tags($page->translate()->seo_title),
-            'description' => strip_tags($page->translate()->seo_description),
-            'keywords' => strip_tags($page->translate()->seo_keywords)
-        ];
-
-        $breadcrumbs = (object) [
-            'current' => strip_tags($page->translate()->title),
-            'parent' => null
-        ];
-
-
-        return view('frontend.examples',compact('seo','page','images','breadcrumbs'));
-    }
 
 
     public function contacts(){

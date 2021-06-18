@@ -21,14 +21,15 @@ class Product extends BaseModel
         return $this->hasMany('App\Models\ProductTranslate');
     }
 
-    public function productColors()
-    {
-        return $this->hasMany('App\Models\ProductColor');
-    }
 
     public function productImages()
     {
         return $this->hasMany('App\Models\ProductImage');
+    }
+
+    public function properties()
+    {
+        return $this->belongsToMany(Characteristics::class);
     }
 
 }

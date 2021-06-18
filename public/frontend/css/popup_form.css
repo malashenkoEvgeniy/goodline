@@ -1,0 +1,99 @@
+.popup-form-bg{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(160 160 160 / 20%);
+    z-index: 35;
+}
+
+.popup-form{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFFFFF;
+    padding: 50px 30px 50px 0;
+    width: 100%;
+    max-width: calc( 565px - 30px);
+    z-index: 11;
+}
+.popup-form-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.popup-form-top .title{
+    font-size: 30px;
+}
+
+.popup-form-top .title span{
+    padding: 20px 40px;
+}
+
+.popup-form-top .close-form{
+    display: flex;
+    cursor: pointer;
+}
+
+.popup-form-top .close-form:hover svg path{
+    fill: #C71F25;
+}
+
+.popup-form-body{
+    padding-left: 30px;
+    margin-top: 30px;
+}
+
+.input-group{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+.input-group label{
+    margin-bottom: 5px;
+    font-weight: bold;
+    padding-left: 20px;
+}
+.input-group input,.input-group textarea{
+    width: 100%;
+    border: 1px solid #E6E6E6;
+    background-color: #FFFFFF;
+    color: #8A8A8A;
+    padding: 15px 20px;
+}
+form .btn{
+    justify-content: center;
+    border: unset;
+    background-color: unset;
+    padding: unset;
+    margin: 0 auto;
+}
+
+
+.success{
+    position: fixed;
+    display: none;
+    left: 50%;
+    top: 50%;
+    padding: 0px 20px 20px 20px;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 1px;
+    border: 2px solid #8A8A8A;
+    width: 100%;
+    max-width: 250px;
+    text-align: center;
+}
+
+.success h4{
+    background-color: #C71F25;
+    color: #FFFFFF;
+    padding: 17px 40px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}

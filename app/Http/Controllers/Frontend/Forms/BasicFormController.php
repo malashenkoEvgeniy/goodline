@@ -23,7 +23,7 @@ class BasicFormController extends Controller
         $to = $settings->email_for_forms;
 
 
-        $title = 'KCG Форма обратной связи';
+        $title = 'Goodline Форма зворотного зв\'язку';
         $message = '
             <html>
                 <head>
@@ -42,7 +42,7 @@ class BasicFormController extends Controller
         $headers[] = 'MIME-Version: 1.0';
         $headers[] = 'Content-type: text/html; charset=utf8';
         $headers[] = 'To: Receiver <'.$to.'>';
-        $headers[] = 'From: KCG <KCG@KCG.com>';
+        $headers[] = 'From: Goodline <goodline@gmail.com>';
         $result = mail($to, $title, $message, implode("\r\n", $headers));
     }
 
@@ -57,7 +57,7 @@ class BasicFormController extends Controller
         $to = $settings->email_for_forms;
 
         $product = Product::find($req['product_id']);
-        $title = 'KCG Узнать стоимость товара';
+        $title = 'Goodline Дізнатися вартість товару';
         $message = '
             <html>
                 <head>
@@ -65,12 +65,11 @@ class BasicFormController extends Controller
                     <meta charset="utf8">
                 </head>
                 <body>
-                    <p>Имя:  '.$req['name'].'</p>
+                    <p>Iм\'я:  '.$req['name'].'</p>
                     <p>Email:  '.$req['email'].'</p>
                     <p>Телефон:  '.$req['phone'].'</p>
-                    <p>Сообщение:  '.$req['message'].'</p>
+                    <p>Повідомлення:  '.$req['message'].'</p>
                     <p>Продукт:  '. $product->translate()->title .'</p>
-                    <p>Количество:  '.$req['quantity'].'</p>
 
                 </body>
             </html>
@@ -79,7 +78,7 @@ class BasicFormController extends Controller
         $headers[] = 'MIME-Version: 1.0';
         $headers[] = 'Content-type: text/html; charset=utf8';
         $headers[] = 'To: Receiver <'.$to.'>';
-        $headers[] = 'From: KCG <KCG@KCG.com>';
+        $headers[] = 'From: Goodline <goodline@gmail.com>';
         $result = mail($to, $title, $message, implode("\r\n", $headers));
     }
 

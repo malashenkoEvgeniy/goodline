@@ -5,7 +5,6 @@
 
 
 	<link rel="stylesheet" href="/frontend/css/home.css">
-	<link rel="stylesheet" href="/frontend/css/trust_us.css">
 
 
 @endsection
@@ -89,6 +88,24 @@
     </div>
 </div>
 @endif
+@if(count($certificates)>0)
+    <div class="certificates">
+        <div class="content-wrapper">
+            <h2 class="title mb-5"><span>@lang('main.certificates')</span></h2>
+        </div>
+        <div class="certificates-items content-wrapper">
+            @foreach ($certificates as $certificate)
+                <div class="certificates-item">
+                    <a href='{{ LaravelLocalization::localizeUrl("$certificate->url") }}'><img src="{{$certificate->image}}" alt="{{ $certificate->translate()->title }}"></a>
+                    <h3 class="certificates-item__title" >{{ $certificate->translate()->title }}</h3>
+                    <p class="certificates-item__body">{{ $certificate->translate()->body }}</p>
+                </div>
+            @endforeach
+
+        </div>
+    </div>
+@endif
+
 
 
 
@@ -97,7 +114,7 @@
 
 
 @section('scripts')
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
 	<script src="/frontend/js/lazy_load.js"></script>
 	<script>
 
@@ -112,6 +129,8 @@
 			prevArrow: ".home-slider .switch-left",
 			nextArrow: ".home-slider .switch-right"
 		});
+
+
 
 
 		function fixVideoHeight(){

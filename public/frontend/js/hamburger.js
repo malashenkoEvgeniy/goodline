@@ -25,6 +25,13 @@ if($(window).width() > 1024) {
         }
     );
 
+    $('.categories-link').hover(
+        function () {
+        }, function () {
+            $('.menu-categories').removeClass('active');
+        }
+    );
+
 
     $('.menu-categories').hover(
         function () {
@@ -86,5 +93,19 @@ if($(window).width() < 1024) {
     $('.o-glyutene').click(function (evt) {
         evt.preventDefault();
         $(this).toggleClass('o-glyutene-open');
+        $('.main-submenu-items').toggleClass('list-o-glyutene');
+        $('.main-submenu-items').parent().siblings().fadeToggle();
+        $('.categories-link').fadeToggle();
     });
+
+    // $('.o-glyutene').click(function (evt) {
+    //     evt.preventDefault();
+    //     if ($('.main-submenu-items').hasClass('list-o-glyutene')) {
+    //         $('.main-submenu-items').removeClass('list-o-glyutene');
+    //         $('.main-submenu-items').slideUp();
+    //     } else {
+    //         $('.main-submenu-items').addClass('list-o-glyutene');
+    //         $('.main-submenu-items').slideDown();
+    //     }
+    // });
 }

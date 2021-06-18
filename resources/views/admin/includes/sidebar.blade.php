@@ -3,7 +3,17 @@
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="active"><a href="{{route('pages.index')}}"><i class="fa fa-link"></i> <span>Страницы</span></a></li>
         <li><a href="{{route('categories.index')}}"><i class="fa fa-link"></i> <span>Категории</span></a></li>
-        <li><a href="{{route('products.index')}}"><i class="fa fa-link"></i> <span>Продукция</span></a></li>
+        <li class="treeview">
+            <a href="#"><i class="fa fa-link"></i> <span>Продукты</span>
+                <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="{{route('products.index')}}">Продукция</a></li>
+                <li><a href="{{ route('characteristics.index') }}">Характеристики</a></li>
+            </ul>
+        </li>
         <li><a href="{{route('message.index')}}"><i class="fa fa-link"></i> <span>Заявки</span></a></li>
         <li><a href="{{route('settings.index')}}"><i class="fa fa-link"></i> <span>Контакты</span></a></li>
         <li class="treeview">
@@ -15,6 +25,29 @@
             <ul class="treeview-menu">
                 <li><a href="{{ route('homeSliders.index') }}">Видео-слайдер</a></li>
                 <li><a href="{{ route('certificates.index') }}">Сертификаты</a></li>
+            </ul>
+        </li>
+        <li class="nav-item has-treeview">
+            <a href="#" class="nav-link ">
+                <i class="nav-icon fas fa-globe"></i>
+                <p>
+                    {{ LaravelLocalization::getCurrentLocaleNative() }}
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+
+            </a>
+            <ul class="nav nav-treeview">
+                @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+
+                    <li class="nav-item">
+                        <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}" class="nav-link {{Request::segment(2) == 'home_sliders'?'active':''}} ">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>{{ $properties['native'] }}</p>
+                        </a>
+                    </li>
+
+                @endforeach
+
             </ul>
         </li>
 {{--        <li class="nav-item">--}}

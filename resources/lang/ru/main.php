@@ -2,22 +2,20 @@
 return [
     "production" => "Продукция",
     "main" => "Главная",
-    "vacancies" => "Вакансии",
     "learn_more" => "Узнать больше",
     "about_company" => "О компании",
-    "they_trust_us" => "Нам доверяют",
     "about_us" => "О нас",
     "interesting" =>"Интересное",
+    "certificates" =>"Сертификаты",
 
     "contacts" => "Контакты",
 
 
     "detail" => "Подробнее",
-    "work_examples" => "Примеры работ",
     "show_more" => "Показать ещё",
     "see_more" => "Смотреть больше",
-    "website_creation" => "Создание сайта",
-    "all_rights_reserved" => "© KCG 2020 - Все Права Защищены",
+    "website_creation" => "© Все права защищены, ". date("Y", time()). " Разработка сайта",
+    "all_rights_reserved" => "© Goodline ". date("Y", time()). " - Все права защищены",
     "items_per_page" => "Товаров на странице",
 
     "form" => [
@@ -30,6 +28,7 @@ return [
         "message" => "Сообщение",
         "input_message" => "Введите Сообщение",
         "send" => "Отправить",
+        "to_contact_us"=>"Связаться с нами",
 
         "succsess_title" => "Ваша форма отправлена!",
         "succsess_subtitle" => "Спасибо за ваш запрос. Мы обязательно свяжемся с вами."
@@ -42,7 +41,8 @@ return [
         "amount" => "Количество",
         "find_out_the_cost" => " Узнать стоимость ",
         "description" => "Описание",
-        "specifications" => "Характеристики"
+        "specifications" => "Характеристики",
+        "ingredients" => "Ингредиенты"
     ]
 
 

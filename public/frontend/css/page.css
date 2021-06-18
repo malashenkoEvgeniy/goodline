@@ -10,13 +10,21 @@
 	margin: 30px 0 60px 0;
 }
 
-.page__body img{
-	padding: 10px;
+.cooperate {
+    width: 40%;
+    margin: 0 auto 100px auto;
+    padding: 80px;
+    background-color: #FFFFFF;
 }
 
-@media (max-width:  580px){
-	.page__body img {
-	    padding: unset;
-	    float: unset!important;
-	}
+.cooperate-info {
+    display: flex;
+    justify-content: center;
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+    text-transform: uppercase;
+    color: #C71F25;
 }

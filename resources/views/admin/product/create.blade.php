@@ -28,49 +28,56 @@
                             <label class="custom-file-label" for="inputGroupFile01">Выберите файл</label>
                           </div>
                         </div>
+                        <div class="input-group mb-3" style="display: flex; flex-direction: column">
+                            <div class="input-group-prepend" style="margin: 0 auto 50px auto" >
+                                <span class="input-group-text">Свойства товара</span>
+                            </div>
+                            <div  style=" display: flex; justify-content: space-between;">
+                                @foreach($characteristics as $characteristic)
+                                    <div class="" style=" display: flex; flex-direction: column; align-items: center;">
+                                        <img src="{{asset($characteristic->image)}}" alt="check{{$characteristic->id}}" width="50" height="50">
+                                        <label for="check{{$characteristic->id}}">{{$characteristic->translate()->title}}</label>
+                                        <input type="checkbox" name="properties[{{$characteristic->id}}]" id="check{{$characteristic->id}}" >
+                                    </div>
+                                @endforeach
+
+                            </div>
+                        </div>
 
                         <div class="input-group mb-3">
                           <div class="input-group-prepend">
                             <span class="input-group-text">Название</span>
                           </div>
-                          <input type="text" class="form-control translit" name="title">
+                          <input type="text" class="form-control translit" name="title" required>
                         </div>
 
                         <div class="input-group mb-3">
                           <div class="input-group-prepend">
                             <span class="input-group-text">Артикул</span>
                           </div>
-                          <input type="text" class="form-control" name="vendor_code">
+                          <input type="text" class="form-control" name="vendor_code" required>
                         </div>
 
                         <div class="input-group mb-3">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text">Краткое описание</span>
-                          </div>
-                          <input type="text" class="form-control" name="short_description">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Краткое описание</span>
+                            </div>
+                            <input type="text" class="form-control" name="short_description">
                         </div>
-
-                        <div class="input-group mb-3">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text">Статус</span>
-                          </div>
-                          <select class="form-control" name="aviability" >
-                                <option value="1">В наличии</option>
-                                <option value="0">Нет в наличии</option>
-
-                          </select>
-                        </div>
-                        {{-- 
-                        <h5 class="card-title">Описание</h5>
-                        <div class="mb-3">
-                          <textarea  name="body" id="editor1" ></textarea>
-                        </div>
-                        --}}
 
                         <h5 class="card-title">Характеристики</h5>
                         <div class="mb-3">
-                          <textarea  name="body2" id="editor2" ></textarea>
+                            <textarea  name="characteristics" id="editor2" ></textarea>
                         </div>
+
+                        <h5 class="card-title">Ингредиенты</h5>
+                        <div class="mb-3">
+                            <textarea  name="ingredients" id="editor3" ></textarea>
+                        </div>
+
+
+
+
 
                         <div class="input-group mb-3">
                           <div class="input-group-prepend">
@@ -87,7 +94,7 @@
                           </div>
                           <select class="form-control multiple-select" name="categories_id[]" multiple="multiple">
                               @foreach($categories as $item)
-                                <option value="{{$item->id}}">{{ $item->translate()->page_title}}</option>
+                                <option value="{{$item->id}}">{{ $item->translate()->title}}</option>
                               @endforeach
                           </select>
                         </div>
@@ -103,20 +110,20 @@
 
                         <h5 class="card-title">Seo Описание</h5>
                         <div class="mb-3">
-                          <textarea  name="seo_description" id="editor3" ></textarea>
+                          <textarea  name="seo_description"></textarea>
                         </div>
-                        
+
                         <h5 class="card-title">Seo ключевые слова</h5>
 
                         <div class="mb-3">
-                          <textarea  name="seo_keywords" id="editor4" ></textarea>
+                          <textarea  name="seo_keywords" ></textarea>
                         </div>
 
                         <input type="hidden" name="language" value="{{ LaravelLocalization::getCurrentLocale() }}">
                         <button type="submit" class="btn btn-primary">Создать</button>
                     </form>
 
-					
+
 				</div>
             </div>
         </div>
@@ -149,10 +156,6 @@
 
     tinymce.init({
       selector: '#editor3'
-    });
-
-    tinymce.init({
-      selector: '#editor4'
     });
 
     function urlLit(w,v) {

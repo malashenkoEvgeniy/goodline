@@ -43,8 +43,10 @@ class PageController extends  BaseController
     {
         $this->validate($request, [
             'parent_id' => 'required',
+            'short_description' => 'nullable|string|size:10'
         ], [
             'parent_id.required' => 'Поле "родительская страница" обязательно для заполнения',
+            'short_description.string' => 'Поле "Краткое описание" не может превышать 255',
         ]);
         $req = $request->only('parent_id');
         $req['url'] = SlugService :: createSlug ( Page :: class, 'url' , $request->title );
@@ -74,27 +76,23 @@ class PageController extends  BaseController
      */
     public function update(Request $request, $id)
     {
+
+        $this->validate($request, [
+            'short_description' => 'nullable|string|size:10'
+        ], [
+            'short_description.size' => 'Поле "Краткое описание" не может превышать 255',
+        ]);
         $page = Page::find($id);
-        $language = App::getLocale();
-        $pageTranslate = $page->translate($request['language']); // ищем запись по нашему языку
-        $pageRequestData = request()->only('parent_id');
-        $pageTranslateRequestData = request()->except( 'parent_id');
+        $req = request()->only('parent_id');
         if (request()->file('image') !== null) {
             $this->deleteFile($page->image);
             $file = $this->storeFile(request()->file('image'), $this->storePath);
-            $page->image = $file['path'];
-            $page->update(['image' => $page->image]);
+            $req['image'] = $file['path'];
         }
-
-        if ($pageTranslate != null && $pageTranslate->language == $language) { // текущий язык сайта совпадает с языком записи (перевод есть) -> обновляем
-            $pageTranslate->update($pageTranslateRequestData);
-        }else{ // создаём новый перевод
-            $page->pageTranslate()->create($pageTranslateRequestData);
-        }
-
-        $page->update($pageRequestData);
-
-        return redirect()->back();
+        $reqT = request()->except( 'parent_id', 'image');
+        $page->update($req);
+        $this->updateTranslation($page, $reqT, $request);
+        return redirect()->route('pages.index')->with('success', 'Изменения сохранены');
     }
 
 

@@ -15,7 +15,7 @@
 	<h2 class="title"><span>{{$breadcrumbs->current}}</span></h2>
 </div>
 
-<div class="content-wrapper">
+<div class="content-wrapper contact-wrapper">
 	<div class="contact_us">
 		<div class="contact_us-info">
 			<h2>{{$page->translate()->title}}</h2>
@@ -23,9 +23,8 @@
 			<div class="contact_us-link"><a class="email" href="mailto:{{$page->email}}">{{$page->email}}</a></div>
 			<div class="contact_us-link"><a class="phone" href="tel:{{$page->phone_1}}">{{$page->phone_1}}</a></div>
 			<div class="contact_us-link"><a class="phone" href="tel:{{$page->phone_2}}">{{$page->phone_2}}</a></div>
-			<div class="contact_us-link"><a class="phone" href="tel:{{$page->phone_3}}">{{$page->phone_3}}</a></div>
-			
-			
+
+
 		</div>
 		<div class="contact_us-form">
 			<form action="{{route('sendForm')}}" method="POST">
@@ -50,15 +49,15 @@
 			</form>
 		</div>
 	</div>
+    @include('frontend.includes.google_map')
 </div>
 
-@include('frontend.includes.google_map')
+
 
 @endsection
 
 
 @section('scripts')
 <script src="/frontend/js/lazy_load.js"></script>
-
 
 @endsection

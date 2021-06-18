@@ -8,11 +8,6 @@ use Illuminate\Support\Facades\App;
 
 class BaseController extends Controller
 {
-//    public function __construct()
-//    {
-//        $newRequests = FormRequest::new ()->orderBy('created_at')->count();
-//        return view()->share(compact('newRequests'));
-//    }
 
     public function translit($value)
     {

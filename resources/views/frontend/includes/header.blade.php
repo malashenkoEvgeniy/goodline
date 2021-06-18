@@ -1,3 +1,8 @@
+<div style="display:none">
+    @foreach($categories as $el)
+        {!! file_get_contents(public_path().$el->icon) !!}
+    @endforeach
+</div>
 <header>
   <div class="header-top">
       <ul class="header-top-list">

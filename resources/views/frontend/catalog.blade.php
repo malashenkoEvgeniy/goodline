@@ -14,9 +14,9 @@
 
 
 
-<div class="page-thumbnail">
+<div class="page-thumbnail" style="background-image: url({{$page->banner}})">
 	@include('frontend.includes.breadcrumbs')
-	<h2 class="title"><span>{{ $page->translate()->page_title}}</span></h2>
+	<h2 class="title"><span>{{ $page->translate()->title}}</span></h2>
 </div>
 
 
@@ -24,14 +24,14 @@
 <div class="catalog-navigation">
 	<div class="content-wrapper">
 		<div class="catalog-tabs">
-			
+
 			@if(count($categoryChildren) != 0 && $categoryChildren !== null)
 				@foreach($categoryChildren as $key => $item)
-				
+
 				<div class="catalog-tabs-item @if($page->url == $item->url ) active @endif">
 					<a class="catalog-tabs-item-content" href='{{ LaravelLocalization::localizeUrl("$item->url") }}'>
-						<img src="{{ $item->image}}" alt="{{ $item->translate()->page_title}}">
-						<h2 class="tab-title">{{ $item->translate()->page_title}}</h2>
+						<img src="{{ $item->image}}" alt="{{ $item->translate()->title}}">
+						<h2 class="tab-title">{{ $item->translate()->title}}</h2>
 					</a>
 				</div>
 
@@ -43,8 +43,8 @@
 
 				<div class="catalog-tabs-item @if($page->url == $item->url ) active @endif">
 					<a class="catalog-tabs-item-content" href='{{ LaravelLocalization::localizeUrl("$item->url") }}'>
-						<img src="{{ $item->image}}" alt="{{ $item->translate()->page_title}}">
-						<h2 class="tab-title">{{ $item->translate()->page_title}}</h2>
+						<img src="{{ $item->image}}" alt="{{ $item->translate()->title}}">
+						<h2 class="tab-title">{{ $item->translate()->title}}</h2>
 					</a>
 				</div>
 
@@ -55,16 +55,16 @@
 	</div>
 </div>
 
-	
+
 
 
 @if(count($products)>0)
 
 <div class="content-wrapper ">
 	<div class="products-on-page">
-		<span>@lang('main.items_per_page'): <span> <span class="amount-products">{{$products->count()}}</span> из {{$quantityProducts}}</span> </span> 
+		<span>@lang('main.items_per_page'): <span> <span class="amount-products">{{$products->count()}}</span> из {{$quantityProducts}}</span> </span>
 	</div>
-	
+
 	<div class="catalog ">
 		<div class="catalog-items">
 			@foreach($products as $product)
@@ -75,12 +75,12 @@
 						<a class="catalog-item__title" href='{{ LaravelLocalization::localizeUrl("$product->url") }}'>{{$product->translate()->title}}</a>
 
 						<div class="catalog-item-description">
-							<!--<p>{{$product->translate()->short_description}}</p>-->
+							<p>{{$product->translate()->short_description}}</p>
 							<div class="btn show-more">
 								<a href='{{ LaravelLocalization::localizeUrl("$product->url") }}'>@lang('main.detail')</a>
 							</div>
 						</div>
-						
+
 					</div>
 				</div>
 			</div>
@@ -128,9 +128,9 @@
 	$('.show-more-products').click(function(){
 
 		let page = $(this).attr('data-page');
-		
-		
-		
+
+
+
 		$.ajax({
 			method: 'GET',
 			url: page,
@@ -157,7 +157,7 @@
 
 		});
 	});
-	
+
 
 </script>
 

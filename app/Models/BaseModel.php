@@ -23,7 +23,7 @@ class BaseModel extends Model
         $response = $this->hasMany($this->translateTable)->where('language',$language)->first();
 
         if($response === null){
-            $response = $this->hasMany($this->translateTable)->where('language','ru')->first();
+            $response = $this->hasMany($this->translateTable)->where('language','ua')->first();
         }
 
         return $response;

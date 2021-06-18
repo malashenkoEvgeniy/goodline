@@ -63,7 +63,7 @@ function toggleFormSuccessAlert(){
     $('.success').fadeIn();
     setTimeout(function(){
         $('.success').fadeOut();
-        $('form input, form textarea').val('');
+        $('form input:not([type=hidden], form textarea').val('');
     },3000);
 }
 
@@ -80,9 +80,10 @@ $('form').submit(function(e){
         url: url,
         data : data
     }).done(function(msg){
+        // debugger;
         toggleFormSuccessAlert();
     }).fail(function(err_msg){
-
+        debugger;
     });
 });
 
@@ -146,4 +147,15 @@ $(document).click(function(e){
         $('.contacts__dropdown-phone').removeClass('active');
 
     }
+});
+
+$('.certificates-items').slick({
+    dots: false,
+    infinite: false,
+    speed: 400,
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    slidesToShow: 2,
+    slidesToScroll: 1,
 });

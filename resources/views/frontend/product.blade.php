@@ -5,9 +5,6 @@
 
 <link rel="stylesheet" href="/frontend/css/breadcrumbs.css">
 <link rel="stylesheet" href="/frontend/css/product.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-<link rel="stylesheet" href="/frontend/css/trust_us.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
 
 @endsection
@@ -19,99 +16,86 @@
 
 <div class="content-wrapper">
 	<div class="product-card">
-		<div class="product-slider">
-			@if($product->productImages()->count() > 1)
+        <div class="product-card-top">
+            <div class="product-card__slider">
+                <div class="product-slider">
+                    @if($product->productImages()->count() > 1)
+                    <div class="slider-items">
+                        @php
+                        $i = 1;
+                        @endphp
+                        @foreach($product->productImages()->get() as $key => $item)
+                        <div class="slider-item">
+                            <a data-fancybox="gallery" href="{{$item->image}}">
+                                <img src="{{$item->image}}" alt="{{ $product->translate()->title . $i }}">
+                            </a>
+                        </div>
+                        @php
+                        $i++;
+                        @endphp
+                        @endforeach
 
-			<div class="slider-items">
-				@php
-				$i = 1; 
-				@endphp
-				@foreach($product->productImages()->get() as $key => $item)
-				<div class="slider-item">
-					<a data-fancybox="gallery" href="{{$item->image}}">
-						<img src="{{$item->image}}" alt="{{ $product->translate()->title . $i }}">
-					</a>
-				</div>
-				@php 
-				$i++
-				@endphp
-				@endforeach
-				
-			</div>
-			<div class="slider-nav">
-				@php
-				$i = 1; 
-				@endphp
-				@foreach($product->productImages()->get() as $key => $item)
+                    </div>
+                    <div class="slider-nav">
+                        @php
+                        $i = 1;
+                        @endphp
+                        @foreach($product->productImages()->get() as $key => $item)
 
-				<div class="slider-nav-item">
-					<img src="{{$item->image}}" alt="{{ $product->translate()->title . $i }}">
-				</div>
-				@php 
-				$i++
-				@endphp
-				@endforeach
-				
-				
-			</div>
-			@else
+                        <div class="slider-nav-item">
+                            <img src="{{$item->image}}" alt="{{ $product->translate()->title . $i }}">
+                        </div>
+                        @php
+                        $i++;
+                        @endphp
+                        @endforeach
+                    </div>
+                    @else
+                        <img src="{{$product->productImages()->first()->image}}" alt="{{ $product->translate()->title }}">
+                    @endif
+                </div>
+            </div>
+            <div class="product-info">
+                <div class="product-info-top">
+                    <h1 class="product-title">{{ $product->translate()->title }}</h1>
+                    <div class="product-vincode">
+                        @lang('main.product.vendor_code'):
+                        {{ $product->vendor_code }}
+                    </div>
+                </div>
+                <div class="product-info-properties">
+                    @foreach($product->properties as $property)
+                        <div class="property">
+                            <img src="{{asset($property->image)}}" alt="check{{$property->id}}" width="50" height="50">
+                            <p >{{$property->translate()->title}}</p>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="short_description">
+                    <h3 class="short_description-title">@lang('main.product.description') </h3>
+                </div>
+                <div class="short_description">{{$product->translate()->short_description}}</div>
+            </div>
+        </div>
+        <div class="product-body">
+            <ul class="product-body-tabs">
+                <li class="product-body-tab active ">@lang('main.product.ingredients')</li>
+                <li class="product-body-tab ">@lang('main.product.specifications')</li>
 
-				<img src="{{$product->productImages()->first()->image}}" alt="{{ $product->translate()->title }}">
+            </ul>
 
-			@endif
-		</div>
-		<div class="product-info">
-			<h1 class="product-title">{{ $product->translate()->title }}</h1>
-			{{-- <span class="product-code">@lang('main.product.vendor_code'): <span> {{ $product->vendor_code }}</span> </span> --}}
-			<span class="product-status">@lang('main.product.availability'): <span class="product-status-color-orange product-status-color-red @if($product->aviability) product-status-color-green @endif"> @if($product->aviability) Есть в наличии @endif</span></span>
-			<div class="product-options">
-				@if($product->productColors()->count()>0)
-				<div class="product-option-color">
-					<span>@lang('main.product.color'):</span>
-					@php 
-					$i	= 1
-					@endphp
-					@foreach($product->productColors()->get() as $key => $item)
-					
-					<label for="color-{{$i}}"> <span style="background-color: {{ $item->color }};"></span> <input type="radio" name="color" id="color-{{$i}}" value="{{ $item->id }}"> </label>
-					
-					@php 
-					$i++
-					@endphp
-					@endforeach
-				</div>
-				@endif
-				<div class="product-options__quantity">
-					<span>@lang('main.product.amount'):</span>
-					<input type="text" value="1" id="product_quantity">
-				</div>
-			</div>
-			<div class="btn order ">
-				<a href=""  id="btn-order">@lang('main.product.find_out_the_cost') @include('frontend.includes.svg.slider-arrow') </a>
-			</div>
-		</div>
-		<div class="product-body">
-			<ul class="product-body-tabs">
+            <div class="product-body-tab-content active product-body-text">
+            {!! $product->translate()->characteristics !!}
+            </div>
 
-				
-				<li class="product-body-tab active">@lang('main.product.specifications')</li>
-				{{-- <li class="product-body-tab ">@lang('main.product.description')</li> --}}
-			</ul>
-			
-			<div class="product-body-tab-content active product-body-text">
-			{!! $product->translate()->body2 !!}
-			</div>
-			{{--
-			<div class="product-body-tab-content  product-body-text">
-			{!! $product->translate()->body !!}
-			</div> --}}
-			
-		</div>
+            <div class="product-body-tab-content  product-body-text">
+            {!! $product->translate()->ingredients!!}
+            </div>
+
+        </div>
 	</div>
 </div>
 
-
-@include('frontend.includes.trust_us')
 
 @include('frontend.includes.popup_form_product')
 
@@ -162,7 +146,7 @@
 					slidesToShow: 1,
 				}
 			},
-		]	
+		]
 	});
 
 
@@ -192,7 +176,7 @@
 
     $('#product-form-bg').click(function(e){
       var form_bg = $('#product-form-bg');
-      if ( form_bg.is(e.target ) && form_bg.has(e.target).length === 0) { 
+      if ( form_bg.is(e.target ) && form_bg.has(e.target).length === 0) {
         $('#product-form-bg').fadeToggle();
       }
     });

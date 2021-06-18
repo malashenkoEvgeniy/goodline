@@ -5,7 +5,7 @@
 			<div class="close-form">
 				@include('frontend.includes.svg.icon_close')
 			</div>
-			
+
 		</div>
 		<div class="popup-form-body">
 			<form action="{{route('sendForm')}}" method="post">

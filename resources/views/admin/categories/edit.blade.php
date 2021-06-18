@@ -23,6 +23,15 @@
                         {!! csrf_field() !!}
                         {{ method_field('PUT') }}
                         <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Банер</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" name="banner" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                <label class="custom-file-label" for="inputGroupFile01">Выберите файл</label>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
                           <div class="input-group-prepend">
                             <span class="input-group-text">Картинка</span>
                           </div>
@@ -60,10 +69,17 @@
                           </div>
                           <select class="form-control" name="parent_id">
                             @if(count($categories_parent) > 0)
+                                  @foreach($categories_parent as  $parent_item)
+                                      @if($category->parent_id===$parent_item->id)
+                                      <option selected="selected" value="{{$parent_item->id}}">
+                                          {{$parent_item->translate()->title}}
+                                      </option>
+                                      @endif
+                                  @endforeach
                                 @foreach($categories_parent as  $parent_item)
-                            <option selected="selected" value="{{$parent_item->id}}">
-                              {{$parent_item->translate()->title}}
-                            </option>
+                                <option selected="selected" value="{{$parent_item->id}}">
+                                  {{$parent_item->translate()->title}}
+                                </option>
                                   @endforeach
                             @endif
                             <option value="">Родитель</option>
@@ -95,18 +111,7 @@
 
                         <input type="hidden" name="language" value="{{ LaravelLocalization::getCurrentLocale() }}">
                         <button type="submit" class="btn btn-primary">Обновить</button>
-
-
                     </form>
-
-                    <form class="mt-4" action="{{route('categories.destroy',$category->id)}}" method="POST" onsubmit="return confirm('Удалить?') ? true : false;">
-                        {!! csrf_field() !!}
-                        {{ method_field('DELETE') }}
-                        <button type="submit" class="btn btn-danger btn-delete">Удалить</button>
-                    </form>
-
-
-
                 </div>
             </div>
         </div>

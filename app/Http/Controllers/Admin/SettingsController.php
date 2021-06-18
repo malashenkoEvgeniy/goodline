@@ -76,8 +76,8 @@ class SettingsController extends Controller
         $page = Settings::find($id);
         $language = App::getLocale();
         $pageTranslate = $page->translate($request['language']); // ищем запись по нашему языку
-        $pageRequestData = request()->only('email','email_for_forms','phone_1','phone_2','phone_3','viber','telegram','phone_social');
-        $pageTranslateRequestData = request()->except('email','email_for_forms','phone_1','phone_2','phone_3','viber','telegram','phone_social');
+        $pageRequestData = request()->only('email','email_for_forms','phone_1','phone_2','viber','telegram','phone_social');
+        $pageTranslateRequestData = request()->except('email','email_for_forms','phone_1','phone_2','viber','telegram','phone_social');
 
         if ($pageTranslate != null && $pageTranslate->language == $language) { // текущий язык сайта совпадает с языком записи (перевод есть) -> обновляем
             $pageTranslate->update($pageTranslateRequestData);

@@ -8,7 +8,7 @@
                 <div class="card-header">Продукция</div>
 
                 <div class="card-body">
-					
+
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -33,8 +33,8 @@
                                     {{ method_field('DELETE') }}
                                     <button type="submit" class="btn btn-danger btn-delete">Удалить</button>
                                 </form>
-                            </div>        
-                                
+                            </div>
+
                             </div>
                         </td>
                         </tr>
@@ -43,7 +43,7 @@
 
                     </tbody>
                 </table>
-					
+
 					<a href="{{route('products.create')}}" class="btn btn-primary">Создать</a>
 				</div>
             </div>

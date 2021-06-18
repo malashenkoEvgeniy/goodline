@@ -88,14 +88,6 @@
 
                     </form>
 
-                    <form class="mt-4" action="{{route('pages.destroy',$page->id)}}" method="POST" onsubmit="return confirm('Удалить?') ? true : false;">
-                        {!! csrf_field() !!}
-                        {{ method_field('DELETE') }}
-                        <button type="submit" class="btn btn-danger btn-delete">Удалить</button>
-                    </form>
-
-
-
                 </div>
             </div>
         </div>

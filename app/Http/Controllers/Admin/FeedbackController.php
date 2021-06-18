@@ -55,8 +55,7 @@ class FeedbackController extends Controller
     {
         $feedback = Feedback::find($id);
         $product = Product::find($feedback->product_id);
-        $productColor = ProductColor::find($feedback->color_id);
-        return view('admin.feedback.show',compact('feedback','product','productColor'));
+        return view('admin.feedback.show',compact('feedback','product'));
     }
 
     /**
@@ -88,8 +87,10 @@ class FeedbackController extends Controller
      * @param  \App\Models\Feedback  $feedback
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Feedback $feedback)
+    public function destroy( $id)
     {
-        //
+        Feedback::destroy($id);
+
+        return redirect()->route('message.index')->with('success', 'Запись успешно удалена');
     }
 }

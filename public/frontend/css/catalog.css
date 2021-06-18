@@ -3,7 +3,7 @@
 	background-size: cover;
 	background-repeat: no-repeat;
 	padding-bottom: 30px;
-	background-image: url('/frontend/images/page_thumbnail/catalog.jpg');
+	/*background-image: url('/frontend/images/page_thumbnail/catalog.jpg');*/
 }
 
 .page-thumbnail .title{
@@ -23,7 +23,7 @@
 }
 .catalog-tabs-item{
 	cursor: pointer;
-	width: calc(50% - 2px);
+	width: calc(25% - 2px);
 	border-right: 1px solid transparent;
 	border-bottom: 2px solid transparent;
 }
@@ -50,7 +50,8 @@
 .catalog-tabs-item .tab-title{
 	margin: unset;
 	text-transform: uppercase;
-	font-size: 30px;
+	font-size: 16px;
+    line-height: 19px;
 }
 
 .catalog-tabs-item.active{
@@ -87,7 +88,6 @@
 	display: flex;
 	flex-wrap: wrap;
 	max-width: 268px;
-    margin-bottom: 30px;
 	background-color: #FFFFFF;
 	overflow: hidden;
 	margin: 20px 5px;
@@ -151,6 +151,18 @@
 	transition: line-height .2s ease-out;
 	transition-delay: .3s;
 }
+
+.catalog-item:hover .catalog-item-hidden-desc{
+    height: 0;
+    transition:  height .2s ease-out;
+}
+
+.catalog-item:hover .catalog-tabs-item img{
+    max-width: 140px;
+    max-height: 140px;
+    transition:  height .2s ease-out;
+}
+
 
 
 .catalog-item__title{
@@ -257,7 +269,7 @@
 
 
 @media (max-width: 380px){
-	
+
 
 	.catalog-tabs-item .tab-title{
 		width: 100%;
