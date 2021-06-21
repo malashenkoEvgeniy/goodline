@@ -128,26 +128,26 @@
 	box-shadow: 0px 0px 5px rgb(195 197 194);
 }
 
-.catalog-item:hover a{
-	color: #c71f25;
-}
 
-.catalog-item a{
-	display: flex;
-	align-items: center;
-}
-
-.catalog-item__title{
+.catalog-item__title {
 	width: 100%;
 	align-items: center;
 	justify-content: center;
 	padding: 18px;
     font-family: 'Rubik', sans-serif;
-	font-size: 30px;
 	text-transform: uppercase;
 	color: #262626;
     line-height: 21px;
     text-align: center!important;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    display: flex;
+}
+
+.catalog-item:hover .catalog-item__title {
+    background-color: #c71f25;
+    color: #ffffff;
 }
 
 /*====*/
@@ -161,6 +161,7 @@
 }
 
 .interesting-item {
+    position: relative;
     max-width: 367px;
     width: calc( 33.3% - 2.30%);
     margin: 1.15%;
@@ -169,15 +170,38 @@
     background-color: #FFFFFF;
 }
 
+.interesting-item-details {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    display: none;
+    align-items: flex-end;
+    text-transform: uppercase;
+    color: #C71F25;
+    background-color: #ffffff;
+    border: 1px solid  #C71F25;
+    padding: 15px 40px;
+}
+
 .interesting-item:hover{
-    box-shadow: 0px 0px 5px rgb(195 197 194);
+    box-shadow: 0 0 5px rgb(195 197 194);
 }
 
-.interesting-item:hover a{
-    color: #c71f25;
+.interesting-item:hover .interesting-item-details {
+    display: flex;
 }
 
-.interesting-item a{
+.interesting-item:hover img {
+    filter: brightness(0.5);
+}
+
+.interesting-item a {
     display: flex;
     align-items: center;
 }
@@ -260,6 +284,10 @@
 		max-width: 60%;
 		font-size: 14px;
 	}
+
+    .certificates {
+        margin-bottom: 40px;
+    }
 }
 
 
@@ -301,7 +329,9 @@
         width: 100%;
     }
 
-
+    .certificates {
+        margin-bottom: 0;
+    }
 
 }
 
@@ -320,10 +350,6 @@
 	}
 	.catalog-item__title {
 	    font-size: 22px;
-	}
-
-	.catalog-items .catalog-item {
-    	width: 80%;
 	}
 
 

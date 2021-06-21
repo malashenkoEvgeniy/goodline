@@ -1,8 +1,20 @@
 
 @extends('admin.layouts')
+<style>
+    .page-title {
+        /*display: flex;*/
+        max-width:250px;
+        overflow: hidden;
+    }
 
+    .page-url {
+        /*display: flex;*/
+        max-width: 200px;
+        overflow: hidden;
+    }
+</style>
 @section('content')
-<section class="content" style="margin-left: 250px">
+<section class="content" >
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
@@ -21,9 +33,9 @@
                                     <thead>
                                     <tr>
                                         <th style="width: 30px">#</th>
-                                        <th>Наименование</th>
+                                        <th class="page-title">Наименование</th>
                                         <th>Изображение</th>
-                                        <th>Slug</th>
+                                        <th class="page-url">Slug</th>
                                         <th>Actions</th>
                                         {{--                                                <th>Количество единиц</th>--}}
                                     </tr>
@@ -32,9 +44,9 @@
                                     @foreach($pages as $page)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
-                                            <td>{{ $page->translate()->title }}</td>
+                                            <td class="page-title">{{ $page->translate()->title }}</td>
                                             <td><img src="{{$page->image !== null ? $page->image : '/admin/img/boxed-bg.jpg'}}" alt="img" width="100" height="50"></td>
-                                            <td>{{ $page->url }}</td>
+                                            <td class="page-url">{{ $page->url }}</td>
                                             <td>
                                                 <a href="{{ route('pages.edit', $page->id) }}" class="btn btn-info btn-sm float-left mr-1">
                                                     <i class="fas fa-pencil-alt"></i>

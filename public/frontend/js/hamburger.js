@@ -1,3 +1,4 @@
+"use strict";
 if($(window).width() > 1024) {
     // $('.categories-link').hover(function (evt) {
     //     $('.menu-categories').addClass('active');
@@ -40,17 +41,11 @@ if($(window).width() > 1024) {
         }
     );
 
-
     $('.o-glyutene').click(function (evt) {
         evt.preventDefault();
-        if ($('.main-submenu-items').hasClass('list-o-glyutene')) {
-            $('.main-submenu-items').removeClass('list-o-glyutene');
-            $('.main-submenu-items').slideUp();
-        } else {
-            $('.main-submenu-items').addClass('list-o-glyutene');
-            $('.main-submenu-items').slideDown();
-        }
+        $('.main-submenu-items').slideToggle();
     });
+
     $(document).click(function (e) {
         if (!$('.o-glyutene').is(e.target) && !$('.main-submenu-items').is(e.target) && $('.main-submenu-items').has(e.target).length === 0) {
             $('.main-submenu-items').slideUp();

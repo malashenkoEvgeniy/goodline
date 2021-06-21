@@ -6,6 +6,7 @@ use App\Models\Characteristics;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\Category;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use File;
 use Illuminate\Http\Request;
 
@@ -40,14 +41,24 @@ class ProductController extends BaseController
     {
 
         $req = request()->only('vendor_code','url');
+        $req['url'] = SlugService :: createSlug ( Product :: class, 'url' , $request->title );
 
-        if (request()->file('image') !== null) {
-            $file = $this->storeFile(request()->file('image'), $this->storePath);
-            $req['image'] = $file['path'];
-        }
         $reqT = request()->except('vendor_code', 'url','image','categories_id', 'properties');
 
         $product = $this->storeWithTranslation(new Product(), $req, $reqT);
+        if ( request()->file('image') !== null) {
+            foreach (request()->file('image') as $image) {
+                $fileNewName = time() . $image->getClientOriginalName();
+                $image->move(public_path() . '/uploads/product', $fileNewName);
+                $categoryRequestData['image'] = '/uploads/product/' . $fileNewName;
+
+                $imageData = [
+                    'image'=> $categoryRequestData['image']
+                ];
+
+                $product['model']->productImages()->create($imageData);
+            }
+        }
 
         if($request->properties !== null){
             $characteristics = Characteristics::find(array_keys($request->properties));
@@ -86,10 +97,17 @@ class ProductController extends BaseController
         $req = request()->only('vendor_code','url');
         $reqT = request()->except('vendor_code', 'url','image','categories_id', 'properties');
         $product = Product::find($id);
-        if (request()->file('image') !== null) {
-            $this->deleteFile($product->image);
-            $file = $this->storeFile(request()->file('image'), $this->storePath);
-            $req['image'] = $file['path'];
+        if ( request()->file('image') !== null) {
+            foreach (request()->file('image') as $image) {
+                $fileNewName = time() . $image->getClientOriginalName();
+                $image->move(public_path() . '/uploads/product', $fileNewName);
+                $categoryRequestData['image'] = '/uploads/product/' . $fileNewName;
+
+                $imageData = [
+                    'image'=> $categoryRequestData['image']
+                ];
+                $product->productImages()->create($imageData);
+            }
         }
 
         $product->update($req);

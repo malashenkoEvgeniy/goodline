@@ -1,11 +1,9 @@
 @extends('admin.layouts')
 <style>
-    .parent_id-wrap-item {
-        margin-left: 50px;
-    }
+
 </style>
 @section('content')
-<div class="container col-8">
+<div class="container">
     <div class="row justify-content-center">
         <div class="col-12">
             <div class="card">
@@ -56,36 +54,30 @@
                                 @endforeach
                             </div>
                         </div>
-
-                        <h5 class="card-title">Описание</h5>
+                        <div class="input-group mb-3">
+                            <h5 class="card-title mb-3">Описание</h5>
+                        </div>
                         <div class="mb-3">
                           <textarea  name="body" id="editor1" >
-
                           </textarea>
                         </div>
-
-
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Seo Заголовок</span>
+                            </div>
+                            <input type="text" class="form-control" name="seo_title">
+                        </div>
 
                         <div class="input-group mb-3">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text">Seo Заголовок</span>
-                          </div>
-                          <input type="text" class="form-control" name="seo_title">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Seo ключевые слова</span>
+                            </div>
+                            <input type="text" class="form-control" name="seo_keywords">
                         </div>
 
-                        <h5 class="card-title">Seo Описание</h5>
-                        <div class="mb-3">
-                          <textarea  name="seo_description" id="editor2" >
-
-                          </textarea>
-                        </div>
-
-                        <h5 class="card-title">Seo ключевые слова</h5>
-
-                        <div class="mb-3">
-                          <textarea  name="seo_keywords" id="editor3" >
-
-                          </textarea>
+                        <div class="form-group">
+                            <label>Seo Описание</label>
+                            <textarea class="form-control"  name="seo_description" ></textarea>
                         </div>
 
                         <input type="hidden" name="language" value="{{ LaravelLocalization::getCurrentLocale() }}">
@@ -107,19 +99,10 @@
 
 
 @section('scripts')
-  <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
   <script>
     tinymce.init({
       selector: '#editor1'
-    });
-
-    tinymce.init({
-      selector: '#editor2'
-    });
-
-    tinymce.init({
-      selector: '#editor3'
     });
 
     function urlLit(w,v) {

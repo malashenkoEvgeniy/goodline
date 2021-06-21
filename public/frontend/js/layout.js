@@ -1,4 +1,4 @@
-
+"use strict";
 function hideTopHeader(){
     $('.header-top').addClass("disabled");
     $('.header-bottom').addClass("remove-border");
@@ -63,7 +63,7 @@ function toggleFormSuccessAlert(){
     $('.success').fadeIn();
     setTimeout(function(){
         $('.success').fadeOut();
-        $('form input:not([type=hidden], form textarea').val('');
+        $('form input:not([type=hidden]', 'form textarea').val('');
     },3000);
 }
 
@@ -79,11 +79,11 @@ $('form').submit(function(e){
         method: method,
         url: url,
         data : data
-    }).done(function(msg){
+    }).done(function(){
         // debugger;
         toggleFormSuccessAlert();
-    }).fail(function(err_msg){
-        debugger;
+    }).fail(function(){
+        // debugger;
     });
 });
 
@@ -99,13 +99,13 @@ function toggle_social_button(){
     $('.social-items-bg').toggleClass('active');
 }
 
-swap_social_button_icons();
+
 function swap_social_button_icons(){
     $('.btn-1').fadeToggle(1500);
     $('.btn-2').fadeToggle(1500);
     setTimeout(swap_social_button_icons, 2000);
 }
-
+swap_social_button_icons();
 $('.social-items-wrapper, .social-items-bg ').click(function(){
     toggle_social_button();
 });
@@ -158,4 +158,14 @@ $('.certificates-items').slick({
     autoplaySpeed: 5000,
     slidesToShow: 2,
     slidesToScroll: 1,
+    responsive:  [
+    {
+        breakpoint: 578,
+        settings: {
+
+            slidesToShow: 1,
+            slidesToScroll: 1,
+        }
+    }
+]
 });

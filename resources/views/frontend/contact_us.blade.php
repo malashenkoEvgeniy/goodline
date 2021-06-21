@@ -27,6 +27,7 @@
 
 		</div>
 		<div class="contact_us-form">
+            <h3 class="contact_us-form-title">@lang('main.form.to_contact_us')</h3>
 			<form action="{{route('sendForm')}}" method="POST">
 			{!! csrf_field() !!}
 				<div class="input-group">
@@ -48,8 +49,9 @@
 				<button class="btn shadow" type="submit"> <span>@lang('main.form.send') @include('frontend.includes.svg.slider-arrow')</span></button>
 			</form>
 		</div>
+        @include('frontend.includes.google_map')
 	</div>
-    @include('frontend.includes.google_map')
+
 </div>
 
 

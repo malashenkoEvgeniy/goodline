@@ -3,13 +3,10 @@
 
 @section('links')
 
-
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-
 @endsection
 
 @section('content')
-<div class="container col-8">
+<div class="container">
     <div class="row justify-content-center">
         <div class="col-12">
             <div class="card">
@@ -18,7 +15,6 @@
                 <div class="card-body">
 					        <form action="{{route('products.store')}}" method="POST" enctype="multipart/form-data">
                         {!! csrf_field() !!}
-
                         <div class="input-group mb-3">
                           <div class="input-group-prepend">
                             <span class="input-group-text">Картинки</span>
@@ -57,27 +53,24 @@
                           </div>
                           <input type="text" class="form-control" name="vendor_code" required>
                         </div>
-
+                                <div class="input-group mb-3">
+                                    <h5 class="card-title">Краткое описание</h5>
+                                </div>
+                                <div class="mb-3">
+                                    <textarea  name="short_description" id="editor1" ></textarea>
+                                </div>
                         <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">Краткое описание</span>
-                            </div>
-                            <input type="text" class="form-control" name="short_description">
+                            <h5 class="card-title">Характеристики</h5>
                         </div>
-
-                        <h5 class="card-title">Характеристики</h5>
                         <div class="mb-3">
                             <textarea  name="characteristics" id="editor2" ></textarea>
                         </div>
-
-                        <h5 class="card-title">Ингредиенты</h5>
+                        <div class="input-group mb-3">
+                            <h5 class="card-title">Ингредиенты</h5>
+                        </div>
                         <div class="mb-3">
                             <textarea  name="ingredients" id="editor3" ></textarea>
                         </div>
-
-
-
-
 
                         <div class="input-group mb-3">
                           <div class="input-group-prepend">
@@ -85,9 +78,6 @@
                           </div>
                           <input type="text" class="form-control translit_to" name="url">
                         </div>
-
-
-
                         <div class="input-group mb-3">
                           <div class="input-group-prepend">
                             <span class="input-group-text">Отображается в</span>
@@ -98,27 +88,24 @@
                               @endforeach
                           </select>
                         </div>
-
-
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Seo Заголовок</span>
+                            </div>
+                            <input type="text" class="form-control" name="seo_title">
+                        </div>
 
                         <div class="input-group mb-3">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text">Seo Заголовок</span>
-                          </div>
-                          <input type="text" class="form-control" name="seo_title" >
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Seo ключевые слова</span>
+                            </div>
+                            <input type="text" class="form-control" name="seo_keywords">
                         </div>
 
-                        <h5 class="card-title">Seo Описание</h5>
-                        <div class="mb-3">
-                          <textarea  name="seo_description"></textarea>
+                        <div class="form-group">
+                            <label>Seo Описание</label>
+                            <textarea class="form-control"  name="seo_description" ></textarea>
                         </div>
-
-                        <h5 class="card-title">Seo ключевые слова</h5>
-
-                        <div class="mb-3">
-                          <textarea  name="seo_keywords" ></textarea>
-                        </div>
-
                         <input type="hidden" name="language" value="{{ LaravelLocalization::getCurrentLocale() }}">
                         <button type="submit" class="btn btn-primary">Создать</button>
                     </form>
@@ -135,7 +122,6 @@
 @section('scripts')
 
 
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js" defer></script>
 
     <script>
         $(document).ready(function() {
@@ -143,20 +129,39 @@
         });
     </script>
 
-   <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
 
   <script>
-    tinymce.init({
-      selector: '#editor1'
-    });
-
-    tinymce.init({
-      selector: '#editor2'
-    });
-
-    tinymce.init({
-      selector: '#editor3'
-    });
+      tinymce.init({
+          selector: '#editor1',
+          plugins: [
+              "advlist autolink lists link image charmap print preview anchor",
+              "searchreplace visualblocks code fullscreen",
+              "insertdatetime media table paste imagetools wordcount"
+          ],
+          toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+          content_css: '//www.tiny.cloud/css/codepen.min.css'
+      });
+      tinymce.init({
+          selector: '#editor2',
+          plugins: [
+              "advlist autolink lists link image charmap print preview anchor",
+              "searchreplace visualblocks code fullscreen",
+              "insertdatetime media table paste imagetools wordcount"
+          ],
+          toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+          content_css: '//www.tiny.cloud/css/codepen.min.css'
+      });
+      tinymce.init({
+          selector: '#editor3',
+          plugins: [
+              "advlist autolink lists link image charmap print preview anchor",
+              "searchreplace visualblocks code fullscreen",
+              "insertdatetime media table paste imagetools wordcount"
+          ],
+          toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+          content_css: '//www.tiny.cloud/css/codepen.min.css'
+      });
 
     function urlLit(w,v) {
         var tr='a b v g d e ["zh","j"] z i y k l m n o p r s t u f h c ch sh ["shh","shch"] ~ y ~ e yu ya ~ ["jo","e"]'.split(' ');

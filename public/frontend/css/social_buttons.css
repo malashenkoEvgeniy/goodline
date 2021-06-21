@@ -20,7 +20,7 @@
 .social-items-wrapper{
 	position: fixed;
     right: 20px;
-    bottom: 100px;
+    bottom: 40%;
 	z-index: 34;
 }
 
@@ -133,6 +133,10 @@
 	position: relative;
 }
 
+.social-btn:hover {
+    filter: brightness(0.3);
+}
+
 .social-btn .btn-1.close ,.social-btn .btn-2.close{
 	visibility: hidden;
 }
@@ -188,7 +192,7 @@
 	width: 66px;
 	height: 66px;
 	right: 19px;
-    bottom: 99px;
+    bottom: 40%;
 }
 
 .social-btn-pulse.active{
@@ -201,17 +205,17 @@
 
 
 footer .btn-up{
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    left: 50%;
-    top: 0;
+    width: 55px;
+    height: 55px;
+    position: fixed;
+    right: 0;
+    bottom: 50%;
     transform: translate(-50%,-50%);
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #FFFFFF;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    background-color: #C71F25;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     border-radius: 50px;
     cursor: pointer;
 }
@@ -223,7 +227,7 @@ footer .btn-up svg{
 }
 
 footer .btn-up svg path{
-    fill: #C71F25;
+    fill: #ffffff;
 }
 
 footer .btn-up:hover{
@@ -231,7 +235,7 @@ footer .btn-up:hover{
 }
 
 footer .btn-up:hover svg path{
-    fill: #FFFFFF;
+    filter: brightness(0.3);
 }
 
 @keyframes Pulse {

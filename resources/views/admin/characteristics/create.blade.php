@@ -1,7 +1,7 @@
 @extends('admin.layouts')
 
 @section('content')
-<div class="container col-8">
+<div class="container">
     <div class="row justify-content-center">
         <div class="col-12">
             <div class="card">

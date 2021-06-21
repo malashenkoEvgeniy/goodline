@@ -33,7 +33,7 @@
 	<div class="slider-switch switch-left">@include('frontend.includes.svg.slider-arrow')</div>
 	<div class="slider-switch switch-right">@include('frontend.includes.svg.slider-arrow')</div>
 	<div class="btn btn-white show-more shadow">
-		<a href="/about-us">@lang('main.learn_more')</a>
+		<a href="{{$pages[2]->url}}">@lang('main.learn_more')</a>
 	</div>
 </div>
 
@@ -43,12 +43,12 @@
 	</div>
 
 	<div class="about-us-content">
-		<img src="/frontend/images/about-company.jpg" alt=">@lang('main.about_company')">
+		<img src="{{asset('/frontend/images/about-company.jpg')}}" alt=">@lang('main.about_company')">
 		<div class="about-us-description">
 			{!! $settings->translate()->body !!}
 
 			<div class="btn ">
-				<a href="/about-us" class="shadow">@lang('main.detail')  @include('frontend.includes.svg.slider-arrow') </a>
+				<a href="{{$pages[2]->url}}" class="shadow">@lang('main.detail')  @include('frontend.includes.svg.slider-arrow') </a>
 			</div>
 		</div>
 	</div>
@@ -79,8 +79,11 @@
     <div class="interesting-items content-wrapper">
         @foreach ($interesting as $info)
 
-            <div class="interesting-item shadow">
-                <a href='{{ LaravelLocalization::localizeUrl("$info->url") }}'><img src="{{$info->image}}" alt="{{ $info->translate()->title }}"></a>
+            <div class="interesting-item">
+                <a href='{{ LaravelLocalization::localizeUrl("$info->url") }}'>
+                    <img src="{{$info->image}}" alt="{{ $info->translate()->title }}">
+                    <span class="interesting-item-details">@lang('main.detail')</span>
+                </a>
                 <a class="interesting-item__title" href='{{ LaravelLocalization::localizeUrl("$info->url") }}'>{{ $info->translate()->title }}</a>
             </div>
         @endforeach
@@ -96,7 +99,7 @@
         <div class="certificates-items content-wrapper">
             @foreach ($certificates as $certificate)
                 <div class="certificates-item">
-                    <a href='{{ LaravelLocalization::localizeUrl("$certificate->url") }}'><img src="{{$certificate->image}}" alt="{{ $certificate->translate()->title }}"></a>
+                    <a data-fancybox="gallery"  href='{{"$certificate->url"}}'><img src="{{$certificate->image}}" alt="{{ $certificate->translate()->title }}"></a>
                     <h3 class="certificates-item__title" >{{ $certificate->translate()->title }}</h3>
                     <p class="certificates-item__body">{{ $certificate->translate()->body }}</p>
                 </div>

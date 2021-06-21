@@ -19,8 +19,6 @@
 	<h2 class="title"><span>{{ $page->translate()->title}}</span></h2>
 </div>
 
-
-
 <div class="catalog-navigation">
 	<div class="content-wrapper">
 		<div class="catalog-tabs">
@@ -73,14 +71,12 @@
 				<div class="catalog-item-hidden-desc">
 					<div class="catalog-item-hidden-desc-bg">
 						<a class="catalog-item__title" href='{{ LaravelLocalization::localizeUrl("$product->url") }}'>{{$product->translate()->title}}</a>
-
 						<div class="catalog-item-description">
-							<p>{{$product->translate()->short_description}}</p>
+{{--							<p>{{$product->translate()->short_description}}</p>--}}
 							<div class="btn show-more">
 								<a href='{{ LaravelLocalization::localizeUrl("$product->url") }}'>@lang('main.detail')</a>
 							</div>
 						</div>
-
 					</div>
 				</div>
 			</div>

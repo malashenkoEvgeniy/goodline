@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-<div class="container col-8">
+<div class="container">
     <div class="row justify-content-center">
         <div class="col-12">
             <div class="card">
@@ -33,14 +33,9 @@
                         </div>
                     </div>
                 </div>
-
-
-
-					    <form action="{{route('products.update',$product->id)}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('products.update',$product->id)}}" method="POST" enctype="multipart/form-data">
                         {!! csrf_field() !!}
                         {{ method_field('PUT') }}
-
-
 
                         <div class="input-group mb-3">
                           <div class="input-group-prepend">
@@ -81,19 +76,22 @@
                           </div>
                           <input type="text" class="form-control" name="vendor_code" @isset($product->vendor_code) value="{{$product->vendor_code}}" @endisset>
                         </div>
-
                         <div class="input-group mb-3">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text">Краткое описание</span>
-                          </div>
-                          <input type="text" class="form-control" name="short_description" @isset($product->translate()->short_description) value="{{$product->translate()->short_description}}" @endisset>
+                            <h5 class="card-title">Краткое описание</h5>
                         </div>
+                        <div class="mb-3">
+                            <textarea  name="short_description" id="editor1" >@isset($product->translate()->short_description) {{$product->translate()->short_description}} @endisset></textarea>
+                        </div>
+                        <div class="input-group mb-3">
                             <h5 class="card-title">Характеристики</h5>
+                        </div>
                             <div class="mb-3">
                                 <textarea  name="characteristics" id="editor2" >@isset($product->translate()->characteristics) {{$product->translate()->characteristics}} @endisset</textarea>
                             </div>
 
-                            <h5 class="card-title">Ингредиенты</h5>
+                            <div class="input-group mb-3">
+                                <h5 class="card-title">Ингредиенты</h5>
+                            </div>
                             <div class="mb-3">
                                 <textarea  name="ingredients" id="editor3" >@isset($product->translate()->ingredients) {{$product->translate()->ingredients}} @endisset</textarea>
                             </div>
@@ -119,33 +117,32 @@
 
 
 
-                        <div class="input-group mb-3">
-                          <div class="input-group-prepend">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
                             <span class="input-group-text">Seo Заголовок</span>
-                          </div>
-                          <input type="text" class="form-control" name="seo_title" @isset($product->translate()->seo_title) value="{{$product->translate()->seo_title}}" @endisset>
                         </div>
+                        <input type="text" class="form-control" name="seo_title" value="@isset($product->translate()->seo_title){{$product->translate()->seo_title}}@endisset">
+                    </div>
 
-                        <h5 class="card-title">Seo Описание</h5>
-                        <div class="mb-3">
-                          <textarea  name="seo_description" id="editor3" >@isset($product->translate()->seo_description){{$product->translate()->seo_description}} @endisset</textarea>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Seo ключевые слова</span>
                         </div>
+                        <input type="text" class="form-control" name="seo_keywords" value=" @isset($product->translate()->seo_keywords){{$product->translate()->seo_keywords}}@endisset">
+                    </div>
 
-                        <h5 class="card-title">Seo ключевые слова</h5>
-
-                        <div class="mb-3">
-                          <textarea  name="seo_keywords" id="editor4" >@isset($product->translate()->seo_keywords){{$product->translate()->seo_keywords}} @endisset</textarea>
-                        </div>
+                    <div class="form-group">
+                        <label>Seo Описание</label>
+                        <textarea class="form-control"  name="seo_description" >
+                                @isset($product->translate()->seo_description){$product->translate()->seo_description}}@endisset
+                            </textarea>
+                    </div>
 
                         <input type="hidden" name="language" value="{{ LaravelLocalization::getCurrentLocale() }}">
                         <button type="submit" class="btn btn-primary">Обновить</button>
                     </form>
 
-                    <form class="mt-2" action="{{route('products.destroy',$product->id)}}" method="POST" onsubmit="return confirm('Удалить?') ? true : false;">
-                        {!! csrf_field() !!}
-                        {{ method_field('DELETE') }}
-                        <button type="submit" class="btn btn-danger btn-delete">Удалить</button>
-                    </form>
+
 
 
 				      </div>
@@ -158,33 +155,42 @@
 
 @section('scripts')
 
-
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js" defer></script>
-
     <script>
         $(document).ready(function() {
             $('.multiple-select').select2();
         });
-    </script>
 
-   <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
-  <script>
-    tinymce.init({
-      selector: '#editor1'
-    });
-
-    tinymce.init({
-      selector: '#editor2'
-    });
-
-    tinymce.init({
-      selector: '#editor3'
-    });
-
-    tinymce.init({
-      selector: '#editor4'
-    });
+        tinymce.init({
+            selector: '#editor1',
+            plugins: [
+                "advlist autolink lists link image charmap print preview anchor",
+                "searchreplace visualblocks code fullscreen",
+                "insertdatetime media table paste imagetools wordcount"
+            ],
+            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+            content_css: '//www.tiny.cloud/css/codepen.min.css'
+        });
+        tinymce.init({
+            selector: '#editor2',
+            plugins: [
+                "advlist autolink lists link image charmap print preview anchor",
+                "searchreplace visualblocks code fullscreen",
+                "insertdatetime media table paste imagetools wordcount"
+            ],
+            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+            content_css: '//www.tiny.cloud/css/codepen.min.css'
+        });
+        tinymce.init({
+            selector: '#editor3',
+            plugins: [
+                "advlist autolink lists link image charmap print preview anchor",
+                "searchreplace visualblocks code fullscreen",
+                "insertdatetime media table paste imagetools wordcount"
+            ],
+            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+            content_css: '//www.tiny.cloud/css/codepen.min.css'
+        });
   </script>
 
 @endsection

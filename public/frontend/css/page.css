@@ -28,3 +28,12 @@
     text-transform: uppercase;
     color: #C71F25;
 }
+
+.content-wrapper {
+    min-height: 100vh;
+}
+@media (max-width: 568px){
+    .about-wrap-item iframe {
+        width: 100%;
+    }
+}

@@ -17,7 +17,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 1200px;
+            width: 100%;
             margin: 0 auto;
         }
 
@@ -61,11 +61,10 @@
 @else
     @if($page->id == 1)
         <div class="content-wrapper page">
-            <h2 class="title"><span>@lang('main.production')</span></h2>
+            <h2 class="title"><span>{{$page->translate()->title}}</span></h2>
             <div class="page__body">
                 <div class="catalog-items content-wrapper">
                     @foreach ($interesting as $info)
-
                         <div class="interesting-item shadow">
                             <a href='{{ LaravelLocalization::localizeUrl("$info->url") }}'><img src="{{$info->image}}" alt="{{ $info->translate()->title }}"></a>
                             <a class="interesting-item__title" href='{{ LaravelLocalization::localizeUrl("$info->url") }}'>{{ $info->translate()->title }}</a>
@@ -89,7 +88,7 @@
                         display: flex;
                         flex-direction: column;
                         align-items: center;
-                        width: 1200px;
+                        width: 100%;
                         margin: 0 auto;
                     }
 
@@ -227,7 +226,7 @@
                         display: flex;
                         flex-direction: column;
                         align-items: center;
-                        width: 1200px;
+                        width: 100%;
                         margin: 0 auto;
                     }
 

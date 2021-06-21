@@ -74,7 +74,7 @@
                 <div class="short_description">
                     <h3 class="short_description-title">@lang('main.product.description') </h3>
                 </div>
-                <div class="short_description">{{$product->translate()->short_description}}</div>
+                <div class="short_description">{!!$product->translate()->short_description!!}</div>
             </div>
         </div>
         <div class="product-body">

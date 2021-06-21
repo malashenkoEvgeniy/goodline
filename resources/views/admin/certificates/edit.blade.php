@@ -1,7 +1,7 @@
 @extends('admin.layouts')
 
 @section('content')
-<div class="container col-8">
+<div class="container">
     <div class="row justify-content-center">
         <div class="col-12">
             <div class="card">
@@ -39,8 +39,9 @@
                           </div>
                           <input type="text" class="form-control" name="title" value="{{$certificate->translate()->title}}">
                         </div>
-
-                        <h5 class="card-title">Описание</h5>
+                        <div class="input-group mb-3">
+                            <h5 class="card-title mb-3">Описание</h5>
+                        </div>
                         <div class="mb-3">
                           <textarea  name="body" id="editor1" >
                             @isset($certificate->translate()->body){{$certificate->translate()->body}}@endisset
@@ -57,9 +58,6 @@
                         {{ method_field('DELETE') }}
                         <button type="submit" class="btn btn-danger btn-delete">Удалить</button>
                     </form>
-
-
-
                 </div>
             </div>
         </div>
@@ -69,8 +67,6 @@
 
 
 @section('scripts')
-  <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-
   <script>
     tinymce.init({
       selector: '#editor1',
@@ -81,14 +77,6 @@
     ],
     toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
     content_css: '//www.tiny.cloud/css/codepen.min.css'
-    });
-
-    tinymce.init({
-      selector: '#editor2'
-    });
-
-    tinymce.init({
-      selector: '#editor3'
     });
   </script>
 

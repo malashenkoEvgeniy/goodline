@@ -1,7 +1,7 @@
 @extends('admin.layouts')
 
 @section('content')
-<div class="container col-8">
+<div class="container">
     <div class="row justify-content-center">
         <div class="col-12">
             <div class="card">
@@ -37,8 +37,9 @@
                           </div>
                           <input type="text" class="form-control" name="title" required>
                         </div>
-
-                        <h5 class="card-title">Описание</h5>
+                        <div class="input-group mb-3">
+                            <h5 class="card-title mb-3">Описание</h5>
+                        </div>
                         <div class="mb-3">
                           <textarea  name="body" id="editor1" > </textarea>
                         </div>
@@ -53,7 +54,6 @@
 </div>
 @endsection
 @section('scripts')
-  <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
   <script>
     tinymce.init({
