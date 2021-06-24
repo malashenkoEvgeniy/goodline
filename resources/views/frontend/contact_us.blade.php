@@ -30,19 +30,19 @@
             <h3 class="contact_us-form-title">@lang('main.form.to_contact_us')</h3>
 			<form action="{{route('sendForm')}}" method="POST">
 			{!! csrf_field() !!}
-				<div class="input-group">
+				<div class="input-group group-input">
 					<label for="input_name">@lang('main.form.name')</label>
 					<input type="text" id="input_name" name="name" placeholder="@lang('main.form.input_name')" required>
 				</div>
-				<div class="input-group">
+				<div class="input-group group-input">
 					<label for="input_phone">@lang('main.form.phone')</label>
 					<input type="text" id="input_phone" name="phone" placeholder="@lang('main.form.input_phone')" required>
 				</div>
-				<div class="input-group">
+				<div class="input-group group-input">
 					<label for="input_email">@lang('main.form.email')</label>
 					<input type="text" id="input_email" name="email" placeholder="@lang('main.form.input_email')">
 				</div>
-				<div class="input-group">
+				<div class="input-group group-msg">
 					<label for="input_message">@lang('main.form.message')</label>
 					<textarea name="message" id="input_message" cols="30" rows="10">@lang('main.form.input_message')</textarea>
 				</div>
@@ -61,5 +61,12 @@
 
 @section('scripts')
 <script src="/frontend/js/lazy_load.js"></script>
+<script>
+    if( window.screen.width <= 768 && window.screen.width > 568){
+        $('.input-group').wrapAll('<div class="contact-first-wrap"></div>');
+        $('.group-input').wrapAll('<div class="contact-second-wrap"></div>');
+        $('.group-msg').siblings('.input-group').fadeOut();
+    }
+</script>
 
 @endsection

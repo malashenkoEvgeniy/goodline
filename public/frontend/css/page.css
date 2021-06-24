@@ -30,7 +30,7 @@
 }
 
 .content-wrapper {
-    min-height: 100vh;
+    min-height: 50vh;
 }
 @media (max-width: 568px){
     .about-wrap-item iframe {

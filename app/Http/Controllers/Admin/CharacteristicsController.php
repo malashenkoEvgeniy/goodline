@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class CharacteristicsController extends BaseController
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
     protected $storePath = '/uploads/characteristics/';
     /**
      * Display a listing of the resource.

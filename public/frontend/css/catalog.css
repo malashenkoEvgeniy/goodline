@@ -14,16 +14,28 @@
 	background-color: #FFFFFF;
 }
 
+::-webkit-scrollbar {
+    width: 5px;
+    height: 3px; /* высота для горизонтального скролла */
+    background-color: #FFFFFF;
+}
+
+/* ползунок скроллбара */
+::-webkit-scrollbar-thumb {
+    background-color: #C71F25;
+    border-radius: 9em;
+    box-shadow: inset 1px 1px 10px #f3faf7;
+}
 
 .catalog-tabs{
 	display: flex;
-	flex-wrap: wrap;
+    max-width: 100%;
+    overflow: auto;
+    height: 100%;
 }
 .catalog-tabs-item{
 	cursor: pointer;
-	width: calc(25% - 2px);
-	border-right: 1px solid transparent;
-	border-bottom: 2px solid transparent;
+    height: 100%;
 }
 
 .catalog-tabs-item-content{
@@ -32,9 +44,6 @@
 	align-items: center;
 }
 
-.catalog-tabs .catalog-tabs-item:nth-child(odd){
-	border-right: 1px solid #E6E6E6;
-}
 
 .catalog-tabs-item img{
 	margin-right: 20px;
@@ -48,8 +57,15 @@
 .catalog-tabs-item .tab-title{
 	margin: unset;
 	text-transform: uppercase;
+    white-space: nowrap;
 	font-size: 16px;
     line-height: 19px;
+    color: #C71F25;
+    display: block;
+}
+
+.catalog-tabs-item-content:hover {
+    border-bottom: 2px solid #C71F25;
 }
 
 .catalog-tabs-item.active{
@@ -119,14 +135,7 @@
 }
 
 /*hover*/
-.catalog-item:hover {
-    padding-bottom: 5px;
-    transition: all 1.2s ease-out;
-}
 
-.catalog-item:hover .catalog-item__title {
-    background-color: transparent;
-}
 
 .catalog-item:hover::before {
     content: "";
@@ -139,7 +148,7 @@
     transition: all 1.2s ease-out;
 }
 
-.catalog-item:hover .catalog-item-hidden-desc-bg {
+.catalog-item:hover .btn.show-more {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -150,4 +159,59 @@
 .catalog-item:hover  .catalog-item-description {
     display: block;
     /*transition: all 1.2s ease-out;*/
+}
+
+.catalog-body {
+    padding-bottom: 30px!important;
+    min-height: 20vh;
+}
+
+.development-block {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100%;
+    padding: 50px 0;
+}
+
+.development-item {
+    margin-bottom: 50px;
+}
+
+.development-text {
+    width: 50%;
+}
+
+.development-img {
+    align-self: flex-end;
+}
+
+@media (max-width: 568px){
+    .page-thumbnail {
+        background-image: unset!important;
+    }
+
+    .page-thumbnail .title {
+        font-size: 20px;
+        line-height: 24px;
+        justify-content: flex-start;
+        padding-left: 20px;
+    }
+
+    .catalog-tabs {
+        display: none;
+    }
+
+
+    .catalog-item {
+        width: 45%;
+        margin: 20px 5px;
+    }
+
+    .catalog-item a {
+        text-align: center;
+    }
+
+
 }

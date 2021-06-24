@@ -33,27 +33,7 @@
     background-color: #D52C2F;
 }
 
-/*.home-slider .title:before{*/
-/*	content: '';*/
-/*	position: absolute;*/
-/*	top: -10px;*/
-/*	left: -20px;*/
-/*	width: 310px;*/
-/*	height: 85px;*/
-/*	background-color: #D52C2F;*/
-/*	z-index: -1;*/
-/*}*/
 
-/*.home-slider .title:after{*/
-/*	content: '';*/
-/*	position: absolute;*/
-/*	bottom: -10px;*/
-/*	width: 540px;*/
-/*	height: 85px;*/
-/*	left: -20px;*/
-/*	background-color: #D52C2F;*/
-/*	z-index: -1;*/
-/*}*/
 
 .home-slider .title span{
     padding: 10px 20px;
@@ -84,7 +64,7 @@
 .about-us-content{
 	display: flex;
     align-items: center;
-    max-width: 1540px;
+    max-width: 100%;
 }
 
 .about-us-content img{
@@ -203,7 +183,7 @@
 
 .interesting-item a {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .interesting-item__title{
@@ -272,7 +252,7 @@
     }
 
 	.catalog-item__title{
-		font-size: 26px;
+		font-size: 18px;
 	}
 }
 
@@ -287,6 +267,10 @@
 
     .certificates {
         margin-bottom: 40px;
+    }
+
+    .catalog-item__title{
+        font-size: 16px;
     }
 }
 

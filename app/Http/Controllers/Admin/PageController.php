@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\App;
 
 class PageController extends  BaseController
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
     protected $storePath = '/uploads/pages/';
     /**
      * Display a listing of the resource.
@@ -41,12 +45,13 @@ class PageController extends  BaseController
      */
     public function store(Request $request)
     {
+
         $this->validate($request, [
             'parent_id' => 'required',
-            'short_description' => 'nullable|string|size:10'
+            'short_description' => 'nullable|string|max:255'
         ], [
             'parent_id.required' => 'Поле "родительская страница" обязательно для заполнения',
-            'short_description.string' => 'Поле "Краткое описание" не может превышать 255',
+            'short_description.max' => 'Поле "Краткое описание" не может превышать 255',
         ]);
         $req = $request->only('parent_id');
         $req['url'] = SlugService :: createSlug ( Page :: class, 'url' , $request->title );
@@ -78,9 +83,9 @@ class PageController extends  BaseController
     {
 
         $this->validate($request, [
-            'short_description' => 'nullable|string|size:10'
+            'short_description' =>  'nullable|string|max:255'
         ], [
-            'short_description.size' => 'Поле "Краткое описание" не может превышать 255',
+            'short_description.max' => 'Поле "Краткое описание" не может превышать 255',
         ]);
         $page = Page::find($id);
         $req = request()->only('parent_id');

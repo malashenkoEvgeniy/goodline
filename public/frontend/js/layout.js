@@ -9,7 +9,7 @@ function showTopHeader(){
     $('.header-bottom').removeClass("remove-border");
 }
 
-if(window.screen.width > 568){
+if($(window).width() > 1024) {
     $(window).scroll(function() {
         if ($(this).scrollTop() > 98){
             hideTopHeader();
@@ -169,3 +169,15 @@ $('.certificates-items').slick({
     }
 ]
 });
+
+
+    $(window).scroll(function(){
+        if ($(this).scrollTop() > 100) {
+            $('footer .btn-up').fadeIn();
+        } else {
+            $('footer .btn-up').fadeOut();
+        }
+    });
+
+
+

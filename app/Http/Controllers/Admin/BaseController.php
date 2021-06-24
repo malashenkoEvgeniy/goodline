@@ -3,11 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Feedback;
 use App\Models\FormRequest;
 use Illuminate\Support\Facades\App;
 
 class BaseController extends Controller
 {
+    function __construct(){
+        $viewed = count(Feedback::where('viewed', 0)->get());
+        view()->share(compact('viewed'));
+    }
 
     public function translit($value)
     {

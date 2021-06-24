@@ -5,7 +5,6 @@
             @include('frontend.includes.svg.logo')
         </a>
     </div>
-
     <!-- Sidebar Menu -->
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -52,8 +51,9 @@
                 <a href="{{route('message.index')}}" class="nav-link">
                     <i class="nav-icon fas fa-edit"></i>
                     <p>
-                        Заявки
-                        <span class="badge badge-info right">2</span>
+                        Заявки@if($viewed>0)
+                        <span class="badge badge-info right">
+                            {{$viewed}}</span> @endif
                     </p>
                 </a>
             </li>

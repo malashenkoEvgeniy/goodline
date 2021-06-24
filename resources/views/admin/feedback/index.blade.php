@@ -37,7 +37,14 @@
                         <td>
                             <div class="col" style="display: flex">
                                 <div class="row">
-                                    <a class="mr-3 btn btn-warning" href="{{ route('message.show',$feedback->id)}}">Посмотреть</a>
+
+                                    <a class="mr-3 btn
+                                    @if($feedback->viewed>0)
+                                        btn-secondary
+                                    @else
+                                     btn-warning
+                                     @endif
+                                    " href="{{ route('message.show',$feedback->id)}}">Посмотреть</a>
 
                                 </div>
                                 <form action="{{ route('message.destroy', ['id' => $feedback->id]) }}" method="post" class="float-left">

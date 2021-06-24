@@ -34,3 +34,24 @@
 .breadcrumbs .bread-sep svg path{
 	fill: #FFFFFF;
 }
+
+@media (max-width: 568px){
+
+    .breadcrumbs {
+        display: flex;
+        justify-content: flex-start;
+        padding-left: 20px;
+    }
+
+    .breadcrumbs li a {
+        color:#262626;
+    }
+
+    .bread-sep svg path {
+        fill: #262626!important;
+    }
+
+    .breadcrumbs li.current {
+        color:#C71F25;
+    }
+}

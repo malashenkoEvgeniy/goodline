@@ -7,8 +7,9 @@ use App\Models\Files;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class FilesController extends Controller
+class FilesController extends BaseController
 {
+
     /**
      * Display a listing of the resource.
      *

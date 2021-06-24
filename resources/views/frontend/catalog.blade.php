@@ -12,8 +12,6 @@
 @section('content')
 
 
-
-
 <div class="page-thumbnail" style="background-image: url({{$page->banner}})">
 	@include('frontend.includes.breadcrumbs')
 	<h2 class="title"><span>{{ $page->translate()->title}}</span></h2>
@@ -95,66 +93,26 @@
 	</div>
 
 </div>
-
+@else
+    <div class="content-wrapper ">
+        <div class="development-block">
+        <h2 class="title development-item"><span>@lang('main.products_in_development')</span></h2>
+            <div class="development-text development-item">@lang('main.products_in_development_text')</div>
+            <img src="{{asset('frontend/images/dev.jpg')}}" alt="dev" class="development-img development-item">
+        </div>
+    </div>
 @endif
-
+@if(count($products)>0)
 <div class="catalog-body section-padding">
 	<div class="content-wrapper">
 		{!! $page->translate()->body !!}
 	</div>
 
 </div>
-
-
-
-
+@endif
 @endsection
-
-
 @section('scripts')
 
-<script>
-
-	$('.catalog-tabs-item').click(function(){
-		$('.catalog-tabs-item.active').removeClass('active');
-		$(this).toggleClass('active');
-	});
-
-
-	$('.show-more-products').click(function(){
-
-		let page = $(this).attr('data-page');
-
-
-
-		$.ajax({
-			method: 'GET',
-			url: page,
-			data: {
-				_token: '{{csrf_token()}}',
-			}
-		}).done(function(data){
-			let page = $(data);
-			let items = page.find('.catalog-item');
-
-			let amoutOfProducts = page.find('.amount-products').html();
-			let amountProductsOnPage = $('.amount-products').html();
-
-			$('.amount-products').text( parseInt(amoutOfProducts) + parseInt(amountProductsOnPage));
-
-			if (page.find('.show-more-products').length == 1) {
-				let nextPage = page.find('.show-more-products').attr('data-page');
-				$('.show-more-products').attr('data-page', nextPage);
-			}else{
-				$('.show-more-products').remove();
-			}
-
-			$('.catalog-items').append(items);
-
-		});
-	});
-
-
-</script>
+    <script src="{{asset('/frontend/js/catalog.js')}}"></script>
 
 @endsection

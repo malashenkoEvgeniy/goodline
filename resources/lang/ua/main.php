@@ -7,8 +7,10 @@ return [
     "about_us" => "Про нас",
     "interesting" =>"Цікаве",
     "certificates" =>"Сертифікати",
-
+    "cooperation"=>"Співробітництво",
     "contacts" => "Контакти",
+    "products_in_development"=>"Продукція в розробці",
+    "products_in_development_text"=>"Ми докладаємо всіх зусиль, щоб створити саме смачне печиво без глютену і без цукру з турботою про ваше здоров'я і самопочуття",
 
 
     "detail" => "Докладніше",
@@ -41,7 +43,8 @@ return [
         "amount" => "кількість",
         "find_out_the_cost" => " дізнатися вартість ",
         "description" => "опис",
-        "specifications" => "Характеристики"
+        "specifications" => "Характеристики",
+        "ingredients" => "Iнгредієнти"
     ]
 
 

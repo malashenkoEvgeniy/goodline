@@ -8,7 +8,7 @@
       <ul class="header-top-list">
           <li class="header-top-item header-top-item-logo">
               <a href="/" class="header-top-link">
-                  @include('frontend.includes.svg.logo')
+                  @include('frontend.includes.svg.logo'){{--<img src="{{asset('/logo.png')}}" alt="logo">--}}
               </a>
           </li>
           <li class="header-top-item header-top-contacts">
@@ -91,39 +91,39 @@
                 <span class="categories-link-svg-mobile">@include('frontend.includes.svg.dropdown_angle')</span>
   			</div>
 			<div class="menu-categories">
-			<ul class="categories-items">
-                @foreach($categories as $el)
-                <li class="categories-item">
-                    <a href='{{ LaravelLocalization::localizeUrl("$el->url") }}' class="categories-item-link">
-                        <div class="temp">
-                        {!! file_get_contents(public_path().$el->icon) !!}
-                        </div>
-                        {{$el->translate()->title}}
+			    <ul class="categories-items">
+                    @foreach($categories as $el)
+                    <li class="categories-item">
+                        <a href='{{ LaravelLocalization::localizeUrl("$el->url") }}' class="categories-item-link">
+                            <div class="temp">
+                            {!! file_get_contents(public_path().$el->icon) !!}
+                            </div>
+                            {{$el->translate()->title}}
+                            @if(count($el->children)>0)
+                                <span class="categories-link-svg-mobile">@include('frontend.includes.svg.dropdown_angle')</span>
+                            @endif
+
+                        </a>
+
                         @if(count($el->children)>0)
-                            <span class="categories-link-svg-mobile">@include('frontend.includes.svg.dropdown_angle')</span>
+
+                            <div class="subcategories-wrap">
+                                <ul class="subcategories-list">
+                                    @foreach($el->children as $subel)
+                                        <li class="subcategories-item">
+                                            <a href='{{ LaravelLocalization::localizeUrl("$subel->url") }}' class="subcategories-link">
+                                                <img src="{{asset($subel->image)}}" alt="{{$subel->translate()->title}}" width="170" height="170">
+                                                {{$subel->translate()->title}}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         @endif
-
-                    </a>
-
-                    @if(count($el->children)>0)
-
-                        <div class="subcategories-wrap">
-                            <ul class="subcategories-list">
-                                @foreach($el->children as $subel)
-                                    <li class="subcategories-item">
-                                        <a href='{{ LaravelLocalization::localizeUrl("$subel->url") }}' class="subcategories-link">
-                                            <img src="{{asset($subel->image)}}" alt="{{$subel->translate()->title}}" width="170" height="170">
-                                            {{$subel->translate()->title}}
-                                        </a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                </li>
-                @endforeach
-            </ul>
-		</div>
+                    </li>
+                    @endforeach
+                </ul>
+		    </div>
   		</div>
   		<div class="main-menu">
   			<ul class="main-menu-items">
@@ -166,4 +166,3 @@
 </div>
   </div>
 </header>
-

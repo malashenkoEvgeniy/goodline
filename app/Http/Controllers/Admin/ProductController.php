@@ -9,9 +9,15 @@ use App\Models\Category;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends BaseController
 {
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
     protected $storePath = '/uploads/category/';
     /**
      * Display a listing of the resource.
@@ -39,6 +45,13 @@ class ProductController extends BaseController
 
     public function store(Request $request)
     {
+
+        $this->validate($request, [
+            'short_des' => 'nullable|min:2|max:255',
+        ], [
+            'short_des.max' => 'Поле "Краткое описание" должны быть не больше 255 символов',
+            'short_des.min' => 'Поле "Краткое описание" должны быть не менее 2 символов',
+        ]);
 
         $req = request()->only('vendor_code','url');
         $req['url'] = SlugService :: createSlug ( Product :: class, 'url' , $request->title );
@@ -84,11 +97,12 @@ class ProductController extends BaseController
         $productCategories = $product->category()->get();
         $characteristics = Characteristics::get();
         $selectedCategories = array();
+        $productProperties = DB::table('characteristics_product')->where('product_id', $id)->get();
         foreach($productCategories as $category){
             $selectedCategories[] = $category->id;
         }
-
-        return view('admin.product.edit',compact('categories','characteristics', 'selectedCategories','product'));
+//        dd($product);
+        return view('admin.product.edit',compact('categories','characteristics','productProperties', 'selectedCategories','product'));
     }
 
 

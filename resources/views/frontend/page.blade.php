@@ -11,6 +11,7 @@
 
 @section('content')
 @include('frontend.includes.breadcrumbs')
+@if(isset($page->parent_id))
 @if($page->parent_id == 1)
     <style>
         .interesnoe-wrap {
@@ -39,8 +40,25 @@
             padding: 100px;
         }
 
-    </style>
+        @media (max-width: 568px){
+            .interesnoe-wrap-item {
+                flex-direction: column;
+            }
 
+            .interesnoe-wrap-item img {
+                width: 100%;
+                height: auto;
+            }
+
+            .interesnoe-description {
+                background-color: #ffffff;
+                width: 100%;
+                padding: unset;
+            }
+        }
+
+    </style>
+@endif
 @endif
 @if($page==null)
     <div class="content-wrapper page">
@@ -92,6 +110,11 @@
                         margin: 0 auto;
                     }
 
+                    .about-wrap-item  img,
+                    .about-wrap-item  iframe {
+                        width: 50%;
+                    }
+
                     .about-wrap-item {
                         display: flex;
                         align-items: flex-start;
@@ -102,7 +125,8 @@
                     .about-description {
                         background-color: #ffffff;
                         width: 50%;
-                        padding: 100px;
+                        padding: 50px;
+                        text-align: justify;
                     }
 
 
@@ -142,7 +166,9 @@
 
 
                     @media (max-width: 568px){
-
+                        .certificates .content-wrapper {
+                            min-height: 20vh;
+                        }
 
 
                         .about-wrap iframe,
@@ -174,7 +200,7 @@
                         display: flex;
                         flex-direction: column;
                         align-items: center;
-                        width: 1200px;
+                        width: 100%;
                         margin: 0 auto;
                     }
 
@@ -189,6 +215,27 @@
                         background-color: #ffffff;
                         width: 50%;
                         padding: 100px;
+                    }
+
+                    @media (max-width: 768px){
+                        .cooperation-wrap-item {
+                            display: unset;
+                        }
+
+                        .cooperation-wrap-item img {
+                            float: left;
+                        }
+
+                        .cooperation-description {
+                            background-color: #ffffff;
+                            width: 100%;
+                            padding: unset;
+                        }
+
+                        .cooperate {
+                            width: 100%;
+                            padding: 0;
+                        }
                     }
                 </style>
                 <div class="content-wrapper">

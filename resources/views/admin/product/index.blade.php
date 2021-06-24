@@ -23,7 +23,7 @@
                         <tr>
                         <th scope="row">{{ $product->translate()->title}}</th>
                         <td>{{$product->vendor_code}}</td>
-                        <td>{{$product->translate()->short_description}}</td>
+                        <td>{{$product->translate()->short_desc}}</td>
                         <td>
                             <div class="row">
                             <div class="col-12 d-flex justify-content-center">

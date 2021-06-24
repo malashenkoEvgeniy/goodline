@@ -11,7 +11,16 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">Создание Продукции</div>
-
+                @include('admin.includes.alerts')
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="card-body">
 					        <form action="{{route('products.store')}}" method="POST" enctype="multipart/form-data">
                         {!! csrf_field() !!}
@@ -48,16 +57,23 @@
                         </div>
 
                         <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Краткое описание</span>
+                            </div>
+                            <input type="text" class="form-control" name="short_desc" min="2" max="255">
+                        </div>
+
+                        <div class="input-group mb-3">
                           <div class="input-group-prepend">
                             <span class="input-group-text">Артикул</span>
                           </div>
                           <input type="text" class="form-control" name="vendor_code" required>
                         </div>
                                 <div class="input-group mb-3">
-                                    <h5 class="card-title">Краткое описание</h5>
+                                    <h5 class="card-title">Описание</h5>
                                 </div>
                                 <div class="mb-3">
-                                    <textarea  name="short_description" id="editor1" ></textarea>
+                                    <textarea  name="description" id="editor1" ></textarea>
                                 </div>
                         <div class="input-group mb-3">
                             <h5 class="card-title">Характеристики</h5>

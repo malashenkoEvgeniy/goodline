@@ -40,20 +40,52 @@ if($(window).width() > 1024) {
             $('.menu-categories').removeClass('active');
         }
     );
-
-    $('.o-glyutene').click(function (evt) {
+// ======================================================================
+    $('.o-glyutene').hover(function (evt) {
         evt.preventDefault();
-        $('.main-submenu-items').slideToggle();
+        $('.main-submenu-items').addClass('active');
+    }, function () {
+
     });
 
-    $(document).click(function (e) {
-        if (!$('.o-glyutene').is(e.target) && !$('.main-submenu-items').is(e.target) && $('.main-submenu-items').has(e.target).length === 0) {
-            $('.main-submenu-items').slideUp();
-            $('.main-submenu-items').addClass('list-o-glyutene');
-        };
-    });
+    $('.main-submenu-items').hover(
+        function () {
+            $(this).addClass('active');
+        }, function () {
+            $(this).removeClass('active');
+        }
+    );
+
+    $('.o-glyutene').hover(
+        function () {
+        }, function () {
+            $('.main-submenu-items').removeClass('active');
+        }
+    );
+
+    // $(document).click(function (e) {
+    //     if (!$('.o-glyutene').is(e.target) && !$('.main-submenu-items').is(e.target) && $('.main-submenu-items').has(e.target).length === 0) {
+    //         $('.main-submenu-items').slideUp();
+    //         $('.main-submenu-items').addClass('list-o-glyutene');
+    //     };
+    // });
 }
 if($(window).width() < 1024) {
+
+
+    // function headerBg(){
+    //     if($(window).scrollTop() > 50){
+    //         $('.header-top').addClass('hide');
+    //     }else{
+    //         $('.header-top').removeClass('hide');
+    //     }
+    //
+    // }
+    //
+    //
+    // $(document).ready(headerBg);
+    // $(window).scroll(headerBg);
+
 
     $('#menu-toggle').click(function () {
         if ($(this).hasClass('open')) {
@@ -74,15 +106,18 @@ if($(window).width() < 1024) {
     });
 
     $('.categories-link').click(function () {
+
         $(this).toggleClass('categories-link-open');
         $('.menu-categories').toggleClass('menu-categories-open');
     });
 
     $('.categories-item-link').click(function (evt) {
-        evt.preventDefault();
-        $(this).toggleClass('categories-link-open');
-        $('.categories-link').fadeToggle();
-        $('.subcategories-list').fadeToggle();
+        if($(this).siblings('.subcategories-wrap').length>0) {
+            evt.preventDefault();
+            $(this).toggleClass('categories-link-open');
+            $('.categories-link').fadeToggle();
+            $('.subcategories-list').fadeToggle();
+        }
     });
 
     $('.o-glyutene').click(function (evt) {

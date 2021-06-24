@@ -71,27 +71,66 @@
                         </div>
                     @endforeach
                 </div>
-                <div class="short_description">
-                    <h3 class="short_description-title">@lang('main.product.description') </h3>
-                </div>
-                <div class="short_description">{!!$product->translate()->short_description!!}</div>
+{{--                <div class="short_description">--}}
+{{--                    <h3 class="short_description-title">@lang('main.product.description') </h3>--}}
+{{--                </div>--}}
+                <div class="short_description">{!!$product->translate()->short_desc!!}</div>
             </div>
         </div>
-        <div class="product-body">
+        <div class="product-body product-body-fordescktop">
             <ul class="product-body-tabs">
                 <li class="product-body-tab active ">@lang('main.product.ingredients')</li>
+                <li class="product-body-tab ">@lang('main.product.description')</li>
                 <li class="product-body-tab ">@lang('main.product.specifications')</li>
 
             </ul>
+            <div class="product-body-tab-content  active  product-body-text">
+                {!! $product->translate()->description!!}
+            </div>
 
-            <div class="product-body-tab-content active product-body-text">
+            <div class="product-body-tab-content product-body-text">
             {!! $product->translate()->characteristics !!}
             </div>
+
+
 
             <div class="product-body-tab-content  product-body-text">
             {!! $product->translate()->ingredients!!}
             </div>
 
+        </div>
+        <div class="product-body product-body-formobile">
+            <ul class="product-body-accordions">
+                <li class="product-body-accordion  active ">
+                    <button class="accordion-btn active">
+                        @lang('main.product.description')
+                        @include('frontend.includes.svg.dropdown_angle')
+                    </button>
+                    <div class="product-body-accordion-content active product-body-text">
+                        {!! $product->translate()->description!!}
+                    </div>
+                </li>
+                <li class="product-body-accordion">
+                    <button class="accordion-btn ">
+                        @lang('main.product.ingredients')
+                        @include('frontend.includes.svg.dropdown_angle')
+                    </button>
+                    <div class="product-body-accordion-content  product-body-text">
+                        {!! $product->translate()->characteristics !!}
+                    </div>
+                </li>
+
+                <li class="product-body-accordion">
+                    <button class="accordion-btn">
+                        @lang('main.product.specifications')
+                        @include('frontend.includes.svg.dropdown_angle')
+                    </button>
+                    <div class="product-body-accordion-content  product-body-text">
+                        {!! $product->translate()->ingredients!!}
+                    </div>
+                </li>
+
+            </ul>
         </div>
 	</div>
 </div>
@@ -103,87 +142,6 @@
 
 
 @section('scripts')
-
-<script  src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<script>
-	$('.product-slider .slider-items').slick({
-		dots: false,
-		infinite: false,
-		slidesToShow: 1,
-		slidesToScroll: 1,
-		arrows: false,
-		draggable: false,
-		asNavFor: '.product-slider .slider-nav'
-	});
-
-	$('.product-slider .slider-nav').slick({
-	  	slidesToShow: 3,
-	  	asNavFor: '.product-slider .slider-items',
-	  	focusOnSelect: true
-	});
-
-	$('.our-clients__slider-items').slick({
-		dots: false,
-		speed: 400,
-		autoplay: true,
-		autoplaySpeed: 10000,
-		slidesToShow: 6,
-		slidesToScroll: 1,
-		prevArrow: ".our-clients__slider .switch-left",
-		nextArrow: ".our-clients__slider .switch-right",
-		responsive:[
-			{
-				breakpoint: 1024,
-				settings: {
-					slidesToShow: 4
-				}
-			},
-			{
-				breakpoint: 568,
-				settings: {
-					variableWidth: true,
-		  			centerMode: true,
-					slidesToShow: 1,
-				}
-			},
-		]
-	});
-
-
-	$('input[type=radio]').change(function() {
-		$('.product-option-color label.active ').removeClass('active');
-	    $(this).parent('label').toggleClass('active');
-		$('#color_id').val( $(this).val());
-	});
-
-	$('.product-body-tab').click(function(){
-		$('.product-body-tab-content.active').removeClass('active');
-		$('.product-body-tab.active').removeClass('active');
-		$(this).toggleClass('active');
-		$('.product-body .product-body-tab-content').eq($(this).index()).addClass('active');
-	});
-
-	$('#btn-order').click(function(e){
-		e.preventDefault();
-		$('#product-form-bg').fadeToggle();
-		$('#color_id').val($("input[name='color']:checked").val());
-		$('#quantity_id').val($('#product_quantity').val());
-	});
-
-	$('#product-form-bg .close-form').click(function(){
-      $('#product-form-bg').fadeToggle();
-    });
-
-    $('#product-form-bg').click(function(e){
-      var form_bg = $('#product-form-bg');
-      if ( form_bg.is(e.target ) && form_bg.has(e.target).length === 0) {
-        $('#product-form-bg').fadeToggle();
-      }
-    });
-
-</script>
-
-
-<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script src="{{asset('/frontend/js/product.js')}}"></script>
 
 @endsection

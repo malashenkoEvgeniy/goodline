@@ -9,6 +9,8 @@
 @endsection
 
 @section('content')
+
+    <?php $check = false?>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-12">
@@ -60,11 +62,18 @@
                             </div>
                             <div  style=" display: flex; justify-content: space-between;">
                                 @foreach($characteristics as $characteristic)
+
                                     <div class="" style=" display: flex; flex-direction: column; align-items: center;">
                                         <img src="{{asset($characteristic->image)}}" alt="check{{$characteristic->id}}" width="50" height="50">
                                         <label for="check{{$characteristic->id}}">{{$characteristic->translate()->title}}</label>
-                                        <input type="checkbox" name="properties[{{$characteristic->id}}]" id="check{{$characteristic->id}}" >
+                                        @foreach($productProperties as $property)
+                                            @if($characteristic->id == $property->characteristics_id)
+                                            <?php $check = true?>
+                                            @endif
+                                        @endforeach
+                                        <input type="checkbox" name="properties[{{$characteristic->id}}]" @if($check)checked @endif id="check{{$characteristic->id}}" >
                                     </div>
+                                    <?php $check = false?>
                                 @endforeach
 
                             </div>
@@ -76,11 +85,18 @@
                           </div>
                           <input type="text" class="form-control" name="vendor_code" @isset($product->vendor_code) value="{{$product->vendor_code}}" @endisset>
                         </div>
+
                         <div class="input-group mb-3">
-                            <h5 class="card-title">Краткое описание</h5>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Краткое описание</span>
+                            </div>
+                            <input type="text" class="form-control" name="short_desc" @isset($product->translate()->short_desc) value="{{$product->translate()->short_desc}}" @endisset>
+                        </div>
+                        <div class="input-group mb-3">
+                            <h5 class="card-title">Описание</h5>
                         </div>
                         <div class="mb-3">
-                            <textarea  name="short_description" id="editor1" >@isset($product->translate()->short_description) {{$product->translate()->short_description}} @endisset></textarea>
+                            <textarea  name="description" id="editor1" >@isset($product->translate()->description) {{$product->translate()->description}} @endisset></textarea>
                         </div>
                         <div class="input-group mb-3">
                             <h5 class="card-title">Характеристики</h5>

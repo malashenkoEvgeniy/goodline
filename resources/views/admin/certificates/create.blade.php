@@ -41,7 +41,7 @@
                             <h5 class="card-title mb-3">Описание</h5>
                         </div>
                         <div class="mb-3">
-                          <textarea  name="body" id="editor1" > </textarea>
+                          <textarea  name="body"  style="width:100%" > </textarea>
                         </div>
                         <input type="hidden" name="language" value="{{ LaravelLocalization::getCurrentLocale() }}">
                         <button type="submit" class="btn btn-primary">Создать</button>
@@ -52,13 +52,4 @@
         </div>
     </div>
 </div>
-@endsection
-@section('scripts')
-
-  <script>
-    tinymce.init({
-      selector: '#editor1'
-    });
-  </script>
-
 @endsection
