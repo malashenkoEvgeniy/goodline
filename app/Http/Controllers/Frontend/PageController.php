@@ -196,7 +196,11 @@ class PageController extends BaseFrontendController
         $page = Settings::find(1);
         if(App::getLocale() == 'ru'){
             $title = "Контакты";
-        }else{
+        }
+        elseif (App::getLocale() =='ua'){
+            $title = "Контакти";
+        }
+        else{
             $title = "Contacts";
 
         }

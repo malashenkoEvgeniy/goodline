@@ -9,25 +9,33 @@ class BaseModel extends Model
 {
     protected $translateTable;
 
-    public function translate($language = null){
 
-        if ($language == 'all') { // получить все переводы
-            $response = $this->hasMany($this->translateTable)->get();
-            return $response;
+
+    public function translate()
+    {
+        $locale = App::getLocale();
+
+        $response = $this->hasMany($this->translateTable)->where('language', $locale)->first();
+
+        if ($response === null) {
+            $response = $this->hasMany($this->translateTable)->where('language', 'en')->first();
         }
 
-        if ($language == null) { // Если язык не выбран установить текущий
-    		$language = App::getLocale();
+        if ($response === null) {
+            $response = $this->hasMany($this->translateTable)->where('language', 'ua')->first();
         }
 
-        $response = $this->hasMany($this->translateTable)->where('language',$language)->first();
+        if ($response === null) {
+            $response = $this->hasMany($this->translateTable)->where('language', 'ru')->first();
+        }
 
-        if($response === null){
-            $response = $this->hasMany($this->translateTable)->where('language','ua')->first();
+        if ($response === null) {
+            App::abort(404);
         }
 
         return $response;
     }
+
 
     public function translations()
     {

@@ -1,3 +1,10 @@
+<style>
+    .user-panel svg{
+        width: 190px;
+        height: 50px;
+    }
+</style>
+
 <div class="sidebar">
     <!-- Sidebar user (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">

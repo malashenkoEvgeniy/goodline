@@ -105,7 +105,7 @@
 }
 
 .catalog-item:hover{
-	box-shadow: 0px 0px 5px rgb(195 197 194);
+	box-shadow: 0 0 5px rgb(195 197 194);
 }
 
 
@@ -131,6 +131,8 @@
 }
 
 /*====*/
+
+.interesting-wrap,
 .interesting{
     margin-bottom: 100px;
 }
@@ -148,6 +150,11 @@
     display: flex;
     flex-wrap: wrap;
     background-color: #FFFFFF;
+}
+
+.interesting-item img {
+    width: 367px;
+    height: 330px;
 }
 
 .interesting-item-details {

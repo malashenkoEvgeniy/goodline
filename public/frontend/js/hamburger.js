@@ -1,45 +1,41 @@
 "use strict";
+function addCatigoriesMenu () {
+    $('.categories-item').each(function (index) {
+        let item = $(this);
+        setTimeout(function () {
+            item.addClass('show');
+        }, (index + 1) * 130);
+    });
+    setTimeout(function () {
+        $('.menu-categories').addClass('active');
+    },  130);
+    setTimeout(function () {
+        $('.menu-categories').css('overflow', 'unset');
+    },  1530);
+
+}
+
+function removeCatigoriesMenu () {
+    setTimeout(function () {
+        $('.menu-categories').removeClass('active');
+    },  130);
+
+}
+
+
 if($(window).width() > 1024) {
-    // $('.categories-link').hover(function (evt) {
-    //     $('.menu-categories').addClass('active');
-    //     // if (evt.target())
-    //     if (!$(this).is(evt.target) && !$('.menu-categories').is(evt.target) && $('.menu-categories').has(evt.target).length === 0) {
-    //         $('.menu-categories').removeClass('active');
-    //     };
-    // });
 
+    $('.categories-link').hover(addCatigoriesMenu, function () {
+        }
+    );
+
+    $('.menu-categories').hover(addCatigoriesMenu, removeCatigoriesMenu);
 
     $('.categories-link').hover(
         function () {
-            $('.menu-categories').addClass('active');
-            // $('.side-menu-products[data-sub-menu="' + $(this).attr('data-childrens-menu') + '"]').addClass('show-menu');
-        }, function () {
-            // $('.side-menu-products[data-sub-menu="' + $(this).attr('data-childrens-menu') + '"]').removeClass('show');
-        }
-    );
-
-    $('.menu-categories').hover(
-        function () {
-            $('.menu-categories').addClass('active');
-        }, function () {
-            $('.menu-categories').removeClass('active');
-        }
-    );
-
-    $('.categories-link').hover(
-        function () {
-        }, function () {
-            $('.menu-categories').removeClass('active');
-        }
-    );
+        }, removeCatigoriesMenu);
 
 
-    $('.menu-categories').hover(
-        function () {
-        }, function () {
-            $('.menu-categories').removeClass('active');
-        }
-    );
 // ======================================================================
     $('.o-glyutene').hover(function (evt) {
         evt.preventDefault();
@@ -124,6 +120,7 @@ if($(window).width() < 1024) {
         evt.preventDefault();
         $(this).toggleClass('o-glyutene-open');
         $('.main-submenu-items').toggleClass('list-o-glyutene');
+        $('.main-submenu-items').toggleClass('o-glyutene-open-aditional');
         $('.main-submenu-items').parent().siblings().fadeToggle();
         $('.categories-link').fadeToggle();
     });

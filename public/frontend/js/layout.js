@@ -10,7 +10,7 @@ function showTopHeader(){
 }
 
 if($(window).width() > 1024) {
-    $(window).scroll(function() {
+    $(window).on('scroll', { passive: true }, function() {
         if ($(this).scrollTop() > 98){
             hideTopHeader();
         }else{
@@ -170,8 +170,7 @@ $('.certificates-items').slick({
 ]
 });
 
-
-    $(window).scroll(function(){
+$(window).on('scroll', { passive: true }, function() {
         if ($(this).scrollTop() > 100) {
             $('footer .btn-up').fadeIn();
         } else {

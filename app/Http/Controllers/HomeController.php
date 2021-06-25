@@ -2,15 +2,20 @@
 
 namespace App\Http\Controllers;
 
-class HomeController extends Controller
+use App\Http\Controllers\Admin\BaseController;
+
+class HomeController extends BaseController
 {
     /**
      * Create a new controller instance.
      *
      * @return void
      */
+
+
     public function __construct()
     {
+        parent::__construct();
         $this->middleware('auth');
     }
 

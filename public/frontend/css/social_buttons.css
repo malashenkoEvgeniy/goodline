@@ -261,13 +261,19 @@ footer .btn-up:hover svg path{
 }
 
 @media (max-width: 990px){
+
 	.social-item .social-item__description{
 		transform: translate(-100%,-50%);
 		opacity: 1;
 	}
 }
 
-@media (max-width: 360px){
+@media (max-width: 560px){
+
+    footer .btn-up{
+        bottom: 15%;
+    }
+
 	.social-btn-pulse {
 	    bottom: 19px;
 	}
@@ -275,4 +281,8 @@ footer .btn-up:hover svg path{
 	.social-items-wrapper {
 	    bottom: 20px;
 	}
+
+    .social-item__description{
+        padding: 5px;
+    }
 }

@@ -8,7 +8,7 @@
       <ul class="header-top-list">
           <li class="header-top-item header-top-item-logo">
               <a href="/" class="header-top-link">
-                  @include('frontend.includes.svg.logo'){{--<img src="{{asset('/logo.png')}}" alt="logo">--}}
+                  <img src="{{asset('logo.png')}}" alt="logo" width="170" height="92">
               </a>
           </li>
           <li class="header-top-item header-top-contacts">
@@ -98,7 +98,7 @@
                             <div class="temp">
                             {!! file_get_contents(public_path().$el->icon) !!}
                             </div>
-                            {{$el->translate()->title}}
+                            <span>{{$el->translate()->title}}</span>
                             @if(count($el->children)>0)
                                 <span class="categories-link-svg-mobile">@include('frontend.includes.svg.dropdown_angle')</span>
                             @endif
@@ -130,7 +130,7 @@
                   @foreach($pages as $page)
                     @if($page->url == 'o-glyutene')
                     <li class="main-menu-item"> <a href='{{ LaravelLocalization::localizeUrl("$page->url") }}' class="o-glyutene ">
-                            {{$page->translate()->title}}@include('frontend.includes.svg.dropdown_angle')
+                            <span>{{$page->translate()->title}}</span>@include('frontend.includes.svg.dropdown_angle')
                         </a>
                         @else
                         <li class="main-menu-item"> <a href='{{ LaravelLocalization::localizeUrl("$page->url") }}'> {{$page->translate()->title}}</a>

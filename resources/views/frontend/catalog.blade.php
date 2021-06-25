@@ -1,16 +1,10 @@
 @extends('frontend.layout')
 
-
 @section('links')
-
+{{--          <link rel="stylesheet" href="{{asset('/css/catalog.css')}}">--}}
 <link rel="stylesheet" href="/frontend/css/catalog.css">
-<link rel="stylesheet" href="/frontend/css/breadcrumbs.css">
-
 @endsection
-
-
 @section('content')
-
 
 <div class="page-thumbnail" style="background-image: url({{$page->banner}})">
 	@include('frontend.includes.breadcrumbs')
@@ -26,7 +20,7 @@
 
 				<div class="catalog-tabs-item @if($page->url == $item->url ) active @endif">
 					<a class="catalog-tabs-item-content" href='{{ LaravelLocalization::localizeUrl("$item->url") }}'>
-						<img src="{{ $item->image}}" alt="{{ $item->translate()->title}}">
+						<img src="{{asset('frontend/images/a.jpg')}}" class="lazy-load lazy" data-src="{{ $item->image}}" alt="{{ $item->translate()->title}}" width="270" height="270">
 						<h2 class="tab-title">{{ $item->translate()->title}}</h2>
 					</a>
 				</div>
@@ -39,7 +33,7 @@
 
 				<div class="catalog-tabs-item @if($page->url == $item->url ) active @endif">
 					<a class="catalog-tabs-item-content" href='{{ LaravelLocalization::localizeUrl("$item->url") }}'>
-						<img src="{{ $item->image}}" alt="{{ $item->translate()->title}}">
+						<img src="{{asset('frontend/images/a.jpg')}}" class="lazy-load lazy" data-src="{{ $item->image}}" alt="{{ $item->translate()->title}}" width="270" height="270">
 						<h2 class="tab-title">{{ $item->translate()->title}}</h2>
 					</a>
 				</div>
@@ -65,7 +59,8 @@
 		<div class="catalog-items">
 			@foreach($products as $product)
 			<div class="catalog-item ">
-				<a href='{{ LaravelLocalization::localizeUrl("$product->url") }}' class="img-src"><img src="@isset($product->productImages()->first()->image){{$product->productImages()->first()->image}}@endisset" alt="{{$product->translate()->title}}"></a>
+				<a href='{{ LaravelLocalization::localizeUrl("$product->url") }}' class="img-src">
+                    <img src="{{asset('frontend/images/a.jpg')}}" width="270" height="270" class="lazy-load lazy" data-src="@isset($product->productImages()->first()->image){{$product->productImages()->first()->image}}@endisset" alt="{{$product->translate()->title}}" data-widget=""></a>
 				<div class="catalog-item-hidden-desc">
 					<div class="catalog-item-hidden-desc-bg">
 						<a class="catalog-item__title" href='{{ LaravelLocalization::localizeUrl("$product->url") }}'>{{$product->translate()->title}}</a>
@@ -98,7 +93,7 @@
         <div class="development-block">
         <h2 class="title development-item"><span>@lang('main.products_in_development')</span></h2>
             <div class="development-text development-item">@lang('main.products_in_development_text')</div>
-            <img src="{{asset('frontend/images/dev.jpg')}}" alt="dev" class="development-img development-item">
+            <img src="{{asset('frontend/images/a.jpg')}}"  data-src="{{asset('frontend/images/dev.jpg')}}" alt="dev" class=" lazy development-img development-item">
         </div>
     </div>
 @endif
@@ -112,7 +107,5 @@
 @endif
 @endsection
 @section('scripts')
-
-    <script src="{{asset('/frontend/js/catalog.js')}}"></script>
-
+    <script src="{{asset('/js/catalog.js')}}"></script>
 @endsection

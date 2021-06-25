@@ -7,7 +7,9 @@
             <li class="mobile-first-column"><a href='{{ LaravelLocalization::localizeUrl('catalog') }}'>@lang('main.production')</a></li>
             <li class="mobile-first-column"><a href='{{ LaravelLocalization::localizeUrl($pages[2]->url) }}'>@lang('main.cooperation')</a></li>
             <li class="mobile-first-column"><a href='{{ LaravelLocalization::localizeUrl($pages[1]->url) }}'>{{$pages[1]->translate()->title}}</a></li>
-            <li  class="footer-logo-item"><a href="/" class="logo">@include('frontend.includes.svg.logo')</a></li>
+            <li  class="footer-logo-item"><a href="/" class="logo">
+                    <img src="{{asset('logo.png')}}" alt="logo" width="170" height="92">
+                </a></li>
             <li class="mobile-first-column"><a href='{{ LaravelLocalization::localizeUrl($pages[3]->url) }}'>{{$pages[3]->translate()->title}}</a></li>
             <li  class="mobile-first-column"><a href='{{ LaravelLocalization::localizeUrl($pages[0]->url) }}'>{{$pages[0]->translate()->title}}</a></li>
             <li  class="mobile-first-column"><a href='{{ LaravelLocalization::localizeUrl("/contacts") }}'>@lang('main.contacts')</a></li>
@@ -38,5 +40,5 @@
         @lang('main.all_rights_reserved')
     </div>
     <p>@lang('main.website_creation')</p>
-    <img src="{{asset('/frontend/images/icons/spekter_white.png')}}" alt="@lang('main.website_creation') SPEKTER">
+    <img  src="{{asset('frontend/images/a.jpg')}}" class="lazy" data-src="{{asset('/frontend/images/icons/spekter_white.png')}}" alt="@lang('main.website_creation') SPEKTER" width="76" height="21">
 </div>

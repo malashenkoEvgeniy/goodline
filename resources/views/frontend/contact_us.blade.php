@@ -1,14 +1,6 @@
 @extends('frontend.layout')
-
-
 @section('links')
-<link rel="stylesheet" href="/frontend/css/breadcrumbs.css">
-<link rel="stylesheet" href="/frontend/css/contact_us.css">
-
-
 @endsection
-
-
 @section('content')
 <div class="page-thumbnail" style="background-image: url('/frontend/images/page_thumbnail/contacts.jpg');">
 	@include('frontend.includes.breadcrumbs')
@@ -60,7 +52,6 @@
 
 
 @section('scripts')
-<script src="/frontend/js/lazy_load.js"></script>
 <script>
     if( window.screen.width <= 768 && window.screen.width > 568){
         $('.input-group').wrapAll('<div class="contact-first-wrap"></div>');

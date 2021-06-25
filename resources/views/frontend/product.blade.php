@@ -1,14 +1,7 @@
 @extends('frontend.layout')
 
-
 @section('links')
-
-<link rel="stylesheet" href="/frontend/css/breadcrumbs.css">
-<link rel="stylesheet" href="/frontend/css/product.css">
-
-
 @endsection
-
 
 @section('content')
 
@@ -27,7 +20,7 @@
                         @foreach($product->productImages()->get() as $key => $item)
                         <div class="slider-item">
                             <a data-fancybox="gallery" href="{{$item->image}}">
-                                <img src="{{$item->image}}" alt="{{ $product->translate()->title . $i }}">
+                                <img src="{{asset('frontend/images/a.jpg')}}" class="lazy"  data-src="{{$item->image}}" alt="{{ $product->translate()->title . $i }}" width="550" height="400">
                             </a>
                         </div>
                         @php
@@ -43,7 +36,7 @@
                         @foreach($product->productImages()->get() as $key => $item)
 
                         <div class="slider-nav-item">
-                            <img src="{{$item->image}}" alt="{{ $product->translate()->title . $i }}">
+                            <img src="{{asset('frontend/images/a.jpg')}}" class="lazy"  data-src="{{$item->image}}" alt="{{ $product->translate()->title . $i }}" width="80" height="80">
                         </div>
                         @php
                         $i++;
@@ -51,7 +44,7 @@
                         @endforeach
                     </div>
                     @else
-                        <img src="{{$product->productImages()->first()->image}}" alt="{{ $product->translate()->title }}">
+                        <img src="{{asset('frontend/images/a.jpg')}}" class="lazy"  data-src="{{$product->productImages()->first()->image}}" alt="{{ $product->translate()->title }}" width="80" height="80">
                     @endif
                 </div>
             </div>
@@ -66,7 +59,7 @@
                 <div class="product-info-properties">
                     @foreach($product->properties as $property)
                         <div class="property">
-                            <img src="{{asset($property->image)}}" alt="check{{$property->id}}" width="50" height="50">
+                            <img src="{{asset('frontend/images/a.jpg')}}" class="lazy"  data-src="{{asset($property->image)}}" alt="check{{$property->id}}" width="50" height="50">
                             <p >{{$property->translate()->title}}</p>
                         </div>
                     @endforeach
@@ -79,24 +72,23 @@
         </div>
         <div class="product-body product-body-fordescktop">
             <ul class="product-body-tabs">
-                <li class="product-body-tab active ">@lang('main.product.ingredients')</li>
-                <li class="product-body-tab ">@lang('main.product.description')</li>
+                <li class="product-body-tab active">@lang('main.product.description')</li>
+                <li class="product-body-tab  ">@lang('main.product.ingredients')</li>
+
                 <li class="product-body-tab ">@lang('main.product.specifications')</li>
 
             </ul>
             <div class="product-body-tab-content  active  product-body-text">
                 {!! $product->translate()->description!!}
             </div>
+            <div class="product-body-tab-content  product-body-text">
+                {!! $product->translate()->ingredients!!}
+            </div>
 
             <div class="product-body-tab-content product-body-text">
             {!! $product->translate()->characteristics !!}
             </div>
 
-
-
-            <div class="product-body-tab-content  product-body-text">
-            {!! $product->translate()->ingredients!!}
-            </div>
 
         </div>
         <div class="product-body product-body-formobile">
@@ -139,9 +131,7 @@
 @include('frontend.includes.popup_form_product')
 
 @endsection
-
-
 @section('scripts')
-<script src="{{asset('/frontend/js/product.js')}}"></script>
+<script src="{{asset('/js/product.js')}}"></script>
 
 @endsection

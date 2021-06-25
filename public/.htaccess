@@ -18,9 +18,54 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
-
-    RewriteCond %{HTTP_HOST} ^www.kcg.kh.ua$ [NC]
-    RewriteRule ^(.*)$ http://kcg.kh.ua/$1 [R=301,L]
 </IfModule>
+RewriteEngine On
 
+    RewriteCond %{HTTP_HOST} ^www\.(.*)$
+    RewriteRule ^(.*)$ http://goodline.my-worker.com.ua/$1 [L,R=301]
 
+    RewriteCond %{THE_REQUEST} \/index\.(php|html)
+    RewriteRule ^(.*)$ http://goodline.my-worker.com.ua/ [R=301,L]
+#Добавляем сжатие файлов
+<ifModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml application/xml application/xhtml+xml text/css text/javascript application/javascript application/x-javascript
+    <IfModule mod_setenvif.c>
+        BrowserMatch ^Mozilla/4 gzip-only-text/html
+        BrowserMatch ^Mozilla/4\.0[678] no-gzip
+        BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+    </IfModule>
+</ifModule>
+
+#Устанавливаем кеш в заголовках
+<ifModule mod_headers.c>
+    <FilesMatch "\.(html|htm)$">
+        Header set Cache-Control "max-age=43200"
+    </FilesMatch>
+    <FilesMatch "\.(js|css|txt|json)$">
+        Header set Cache-Control "max-age=604800"
+    </FilesMatch>
+    <FilesMatch "\.(flv|swf|ico|gif|jpg|jpeg|png)$">
+        Header set Cache-Control "max-age=2592000"
+    </FilesMatch>
+    <FilesMatch "\.(pl|php|cgi|spl|scgi|fcgi)$">
+        Header unset Cache-Control
+    </FilesMatch>
+</ifModule>
+
+#Устанавливаем кеш для рерсурсов
+<ifModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 15 seconds"
+    ExpiresByType image/x-icon "access plus 2592000 seconds"
+    ExpiresByType image/jpeg "access plus 2592000 seconds"
+    ExpiresByType image/png "access plus 2592000 seconds"
+    ExpiresByType image/gif "access plus 2592000 seconds"
+    ExpiresByType application/x-shockwave-flash "access plus 2592000 seconds"
+    ExpiresByType text/css "access plus 604800 seconds"
+    ExpiresByType text/javascript "access plus 604800 seconds"
+    ExpiresByType application/javascript "access plus 604800 seconds"
+    ExpiresByType application/x-javascript "access plus 604800 seconds"
+    ExpiresByType text/html "access plus 43200 seconds"
+    ExpiresByType application/xhtml+xml "access plus 600 seconds"
+    ExpiresByType application/json "access plus 3600 seconds"
+</ifModule>

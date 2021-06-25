@@ -1,37 +1,40 @@
+"use strict";
 
-	document.addEventListener("DOMContentLoaded", function() {
-  let lazyImages = [].slice.call(document.querySelectorAll(".lazy-load"));
-  let active = false;
 
-  const lazyLoad = function() {
-    if (active === false) {
-      active = true;
 
-      setTimeout(function() {
-        lazyImages.forEach(function(lazyImage) {
-          if ((lazyImage.getBoundingClientRect().top <= window.innerHeight && lazyImage.getBoundingClientRect().bottom >= 0) && getComputedStyle(lazyImage).display !== "none") {
-            lazyImage.src = lazyImage.dataset.src;
-            lazyImage.classList.remove("lazy");
+    function getImages() {
+        let lazy = document.getElementsByClassName('lazy');
 
-            lazyImages = lazyImages.filter(function(image) {
-              return image !== lazyImage;
-            });
+        for (var i = 0; i < lazy.length; i++) {
+            lazy[i].src = lazy[i].getAttribute('data-src');
 
-            if (lazyImages.length === 0) {
-              document.removeEventListener("scroll", lazyLoad);
-              window.removeEventListener("resize", lazyLoad);
-              window.removeEventListener("orientationchange", lazyLoad);
-            }
-          }
-        });
-
-        active = false;
-      }, 200);
+        }
     }
-  };
+    $(document).ready(function(){
+        getImages();
+    });
 
-  document.addEventListener("scroll", lazyLoad);
-  window.addEventListener("resize", lazyLoad);
-  window.addEventListener("orientationchange", lazyLoad);
-  $(document).ready(lazyLoad);
+
+document.addEventListener("DOMContentLoaded", function() {
+    var lazyLoadVideos = [].slice.call(document.querySelectorAll("video.lazy-video"));
+    if ("IntersectionObserver" in window) {
+        var lazyVideoObserver = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(function(video) {
+                if (video.isIntersecting) {
+                    for (var source in video.target.children) {
+                        var videoSource = video.target.children[source];
+                        if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
+                            videoSource.src = videoSource.dataset.src;
+                        }
+                    }
+                    video.target.load();
+                    video.target.classList.remove("lazy-video");
+                    lazyVideoObserver.unobserve(video.target);
+                }
+            });
+        });
+        lazyLoadVideos.forEach(function(lazyVideo) {
+            lazyVideoObserver.observe(lazyVideo);
+        });
+    }
 });

@@ -3,10 +3,6 @@
 
 @section('links')
 
-
-	<link rel="stylesheet" href="/frontend/css/home.css">
-
-
 @endsection
 
 
@@ -16,10 +12,10 @@
 		@foreach($homeSliders as $slide)
 		<div class="slider-item">
 			@if($slide->is_image)
-			<img src="{{$slide->file_path}}">
+			<img src="{{$slide->file_path}}" width="1900" height="670">
 			@else
-				<video loop="loop" preload="metadata" autoplay muted="muted" playsinline >
-		      		<source src="{{$slide->file_path}}" type="video/mp4">
+				<video loop="loop" preload="metadata" autoplay muted="muted" playsinline  class="lazy-video">
+		      		<source data-src="{{$slide->file_path}}" type="video/mp4">
 		    	</video>
 			@endif
 			<div class="slider-item__content" style="display: none">
@@ -43,7 +39,7 @@
 	</div>
 
 	<div class="about-us-content">
-		<img src="{{asset('/frontend/images/about-company.jpg')}}" alt=">@lang('main.about_company')">
+		<img src="{{asset('/frontend/images/about-company.jpg')}}" alt=">@lang('main.about_company')" width="840" height="600">
 		<div class="about-us-description">
 			{!! $settings->translate()->body !!}
 
@@ -64,7 +60,7 @@
         @foreach ($categories as $item)
 
                 <div class="catalog-item shadow">
-					<a href='{{ LaravelLocalization::localizeUrl("$item->url") }}'><img src="{{$item->image}}" alt="{{ $item->translate()->title }}"></a>
+					<a href='{{ LaravelLocalization::localizeUrl("$item->url") }}'><img src="{{$item->image}}" alt="{{ $item->translate()->title }}" width="360" height="270"></a>
 					<a class="catalog-item__title" href='{{ LaravelLocalization::localizeUrl("$item->url") }}'>{{ $item->translate()->title }}</a>
 				</div>
         @endforeach
@@ -81,7 +77,7 @@
 
             <div class="interesting-item">
                 <a href='{{ LaravelLocalization::localizeUrl("$info->url") }}'>
-                    <img src="{{$info->image}}" alt="{{ $info->translate()->title }}">
+                    <img src="{{asset('frontend/images/a.jpg')}}" class="lazy-load lazy" data-src="{{$info->image}}" alt="{{ $info->translate()->title }}" width="367" height="330">
                     <span class="interesting-item-details">@lang('main.detail')</span>
                 </a>
                 <a class="interesting-item__title" href='{{ LaravelLocalization::localizeUrl("$info->url") }}'>{{ $info->translate()->title }}</a>
@@ -99,7 +95,9 @@
         <div class="certificates-items content-wrapper">
             @foreach ($certificates as $certificate)
                 <div class="certificates-item">
-                    <a data-fancybox="gallery"  href='{{"$certificate->url"}}'><img src="{{$certificate->image}}" alt="{{ $certificate->translate()->title }}"></a>
+                    <a data-fancybox="gallery"  href='{{"$certificate->url"}}'>
+                        <img src="{{asset('frontend/images/a.jpg')}}" class="lazy-load lazy" data-src="{{$certificate->image}}" alt="{{ $certificate->translate()->title }}" width="270" height="390">
+                    </a>
                     <h3 class="certificates-item__title" >{{ $certificate->translate()->title }}</h3>
                     <p class="certificates-item__body">{{ $certificate->translate()->body }}</p>
                 </div>
@@ -108,19 +106,10 @@
         </div>
     </div>
 @endif
-
-
-
-
-
 @endsection
 
-
 @section('scripts')
-
-	<script src="/frontend/js/lazy_load.js"></script>
 	<script>
-
 		$('.slider-items').slick({
 			dots: false,
 			infinite: false,
@@ -132,22 +121,13 @@
 			prevArrow: ".home-slider .switch-left",
 			nextArrow: ".home-slider .switch-right"
 		});
-
-
-
-
 		function fixVideoHeight(){
 	        var image_height = $('.home-slider .slider-item img').css('height');
 	        $('.home-slider .slider-item').css('max-height', image_height);
 	    }
-
 	    $(document).ready(function(){
 	        fixVideoHeight();
 	        $(window).on('resize',fixVideoHeight);
 	    });
-
 	</script>
-
-
-
 @endsection

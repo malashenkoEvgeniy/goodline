@@ -2,13 +2,7 @@
 
 
 @section('links')
-    <link rel="stylesheet" href="/frontend/css/home.css">
-<link rel="stylesheet" href="/frontend/css/breadcrumbs.css">
-<link rel="stylesheet" href="/frontend/css/page.css">
-
 @endsection
-
-
 @section('content')
 @include('frontend.includes.breadcrumbs')
 @if(isset($page->parent_id))
@@ -81,7 +75,7 @@
         <div class="content-wrapper page">
             <h2 class="title"><span>{{$page->translate()->title}}</span></h2>
             <div class="page__body">
-                <div class="catalog-items content-wrapper">
+                <div class="catalog-items content-wrapper interesting-wrap">
                     @foreach ($interesting as $info)
                         <div class="interesting-item shadow">
                             <a href='{{ LaravelLocalization::localizeUrl("$info->url") }}'><img src="{{$info->image}}" alt="{{ $info->translate()->title }}"></a>
@@ -149,8 +143,6 @@
                             width: 100%;
                             padding: 0;
                         }
-
-
                     }
 
                     @media (max-width: 768px){
@@ -160,12 +152,12 @@
                         .about-wrap-item img {
                             width: 100%;
                         }
-
-
                     }
-
-
                     @media (max-width: 568px){
+                        .about-wrap {
+                            font-size: 12px;
+                            line-height: 14px;
+                        }
                         .certificates .content-wrapper {
                             min-height: 20vh;
                         }
@@ -185,7 +177,7 @@
                         <div class="certificates-items content-wrapper">
                             @foreach ($certificates as $certificate)
                                 <div class="certificates-item">
-                                    <a href='{{ LaravelLocalization::localizeUrl("$certificate->url") }}'><img src="{{$certificate->image}}" alt="{{ $certificate->translate()->title }}"></a>
+                                    <a href='{{ LaravelLocalization::localizeUrl("$certificate->url") }}'><img  src="{{asset('frontend/images/a.jpg')}}" class="lazy"  data-src="{{$certificate->image}}" alt="{{ $certificate->translate()->title }}"></a>
                                     <h3 class="certificates-item__title" >{{ $certificate->translate()->title }}</h3>
                                     <p class="certificates-item__body">{{ $certificate->translate()->body }}</p>
                                 </div>
@@ -296,17 +288,7 @@
             @endif
 
     @endif
-
-
 @endif
-
-
-
 @endsection
-
-
 @section('scripts')
-
-
-
 @endsection

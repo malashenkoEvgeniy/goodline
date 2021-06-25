@@ -12,8 +12,8 @@
 	padding: unset;
 }
 
-.breadcrumbs a,.breadcrumbs{
-	color: #FFFFFF;
+.breadcrumbs a,.breadcrumbs, .breadcrumbs .current {
+	color: #000;
 }
 
 .breadcrumbs a:hover{
@@ -32,8 +32,20 @@
 	transform: rotate(-90deg);
 }
 .breadcrumbs .bread-sep svg path{
-	fill: #FFFFFF;
+	fill: #000000;
 }
+
+.page-thumbnail .breadcrumbs a,
+.page-thumbnail .breadcrumbs,
+
+.page-thumbnail .breadcrumbs .current {
+    color: #FFFFFF;
+}
+
+.page-thumbnail .breadcrumbs .bread-sep svg path{
+    fill: #FFFFFF;
+}
+
 
 @media (max-width: 568px){
 

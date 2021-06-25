@@ -5,7 +5,6 @@
         $(this).toggleClass('active');
     });
 
-
     $('.show-more-products').click(function(){
 
         let page = $(this).attr('data-page');
@@ -35,8 +34,19 @@
             $('.catalog-items').append(items);
 
         });
-
     });
+
+
+    // if($(window).width() < 768) {
+    //     $.each($('.catalog-item .img-src'), function (i, el){
+    //         el.preventDefault();
+    //     });
+    //
+    //     $('.catalog-item').click(function (evt){
+    //         evt.stopPropagation();
+    //         console.log(evt.target());
+    //     });
+    // }
 
 }());
 
