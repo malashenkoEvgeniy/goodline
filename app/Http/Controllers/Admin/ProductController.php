@@ -57,7 +57,6 @@ class ProductController extends BaseController
         $req['url'] = SlugService :: createSlug ( Product :: class, 'url' , $request->title );
 
         $reqT = request()->except('vendor_code', 'url','image','categories_id', 'properties');
-
         $product = $this->storeWithTranslation(new Product(), $req, $reqT);
         if ( request()->file('image') !== null) {
             foreach (request()->file('image') as $image) {

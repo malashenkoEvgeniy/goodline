@@ -23,7 +23,8 @@ mix.styles([
     'public/frontend/css/breadcrumbs.css','' +
     'public/frontend/css/home.css',
     'public/frontend/css/product.css',
-    'public/frontend/css/contact_us.css'
+    'public/frontend/css/contact_us.css',
+    'public/frontend/css/page.css'
 ], 'public/css/my.css');
 
 mix.styles([

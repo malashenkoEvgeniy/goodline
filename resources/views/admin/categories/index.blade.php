@@ -15,7 +15,7 @@
             @include('admin.includes.alerts')
             @if (count($categories))
                 <div class="table-responsive">
-                    <table class="table table-bordered table-hover text-nowrap">
+                    <table class="table table-bordered table-hover text-nowrap" style="background-color: #cccccc">
                         <thead>
                         <tr>
                             <th style="width: 30px">#</th>

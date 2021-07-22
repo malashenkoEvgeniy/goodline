@@ -87,12 +87,10 @@ class CategoryController extends BaseController
      */
     public function edit($id)
     {
-        $category = Category::find($id);
-
-        $parent = $category->parent()->get();
+        $category = Category::where('id', $id)->with('parent')->first();
         $categories_parent = Category::where('parent_id', null)->get();
 
-        return view('admin.categories.edit',compact('category','parent', 'categories_parent'));
+        return view('admin.categories.edit',compact('category', 'categories_parent'));
     }
 
     /**

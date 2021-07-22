@@ -4,6 +4,10 @@
 	padding-bottom: 30px;
 }
 
+.contact-wrapper.mobile {
+    display: none;
+}
+
 .page-thumbnail .title{
 	justify-content: center;
 }
@@ -21,10 +25,14 @@
 
 .contact_us{
 	display: flex;
-	flex-wrap: wrap;
     align-items: flex-start;
 	margin: 60px 0 100px 0;
     width: 100%;
+}
+
+.contact_us-wrapper {
+    display: flex;
+    flex-direction: column;
 }
 
 /*.contact_us>div {*/
@@ -33,9 +41,10 @@
 .contact_us-info {
     display: flex;
     flex-direction: column;
-    width: 50%;
-    font-size: 18px;
 }
+
+
+
 .contact_us-info p {
     padding-right: 10%;
 }
@@ -59,9 +68,8 @@
 }
 
 .contact_us-form{
-    width: 50%;
+    width: 100%;
     order: 2;
-    margin-top: -30%;
 }
 
 .contact_us-form form {
@@ -79,13 +87,43 @@
     order: 1;
 }
 
+.google-map iframe{
+    display: flex;
+    width: 100%;
+    height: 850px;
+}
+
 
 .contact_us-form-title {
     display: none;
 }
 
 
+@media (max-width: 1024px){
+    .google-map iframe {
+        display: flex;
+        width: 100%;
+        height: 450px;
+    }
+}
 @media (max-width: 769px){
+
+    .contact-wrapper.mobile {
+        display: flex;
+    }
+
+    .contact_us{
+        flex-direction: column;
+    }
+
+    .contact_us-wrapper {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .contact-wrapper.desc {
+        display: none;
+    }
 
     .contact_us-form{
         width: 100%;
@@ -102,7 +140,8 @@
         order: 2;
         margin-top: 0%;
         display: flex;
-        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     .contact_us-form-title {
@@ -123,27 +162,52 @@
 
     .contact-first-wrap {
         display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
+        justify-content: space-between;
+        flex-direction: column;
+        width: 45%;
+        /*height: 100%;*/
+        box-sizing: border-box;
+        margin-bottom: 30px;
+        margin-right: 15px;
+    }
+
+    .contact-first-wrap .input-group {
+        margin-bottom: unset;
     }
 
     .contact-second-wrap {
         display: flex;
         flex-direction: column;
-        margin-right: 5px;
+        width: 45%;
+        height: 100%;
+        margin-bottom: 30px;
+    }
+
+    .google-map {
+        width: 100%;
     }
 
     .group-msg {
-        margin-bottom: 10px;
+        margin-bottom: unset;
     }
 
     #input_message {
-        padding: 25px 20px!important;
+        height: 100%;
     }
 }
 
 
 @media (max-width: 568px){
+
+    .contact_us-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .contact-first-wrap,
+    .contact-second-wrap {
+        width: 100%;
+    }
 
     .contact_us-form{
         width: 100%;

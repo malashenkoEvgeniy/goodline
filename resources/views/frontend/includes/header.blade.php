@@ -51,7 +51,7 @@
         <ul class="header-bottom-top-list">
             <li class="header-bottom-top-item header-bottom-top-item-logo">
                 <a href="/" class="header-bottom-top-link">
-                    @include('frontend.includes.svg.logo')
+                    <img src="{{asset('logo.png')}}" alt="logo" width="75" height="40">
                 </a>
             </li>
             <li class="header-bottom-top-item header-top-item-lang">
@@ -90,7 +90,7 @@
   				@include('frontend.includes.svg.catalog_burger')
                 <span class="categories-link-svg-mobile">@include('frontend.includes.svg.dropdown_angle')</span>
   			</div>
-			<div class="menu-categories">
+			<div class="menu-categories menu-categories-open hidden_cat">
 			    <ul class="categories-items">
                     @foreach($categories as $el)
                     <li class="categories-item">
@@ -128,23 +128,7 @@
   		<div class="main-menu">
   			<ul class="main-menu-items">
                   @foreach($pages as $page)
-                    @if($page->url == 'o-glyutene')
-                    <li class="main-menu-item"> <a href='{{ LaravelLocalization::localizeUrl("$page->url") }}' class="o-glyutene ">
-                            <span>{{$page->translate()->title}}</span>@include('frontend.includes.svg.dropdown_angle')
-                        </a>
-                        @else
                         <li class="main-menu-item"> <a href='{{ LaravelLocalization::localizeUrl("$page->url") }}'> {{$page->translate()->title}}</a>
-                    @endif
-                        @if($page->url == 'o-glyutene')
-
-                            @if(count($page->getKids)>0)
-                                <ul class="main-submenu-items list-o-glyutene">
-                                    @foreach($page->getKids as $kids)
-                                        <li class="submain-menu-item"> <a href='{{ LaravelLocalization::localizeUrl("$kids->url") }}'> {{$kids->translate()->title}}</a>
-                                    @endforeach
-                                </ul>
-                            @endif
-                        @endif
                     </li>
                   @endforeach
   				<li class="main-menu-item"> <a href="/contacts"> @lang('main.contacts') </a> </li>

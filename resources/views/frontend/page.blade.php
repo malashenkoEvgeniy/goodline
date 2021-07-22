@@ -18,7 +18,7 @@
 
         .interesnoe-wrap-item {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: space-between;
 
         }
@@ -32,6 +32,9 @@
             background-color: #ffffff;
             width: 50%;
             padding: 100px;
+        }
+        @media (max-width: 770px){
+
         }
 
         @media (max-width: 568px){
@@ -62,7 +65,8 @@
                 @foreach ($categories as $item)
 
                     <div class="catalog-item shadow">
-                        <a href='{{ LaravelLocalization::localizeUrl("$item->url") }}'><img src="{{$item->image}}" alt="{{ $item->translate()->title }}"></a>
+                        <a href='{{ LaravelLocalization::localizeUrl("$item->url") }}'>
+                            <img class="catalog-item-page-img" src="{{$item->image}}" alt="{{ $item->translate()->title }}"></a>
                         <a class="catalog-item__title" href='{{ LaravelLocalization::localizeUrl("$item->url") }}'>{{ $item->translate()->title }}</a>
                     </div>
                 @endforeach
@@ -78,7 +82,7 @@
                 <div class="catalog-items content-wrapper interesting-wrap">
                     @foreach ($interesting as $info)
                         <div class="interesting-item shadow">
-                            <a href='{{ LaravelLocalization::localizeUrl("$info->url") }}'><img src="{{$info->image}}" alt="{{ $info->translate()->title }}"></a>
+                            <a href='{{ LaravelLocalization::localizeUrl("$info->url") }}' ><img class="catalog-item-img" src="{{$info->image}}" alt="{{ $info->translate()->title }}"></a>
                             <a class="interesting-item__title" href='{{ LaravelLocalization::localizeUrl("$info->url") }}'>{{ $info->translate()->title }}</a>
                         </div>
                     @endforeach
@@ -102,17 +106,21 @@
                         align-items: center;
                         width: 100%;
                         margin: 0 auto;
+                        font-size: 16px;
+                        line-height: 18px;
                     }
 
                     .about-wrap-item  img,
                     .about-wrap-item  iframe {
                         width: 50%;
+                        max-height: 400px;
                     }
 
                     .about-wrap-item {
                         display: flex;
                         align-items: flex-start;
                         justify-content: space-between;
+                        background-color: #ffffff;
 
                     }
 
@@ -155,8 +163,8 @@
                     }
                     @media (max-width: 568px){
                         .about-wrap {
-                            font-size: 12px;
-                            line-height: 14px;
+                            font-size: 16px;
+                            line-height: 24px;
                         }
                         .certificates .content-wrapper {
                             min-height: 20vh;
@@ -177,7 +185,8 @@
                         <div class="certificates-items content-wrapper">
                             @foreach ($certificates as $certificate)
                                 <div class="certificates-item">
-                                    <a href='{{ LaravelLocalization::localizeUrl("$certificate->url") }}'><img  src="{{asset('frontend/images/a.jpg')}}" class="lazy"  data-src="{{$certificate->image}}" alt="{{ $certificate->translate()->title }}"></a>
+                                    <a data-fancybox="gallery"  href='{{asset($certificate->image)}}'>
+                                        <img  src="{{asset('frontend/images/a.jpg')}}" class="lazy"  data-src="{{$certificate->image}}" alt="{{ $certificate->translate()->title }}"></a>
                                     <h3 class="certificates-item__title" >{{ $certificate->translate()->title }}</h3>
                                     <p class="certificates-item__body">{{ $certificate->translate()->body }}</p>
                                 </div>
@@ -203,6 +212,10 @@
 
                     }
 
+                    .cooperation-wrap-item img {
+                        height: 450px;
+                    }
+
                     .cooperation-description {
                         background-color: #ffffff;
                         width: 50%;
@@ -216,6 +229,8 @@
 
                         .cooperation-wrap-item img {
                             float: left;
+                            height: 380px;
+                            margin-right: 25px;
                         }
 
                         .cooperation-description {

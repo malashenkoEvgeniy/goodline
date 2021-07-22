@@ -29,10 +29,9 @@
 	<div class="slider-switch switch-left">@include('frontend.includes.svg.slider-arrow')</div>
 	<div class="slider-switch switch-right">@include('frontend.includes.svg.slider-arrow')</div>
 	<div class="btn btn-white show-more shadow">
-		<a href="{{$pages[2]->url}}">@lang('main.learn_more')</a>
+		<a href="{{$pages[0]->url}}">@lang('main.learn_more')</a>
 	</div>
 </div>
-
 <div class="about-us section-margin">
 	<div class="content-wrapper">
 		<h2 class="title"><span>@lang('main.about_company')</span></h2>
@@ -44,7 +43,7 @@
 			{!! $settings->translate()->body !!}
 
 			<div class="btn ">
-				<a href="{{$pages[2]->url}}" class="shadow">@lang('main.detail')  @include('frontend.includes.svg.slider-arrow') </a>
+				<a href="{{$pages[0]->url}}" class="shadow">@lang('main.detail')  @include('frontend.includes.svg.slider-arrow') </a>
 			</div>
 		</div>
 	</div>
@@ -52,7 +51,7 @@
 </div>
 
 
-<div class="catalog">
+<div class="catalog mb-5">
     <div class="content-wrapper">
         <h2 class="title"><span>@lang('main.production')</span></h2>
     </div>
@@ -68,9 +67,9 @@
 	</div>
 </div>
 @if(count($interesting)>0)
-<div class="interesting">
+<div class="interesting mb-5">
     <div class="content-wrapper">
-        <h2 class="title"><span>@lang('main.interesting')</span></h2>
+        <h2 class="title"><span>@lang('main.about_gluten')</span></h2>
     </div>
     <div class="interesting-items content-wrapper">
         @foreach ($interesting as $info)
@@ -95,8 +94,8 @@
         <div class="certificates-items content-wrapper">
             @foreach ($certificates as $certificate)
                 <div class="certificates-item">
-                    <a data-fancybox="gallery"  href='{{"$certificate->url"}}'>
-                        <img src="{{asset('frontend/images/a.jpg')}}" class="lazy-load lazy" data-src="{{$certificate->image}}" alt="{{ $certificate->translate()->title }}" width="270" height="390">
+                    <a data-fancybox="gallery"  href='{{asset($certificate->image)}}'>
+                        <img src="{{asset('frontend/images/a.jpg')}}" class="lazy" data-src="{{asset($certificate->image)}}" alt="{{ $certificate->translate()->title }}" >
                     </a>
                     <h3 class="certificates-item__title" >{{ $certificate->translate()->title }}</h3>
                     <p class="certificates-item__body">{{ $certificate->translate()->body }}</p>
@@ -112,10 +111,11 @@
 	<script>
 		$('.slider-items').slick({
 			dots: false,
-			infinite: false,
+			infinite: true,
 			speed: 400,
-			autoplay: true,
-  			autoplaySpeed: 5000,
+			autoplay: false,
+  			autoplaySpeed: 2500,
+            pauseOnFocus: false,
 			slidesToShow: 1,
 			slidesToScroll: 1,
 			prevArrow: ".home-slider .switch-left",

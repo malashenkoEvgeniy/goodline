@@ -29,8 +29,8 @@
     color: #C71F25;
 }
 
-.content-wrapper {
-    min-height: 50vh;
+.catalog-item-page-img {
+    width: 340px;
 }
 @media (max-width: 568px){
 

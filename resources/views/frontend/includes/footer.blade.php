@@ -5,7 +5,7 @@
  	<div class="footer-content">
  		<ul class="footer-top">
             <li class="mobile-first-column"><a href='{{ LaravelLocalization::localizeUrl('catalog') }}'>@lang('main.production')</a></li>
-            <li class="mobile-first-column"><a href='{{ LaravelLocalization::localizeUrl($pages[2]->url) }}'>@lang('main.cooperation')</a></li>
+            <li class="mobile-first-column"><a href='{{ LaravelLocalization::localizeUrl($pages[2]->url) }}'>@lang('main.about_gluten')</a></li>
             <li class="mobile-first-column"><a href='{{ LaravelLocalization::localizeUrl($pages[1]->url) }}'>{{$pages[1]->translate()->title}}</a></li>
             <li  class="footer-logo-item"><a href="/" class="logo">
                     <img src="{{asset('logo.png')}}" alt="logo" width="170" height="92">

@@ -62,7 +62,7 @@
                             <h5 class="card-title mb-3">Описание</h5>
                         </div>
                         <div class="mb-3">
-                          <textarea  name="body" id="editor1" >
+                          <textarea  name="body" class="editor" >
 
                           </textarea>
                         </div>
@@ -113,17 +113,18 @@
 
 
 @section('scripts')
-    <script>
-      tinymce.init({
-          selector: '#editor1',
-          plugins: [
-              "advlist autolink lists link image charmap print preview anchor",
-              "searchreplace visualblocks code fullscreen",
-              "insertdatetime media table paste imagetools wordcount"
-          ],
-          toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-          content_css: '//www.tiny.cloud/css/codepen.min.css'
-      });
-  </script>
+{{--    <script>--}}
+{{--      tinymce.init({--}}
+{{--          selector: '#editor1',--}}
+{{--          plugins: [--}}
+{{--              "advlist autolink lists link image charmap print preview anchor",--}}
+{{--              "searchreplace visualblocks code fullscreen",--}}
+{{--              "insertdatetime media table paste imagetools wordcount"--}}
+{{--          ],--}}
+{{--          toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",--}}
+{{--          content_css: '//www.tiny.cloud/css/codepen.min.css'--}}
+{{--      });--}}
+{{--  </script>--}}
+
 
 @endsection

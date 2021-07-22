@@ -51,7 +51,7 @@
                                                 <a href="{{ route('pages.edit', $page->id) }}" class="btn btn-info btn-sm float-left mr-1">
                                                     <i class="fas fa-pencil-alt"></i>
                                                 </a>
-
+                                                @if($page->parent_id !== null)
                                                 <form action="{{ route('pages.destroy', ['id' => $page->id]) }}" method="post" class="float-left">
                                                     @csrf
                                                     @method('DELETE')
@@ -61,6 +61,7 @@
                                                             class="fas fa-trash-alt"></i>
                                                     </button>
                                                 </form>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

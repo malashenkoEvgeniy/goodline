@@ -40,25 +40,14 @@
                                 <label class="custom-file-label" for="inputGroupFile01">Выберите файл</label>
                             </div>
                         </div>
-
                         <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">Выбрать родительскую страницу</span>
-                            </div>
-                            <div class="parent_id-wrap">
-                                @foreach($pages as  $page)
-                                    <div class="parent_id-wrap-item">
-                                        <input type="radio" value="{{$page->id}}" id="p{{$page->id}}" name="parent_id">
-                                        <label for="p{{$page->id}}">{{$page->translate()->title}}</label>
-                                    </div>
-                                @endforeach
-                            </div>
+                            <input type="hidden" value="{{$page->id}}" id="p{{$page->id}}" name="parent_id">
                         </div>
                         <div class="input-group mb-3">
                             <h5 class="card-title mb-3">Описание</h5>
                         </div>
                         <div class="mb-3">
-                          <textarea  name="body" id="editor1" >
+                          <textarea  name="body" class="editor">
                           </textarea>
                         </div>
                         <div class="input-group mb-3">
@@ -82,14 +71,7 @@
 
                         <input type="hidden" name="language" value="{{ LaravelLocalization::getCurrentLocale() }}">
                         <button type="submit" class="btn btn-primary">Создать</button>
-
-
                     </form>
-
-
-
-
-
                 </div>
             </div>
         </div>

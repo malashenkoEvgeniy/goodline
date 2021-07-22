@@ -39,26 +39,16 @@
                                 <label class="custom-file-label" for="inputGroupFile01">Выберите файл</label>
                             </div>
                         </div>
-                        @if($page_parents !== null)
+                        @if($page_parent !== null)
                         <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">Сменить родительскую страницу</span>
-                            </div>
-                            <div class="parent_id-wrap">
-                                @foreach($page_parents as  $item)
-                                    <div class="parent_id-wrap-item">
-                                        <input type="radio" value="{{$item->id}}" id="p{{$item->id}}" name="parent_id" @if($page->parent_id ==$item->id)checked @endif>
-                                        <label for="p{{$item->id}}">{{$item->translate()->title}}</label>
-                                    </div>
-                                @endforeach
-                            </div>
+                            <input type="hidden" value="{{$page_parent->id}}"  name="parent_id" >
                         </div>
                         @endif
                         <div class="input-group mb-3">
                             <h5 class="card-title mb-3">Описание</h5>
                         </div>
                         <div class="mb-3">
-                          <textarea  name="body" id="editor1" >
+                          <textarea  name="body" class="editor" >
                               @isset($page->translate()->body){{$page->translate()->body}}@endisset
                           </textarea>
                         </div>
@@ -97,20 +87,6 @@
 
 
 @section('scripts')
-  <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
-  <script>
-    tinymce.init({
-      selector: '#editor1',
-      plugins: [
-      "advlist autolink lists link image charmap print preview anchor",
-      "searchreplace visualblocks code fullscreen",
-      "insertdatetime media table paste imagetools wordcount"
-    ],
-    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-    content_css: '//www.tiny.cloud/css/codepen.min.css'
-    });
-
-  </script>
 
 @endsection

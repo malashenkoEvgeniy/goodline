@@ -66,4 +66,13 @@
     .breadcrumbs li.current {
         color:#C71F25;
     }
+    .page-thumbnail .breadcrumbs a,
+    .page-thumbnail .breadcrumbs,
+    .page-thumbnail .breadcrumbs .current {
+        color: #000000;
+    }
+
+    .page-thumbnail .breadcrumbs .bread-sep svg path{
+        fill: #000000;
+    }
 }

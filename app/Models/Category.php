@@ -58,6 +58,6 @@ class Category extends BaseModel
 
     public function products()
     {
-        return $this->belongsToMany('App\Models\Product')->using('App\Models\CategoryProduct');
+        return $this->belongsToMany('App\Models\Product')->using('App\Models\CategoryProduct')->orderBy('order_by', 'asc');
     }
 }

@@ -8,7 +8,7 @@
                 <div class="card-header">Продукция</div>
 
                 <div class="card-body">
-
+                    <a href="{{route('products.create')}}" class="btn btn-primary">Создать</a>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -44,7 +44,7 @@
                     </tbody>
                 </table>
 
-					<a href="{{route('products.create')}}" class="btn btn-primary">Создать</a>
+
 				</div>
             </div>
         </div>

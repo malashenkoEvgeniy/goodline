@@ -22,7 +22,7 @@
                     </div>
                 @endif
                 <div class="card-body">
-					        <form action="{{route('products.store')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('products.store')}}" method="POST" enctype="multipart/form-data">
                         {!! csrf_field() !!}
                         <div class="input-group mb-3">
                           <div class="input-group-prepend">
@@ -73,21 +73,20 @@
                                     <h5 class="card-title">Описание</h5>
                                 </div>
                                 <div class="mb-3">
-                                    <textarea  name="description" id="editor1" ></textarea>
+                                    <textarea  name="description" class="editor" ></textarea>
                                 </div>
                         <div class="input-group mb-3">
                             <h5 class="card-title">Характеристики</h5>
                         </div>
                         <div class="mb-3">
-                            <textarea  name="characteristics" id="editor2" ></textarea>
+                            <textarea  name="characteristics" class="editor1" ></textarea>
                         </div>
                         <div class="input-group mb-3">
                             <h5 class="card-title">Ингредиенты</h5>
                         </div>
                         <div class="mb-3">
-                            <textarea  name="ingredients" id="editor3" ></textarea>
+                            <textarea  name="ingredients" class="editor2" ></textarea>
                         </div>
-
                         <div class="input-group mb-3">
                           <div class="input-group-prepend">
                             <span class="input-group-text">Url</span>
@@ -110,14 +109,12 @@
                             </div>
                             <input type="text" class="form-control" name="seo_title">
                         </div>
-
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Seo ключевые слова</span>
                             </div>
                             <input type="text" class="form-control" name="seo_keywords">
                         </div>
-
                         <div class="form-group">
                             <label>Seo Описание</label>
                             <textarea class="form-control"  name="seo_description" ></textarea>
@@ -125,8 +122,6 @@
                         <input type="hidden" name="language" value="{{ LaravelLocalization::getCurrentLocale() }}">
                         <button type="submit" class="btn btn-primary">Создать</button>
                     </form>
-
-
 				</div>
             </div>
         </div>
@@ -145,56 +140,5 @@
         });
     </script>
 
-
-
-  <script>
-      tinymce.init({
-          selector: '#editor1',
-          plugins: [
-              "advlist autolink lists link image charmap print preview anchor",
-              "searchreplace visualblocks code fullscreen",
-              "insertdatetime media table paste imagetools wordcount"
-          ],
-          toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-          content_css: '//www.tiny.cloud/css/codepen.min.css'
-      });
-      tinymce.init({
-          selector: '#editor2',
-          plugins: [
-              "advlist autolink lists link image charmap print preview anchor",
-              "searchreplace visualblocks code fullscreen",
-              "insertdatetime media table paste imagetools wordcount"
-          ],
-          toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-          content_css: '//www.tiny.cloud/css/codepen.min.css'
-      });
-      tinymce.init({
-          selector: '#editor3',
-          plugins: [
-              "advlist autolink lists link image charmap print preview anchor",
-              "searchreplace visualblocks code fullscreen",
-              "insertdatetime media table paste imagetools wordcount"
-          ],
-          toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-          content_css: '//www.tiny.cloud/css/codepen.min.css'
-      });
-
-    function urlLit(w,v) {
-        var tr='a b v g d e ["zh","j"] z i y k l m n o p r s t u f h c ch sh ["shh","shch"] ~ y ~ e yu ya ~ ["jo","e"]'.split(' ');
-        var ww=''; w=w.toLowerCase();
-
-        for(i=0; i<w.length; ++i) {
-            cc=w.charCodeAt(i); ch=(cc>=1072?tr[cc-1072]:w[i]);
-            if(ch.length<3) ww+=ch; else ww+=eval(ch)[v];
-        }
-        return(ww.replace(/[^a-zA-Z0-9\-]/g,'-').replace(/[-]{2,}/gim, '-').replace( /^\-+/g, '').replace( /\-+$/g, ''));
-    }
-
-    $( document ).ready(function() {
-        $('.translit').bind('change keyup input click', function(){
-            $('.translit_to').val(urlLit($('.translit').val(),0))
-        });
-    });
-  </script>
 
 @endsection

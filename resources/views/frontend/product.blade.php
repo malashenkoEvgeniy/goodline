@@ -1,6 +1,7 @@
 @extends('frontend.layout')
 
 @section('links')
+    <link rel="stylesheet" href="{{asset('/frontend/css/product.css')}}">
 @endsection
 
 @section('content')
@@ -132,6 +133,7 @@
 
 @endsection
 @section('scripts')
-<script src="{{asset('/js/product.js')}}"></script>
+{{--<script src="{{asset('/js/product.js')}}"></script>--}}
+<script src="{{asset('public/frontend/js/product.js')}}"></script>
 
 @endsection

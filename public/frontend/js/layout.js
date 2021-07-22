@@ -149,26 +149,6 @@ $(document).click(function(e){
     }
 });
 
-$('.certificates-items').slick({
-    dots: false,
-    infinite: false,
-    speed: 400,
-    arrows: false,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    slidesToShow: 2,
-    slidesToScroll: 1,
-    responsive:  [
-    {
-        breakpoint: 578,
-        settings: {
-
-            slidesToShow: 1,
-            slidesToScroll: 1,
-        }
-    }
-]
-});
 
 $(window).on('scroll', { passive: true }, function() {
         if ($(this).scrollTop() > 100) {

@@ -59,7 +59,7 @@
                             <h5 class="card-title mb-3">Описание</h5>
                         </div>
                         <div class="mb-3">
-                          <textarea  name="body" id="editor1" >
+                          <textarea  name="body" class="editor" id="editor1" >
                             @isset($category->translate()->body){{$category->translate()->body}}@endisset
                           </textarea>
                         </div>
@@ -69,21 +69,18 @@
                             <span class="input-group-text">Родитель</span>
                           </div>
                           <select class="form-control" name="parent_id">
-                            @if(count($categories_parent) > 0)
-                                  @foreach($categories_parent as  $parent_item)
-                                      @if($category->parent_id===$parent_item->id)
-                                      <option selected="selected" value="{{$parent_item->id}}">
-                                          {{$parent_item->translate()->title}}
-                                      </option>
-                                      @endif
-                                  @endforeach
-                                @foreach($categories_parent as  $parent_item)
-                                <option selected="selected" value="{{$parent_item->id}}">
-                                  {{$parent_item->translate()->title}}
-                                </option>
-                                  @endforeach
-                            @endif
-                            <option value="">Родитель</option>
+                              @if($category->parent !== null)
+                                  <option selected="selected" value="{{$category->parent->id}}"> {{$category->parent->translate()->title}} </option>
+                              @endif
+                                  <option value="">Родитель</option>
+                                @if(count($categories_parent) > 0)
+                                    @foreach($categories_parent as  $parent_item)
+                                    <option  value="{{$parent_item->id}}">
+                                      {{$parent_item->translate()->title}}
+                                    </option>
+                                      @endforeach
+                                @endif
+
                           </select>
                         </div>
 
@@ -121,18 +118,18 @@
 
 
 @section('scripts')
-   <script>
-      tinymce.init({
-          selector: '#editor1',
-          plugins: [
-              "advlist autolink lists link image charmap print preview anchor",
-              "searchreplace visualblocks code fullscreen",
-              "insertdatetime media table paste imagetools wordcount"
-          ],
-          toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-          content_css: '//www.tiny.cloud/css/codepen.min.css'
-      });
-  </script>
+{{--   <script>--}}
+{{--      tinymce.init({--}}
+{{--          selector: '#editor1',--}}
+{{--          plugins: [--}}
+{{--              "advlist autolink lists link image charmap print preview anchor",--}}
+{{--              "searchreplace visualblocks code fullscreen",--}}
+{{--              "insertdatetime media table paste imagetools wordcount"--}}
+{{--          ],--}}
+{{--          toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",--}}
+{{--          content_css: '//www.tiny.cloud/css/codepen.min.css'--}}
+{{--      });--}}
+{{--  </script>--}}
 
 
 

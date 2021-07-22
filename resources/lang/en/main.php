@@ -6,6 +6,7 @@ return [
     "learn_more" => "Learn more",
     "about_company" => "About company",
     "interesting" =>"Интересное",
+    "about_gluten"=>"About gluten",
     "certificates" =>"Certificates",
     "cooperation"=>"Cooperation",
     "they_trust_us" => "They trust us",

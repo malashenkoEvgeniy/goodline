@@ -96,20 +96,21 @@
                             <h5 class="card-title">Описание</h5>
                         </div>
                         <div class="mb-3">
-                            <textarea  name="description" id="editor1" >@isset($product->translate()->description) {{$product->translate()->description}} @endisset></textarea>
+                            <textarea  name="description" class="editor" >@isset($product->translate()->description){!!$product->translate()->description!!} @endisset</textarea>
                         </div>
+
                         <div class="input-group mb-3">
                             <h5 class="card-title">Характеристики</h5>
                         </div>
                             <div class="mb-3">
-                                <textarea  name="characteristics" id="editor2" >@isset($product->translate()->characteristics) {{$product->translate()->characteristics}} @endisset</textarea>
+                                <textarea  name="characteristics" class="editor1">@isset($product->translate()->characteristics) {!!$product->translate()->characteristics!!} @endisset</textarea>
                             </div>
 
                             <div class="input-group mb-3">
                                 <h5 class="card-title">Ингредиенты</h5>
                             </div>
                             <div class="mb-3">
-                                <textarea  name="ingredients" id="editor3" >@isset($product->translate()->ingredients) {{$product->translate()->ingredients}} @endisset</textarea>
+                                <textarea  name="ingredients" class="editor2" >@isset($product->translate()->ingredients){!!$product->translate()->ingredients!!}@endisset</textarea>
                             </div>
 
                             <div class="input-group mb-3">
@@ -149,17 +150,12 @@
 
                     <div class="form-group">
                         <label>Seo Описание</label>
-                        <textarea class="form-control"  name="seo_description" >
-                                @isset($product->translate()->seo_description){$product->translate()->seo_description}}@endisset
-                            </textarea>
+                        <textarea class="form-control"  name="seo_description" >@isset($product->translate()->seo_description){{$product->translate()->seo_description}}@endisset</textarea>
                     </div>
 
                         <input type="hidden" name="language" value="{{ LaravelLocalization::getCurrentLocale() }}">
                         <button type="submit" class="btn btn-primary">Обновить</button>
                     </form>
-
-
-
 
 				      </div>
             </div>
@@ -177,36 +173,8 @@
         });
 
 
-        tinymce.init({
-            selector: '#editor1',
-            plugins: [
-                "advlist autolink lists link image charmap print preview anchor",
-                "searchreplace visualblocks code fullscreen",
-                "insertdatetime media table paste imagetools wordcount"
-            ],
-            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-            content_css: '//www.tiny.cloud/css/codepen.min.css'
-        });
-        tinymce.init({
-            selector: '#editor2',
-            plugins: [
-                "advlist autolink lists link image charmap print preview anchor",
-                "searchreplace visualblocks code fullscreen",
-                "insertdatetime media table paste imagetools wordcount"
-            ],
-            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-            content_css: '//www.tiny.cloud/css/codepen.min.css'
-        });
-        tinymce.init({
-            selector: '#editor3',
-            plugins: [
-                "advlist autolink lists link image charmap print preview anchor",
-                "searchreplace visualblocks code fullscreen",
-                "insertdatetime media table paste imagetools wordcount"
-            ],
-            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-            content_css: '//www.tiny.cloud/css/codepen.min.css'
-        });
+
+
   </script>
 
 @endsection

@@ -80,6 +80,9 @@
 <script src="{{asset('/admin/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('/admin/adminlte/dist/js/adminlte.min.js')}}"></script>
+<script src="{{ asset('/admin/ckeditor5/build/ckeditor.js') }}"></script>
+<script src="/public/admin/ckfinder/ckfinder.js"></script>
+<script src="{{ asset('/admin/ckeditor-edit.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('/admin/adminlte/dist/js/demo.js')}}"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/tinymce/4.5.1/tinymce.min.js"></script>

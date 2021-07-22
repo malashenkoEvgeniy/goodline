@@ -56,7 +56,6 @@
 .input-group label{
     margin-bottom: 5px;
     font-weight: bold;
-    padding-left: 20px;
 }
 .input-group input,.input-group textarea{
     width: 100%;
@@ -96,6 +95,34 @@ form .btn{
     font-size: 20px;
     font-weight: bold;
     text-align: center;
+}
+@media (max-width: 1370px){
+    .popup-form{
+        max-width: calc( 400px - 30px);
+        height: 500px;
+        top: 45%;
+    }
+
+    .input-group input, .input-group textarea {
+        padding: 10px 19px;
+    }
+
+    .input-group textarea {
+        height: 50px;
+    }
+
+    .popup-form-top .title span {
+        padding: 15px 31px;
+    }
+
+    .input-group {
+        margin-bottom: 10px;
+    }
+
+    .popup-form-top .title {
+        font-size: 34px!important;
+        line-height: 38px;
+    }
 }
 @media (max-width: 568px){
     .popup-form{

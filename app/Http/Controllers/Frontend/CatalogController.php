@@ -20,7 +20,7 @@ class CatalogController extends BaseFrontendController
             'keywords' => strip_tags($settings->translate()->seo_keywords)
         ];
 
-
+    dd('cataalog');
     	$trustUs = TrustUs::orderBy('sort')->get();
         return view('frontend.home',compact('trustUs','seo'));
     }

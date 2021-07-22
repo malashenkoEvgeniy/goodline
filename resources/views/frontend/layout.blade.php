@@ -40,12 +40,14 @@
       <link rel="stylesheet" href="{{asset('/frontend/css/layout.css')}}"> <!-- ( header - footer ) css -->
       <link rel="stylesheet" href="{{asset('/frontend/css/social_buttons.css')}}">
       <link rel="stylesheet" href="{{asset('/frontend/css/popup_form.css')}}">
+      <link rel="stylesheet" href="{{asset('/frontend/css/page.css')}}">
       <link rel="stylesheet" href="/frontend/css/home.css">
       <link rel="stylesheet" href="/frontend/css/breadcrumbs.css">
     @yield('links')
+      1
   </head>
 
-  <body>
+  <body id="body">
     <div class="overflow"></div>
     <div class="site-content" id="site-content">
       @include('frontend.includes.header')
@@ -62,7 +64,10 @@
     <script  src="https://code.jquery.com/jquery-3.5.1.min.js"  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="   crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script src="{{asset('/js/my.js')}}"></script>
+{{--    <script src="{{asset('/js/my.js')}}"></script>--}}
+    <script src="{{asset('public/frontend/js/hamburger.js')}}"></script>
+    <script src="{{asset('public/frontend/js/layout.js')}}"></script>
+    <script src="{{asset('public/frontend/js/lazy_load.js')}}"></script>
     @yield('scripts')
   </body>
 </html>

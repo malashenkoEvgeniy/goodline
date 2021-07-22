@@ -32,9 +32,9 @@ class PageController extends  BaseController
      */
     public function create()
     {
-        $pages = Page::whereIn('id', [1, 2])->get();
+        $page = Page::where('id', 1)->first();
 
-        return view('admin.pages.create', compact('pages'));
+        return view('admin.pages.create', compact('page'));
     }
 
     /**
@@ -68,8 +68,8 @@ class PageController extends  BaseController
     public function edit($id)
     {
         $page = Page::find($id);
-        $page_parents = ($id>5) ? Page::whereIn('id', [1, 2])->get() : null;
-        return view('admin.pages.edit',compact('page', 'page_parents'));
+        $page_parent = ($id>5) ? Page::where('id', 1)->first() : null;
+        return view('admin.pages.edit',compact('page', 'page_parent'));
     }
 
     /**

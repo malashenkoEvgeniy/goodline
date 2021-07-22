@@ -2,10 +2,9 @@
 
 @section('links')
 {{--          <link rel="stylesheet" href="{{asset('/css/catalog.css')}}">--}}
-<link rel="stylesheet" href="/frontend/css/catalog.css">
+<link rel="stylesheet" href="{{asset('/frontend/css/catalog.css')}}">
 @endsection
 @section('content')
-
 <div class="page-thumbnail" style="background-image: url({{$page->banner}})">
 	@include('frontend.includes.breadcrumbs')
 	<h2 class="title"><span>{{ $page->translate()->title}}</span></h2>
@@ -93,7 +92,7 @@
         <div class="development-block">
         <h2 class="title development-item"><span>@lang('main.products_in_development')</span></h2>
             <div class="development-text development-item">@lang('main.products_in_development_text')</div>
-            <img src="{{asset('frontend/images/a.jpg')}}"  data-src="{{asset('frontend/images/dev.jpg')}}" alt="dev" class=" lazy development-img development-item">
+{{--            <img src="{{asset('frontend/images/a.jpg')}}"  data-src="{{asset('frontend/images/dev.jpg')}}" alt="dev" class=" lazy development-img development-item">--}}
         </div>
     </div>
 @endif

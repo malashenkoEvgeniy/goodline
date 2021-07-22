@@ -59,6 +59,7 @@ class PageController extends BaseFrontendController
                 'current' => 'Каталог',
                 'parent' => null
             ];
+
             return view('frontend.page',compact('seo','page','breadcrumbs'));
 
     	}elseif($category !== null ){ // Страница каталога
@@ -91,6 +92,7 @@ class PageController extends BaseFrontendController
             'current' => strip_tags($page->translate()->title),
             'parent' => $parent
         ];
+//        dd(123);
 
         return view('frontend.page',compact('seo','page','breadcrumbs'));
     }
