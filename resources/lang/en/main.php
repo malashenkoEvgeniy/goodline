@@ -19,6 +19,7 @@ return [
     "all_rights_reserved" => "© KCG 2020 - All rights reserved",
     "items_per_page" => "Items per page",
     "show_more" => "Show more",
+    'share_buttons_title'=>'Share on social networks:',
 
 
 

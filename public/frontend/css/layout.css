@@ -728,6 +728,20 @@ footer{
     display: none;
 }
 
+.social-share-footer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 30%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.social-share-footer svg {
+    width: 25px ;
+    height: 25px;
+}
+
 @media (max-width: 1440px){
 
     .header-top-item-logo svg {
@@ -1167,6 +1181,8 @@ footer{
         width: 60px;
     }
 
+
+
     .header-top {
         height: 55px;
     }
@@ -1235,7 +1251,7 @@ footer{
 
     .footer-top {
         flex-direction: column;
-        max-height: 190px;
+        max-height: 196px;
     }
 
     .mobile-first-column {
@@ -1261,6 +1277,10 @@ footer{
         width: 100%;
         order: 1;
         margin-bottom: 30px;
+    }
+
+    .footer-top a {
+        font-size: 11px;
     }
 
     footer .logo img {
@@ -1371,9 +1391,6 @@ footer{
     .popup-form .input-group textarea{
         max-height: 60px;
     }
-
-
-
 
 }
 

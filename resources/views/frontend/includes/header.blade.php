@@ -32,9 +32,16 @@
                       <ul>
                           @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                               <li>
-                                  <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                  @if($localeCode == 'ua')
+
+                                  <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], false) }}">
                                       <span>{{ $properties['name'] }}</span>
                                   </a>
+                                      @else
+                                      <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                          <span>{{ $properties['name'] }}</span>
+                                      </a>
+                                  @endif
                               </li>
                           @endforeach
                       </ul>

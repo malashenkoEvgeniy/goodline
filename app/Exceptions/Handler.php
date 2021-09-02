@@ -2,8 +2,13 @@
 
 namespace App\Exceptions;
 
+use App\Models\Category;
+use App\Models\Certificates;
+use App\Models\Page;
+use App\Models\Settings;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
 class Handler extends ExceptionHandler
 {
@@ -46,6 +51,29 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($this->isHttpException($exception)) {
+            $settings = Settings::find(1);
+            $categories = Category::where('parent_id', null)->with('children')->get();
+            $pages = Page::where('parent_id', null)->with('getKids')->orderby('order_by')->get();
+            $interesting = Page::where('parent_id', 1)->get();
+            $certificates = Certificates::get();
+            $seo = (object) [
+                'title' => 'Error!',
+                'description' => "Страница отсутствует",
+                'keywords' => 'Error!'
+            ];
+            /** @var HttpExceptionInterface $exception */
+            if ($exception->getStatusCode() == 404) {
+
+                return response()->view('errors.404', compact('seo','settings', 'categories', 'pages', 'interesting', 'certificates'), 404);
+            }
+
+            if ($exception->getStatusCode() == 500) {
+                return response()->view('errors.404', compact('settings', 'seo', 'categories', 'pages', 'interesting', 'certificates'), 500);
+            }
+
+        }
+
         return parent::render($request, $exception);
     }
 }

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Page;
+use App\Services\BaseService;
+use App\Services\CategoryService;
+use App\Services\PageService;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -55,12 +58,12 @@ class PageController extends  BaseController
         ]);
         $req = $request->only('parent_id');
         $req['url'] = SlugService :: createSlug ( Page :: class, 'url' , $request->title );
-        if (request()->file('image') !== null) {
-            $file = $this->storeFile(request()->file('image'), $this->storePath);
-            $req['image'] = $file['path'];
-        }
         $page = Page::create($req);
-        $pageTranslate = $page->pageTranslate()->create($request->except('url', 'parent_id', 'image'));
+        if (request()->file('image') !== null) {
+            BaseService::create_media($page, request()->file('image'), PageService::STORE_PATH, PageService::PARAMETERS);
+        }
+
+         $page->pageTranslate()->create($request->except('url', 'parent_id', 'image'));
 
         return redirect()->route('pages.index')->with('success', 'Запись успешно создана');
     }
@@ -89,10 +92,9 @@ class PageController extends  BaseController
         ]);
         $page = Page::find($id);
         $req = request()->only('parent_id');
+
         if (request()->file('image') !== null) {
-            $this->deleteFile($page->image);
-            $file = $this->storeFile(request()->file('image'), $this->storePath);
-            $req['image'] = $file['path'];
+            BaseService::create_media($page, request()->file('image'), PageService::STORE_PATH, PageService::PARAMETERS);
         }
         $reqT = request()->except( 'parent_id', 'image');
         $page->update($req);
@@ -110,7 +112,10 @@ class PageController extends  BaseController
      */
     public function destroy($id)
     {
-        $page = Page::destroy($id);
+        $page = Page::where('id',$id)->first();
+        BaseService::delete_media($page);
+        $page->media()->delete();
+        $page->delete();
 
         return redirect()->route('pages.index')->with('success', 'Запись успешно удалена');
     }

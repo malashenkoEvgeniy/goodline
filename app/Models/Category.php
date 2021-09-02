@@ -22,6 +22,10 @@ class Category extends BaseModel
         ];
     }
 
+    public function media()
+    {
+        return $this->morphOne(Media::class, 'imageable');
+    }
 
     public function parent()
     {

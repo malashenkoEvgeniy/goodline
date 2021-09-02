@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Feedback;
 use App\Models\FormRequest;
 use Illuminate\Support\Facades\App;
+use Intervention\Image\Facades\Image;
+use Intervention\Image\ImageManager;
 
 class BaseController extends Controller
 {
@@ -44,6 +46,8 @@ class BaseController extends Controller
 
         return $data;
     }
+
+
 
     public function deleteFile($path)
     {

@@ -29,7 +29,7 @@
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
                                             <td>{{ $certificate->translate()->title }}</td>
-                                            <td><img src="{{$certificate->image !== null ? $certificate->image : '/uploads/category/a.jpg'}}" alt="img" width="100" height="50"></td>
+                                            <td><img src="{{$certificate->media !== null ? $certificate->media->img_prev : '/uploads/category/a.jpg'}}" alt="img" width="100" height="50"></td>
                                             <td>
                                                 <a href="{{ route('certificates.edit', $certificate->id) }}" class="btn btn-info btn-sm float-left mr-1">
                                                     <i class="fas fa-pencil-alt"></i>

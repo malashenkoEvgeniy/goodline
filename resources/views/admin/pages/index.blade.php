@@ -45,7 +45,7 @@
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
                                             <td class="page-title">{{ $page->translate()->title }}</td>
-                                            <td><img src="{{$page->image !== null ? $page->image : '/admin/img/boxed-bg.jpg'}}" alt="img" width="100" height="50"></td>
+                                            <td><img src="{{$page->media !== null ? $page->media->img_prev : '/admin/img/boxed-bg.jpg'}}" alt="img" width="100" height="50"></td>
                                             <td class="page-url">{{ $page->url }}</td>
                                             <td>
                                                 <a href="{{ route('pages.edit', $page->id) }}" class="btn btn-info btn-sm float-left mr-1">

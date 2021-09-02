@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\HomeSlider;
 use App\Models\HomeSliderTranslate;
 use App\Http\Controllers\Controller;
+use App\Models\MediaProject;
+use App\Services\HomeSliderService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
@@ -44,36 +46,17 @@ class HomeSliderController extends BaseController
      */
     public function store(Request $request)
     {
-        $imageExtension = ['jpg','jpeg','webp','png'];
-        $slideRequestData = request()->only('file_path','is_image');
-
         $originalFile = request()->file('file_path');
-        $originalFileNewName = time() . $originalFile->getClientOriginalName();
-        $originalFile->move(public_path() . '/uploads/home_slides', $originalFileNewName);
-        $slideRequestData['file_path'] = '/uploads/home_slides/' . $originalFileNewName;
 
-        if (in_array($originalFile->getClientOriginalExtension(),$imageExtension)) {
-            $slideRequestData['is_image'] = true;
-        }else{
-            $slideRequestData['is_image'] = false;
+        if ($originalFile !== null) {
+            $slide = HomeSliderService::create_media($originalFile);
+        } else {
+            $slide = new HomeSlider();
         }
 
-        $slide = HomeSlider::create($slideRequestData);
+         $slide->sliderTranslates()->create(request()->except('file_path','is_image','_token'));
 
-        $slideTranslate = $slide->sliderTranslates()->create(request()->except('file_path','is_image','_token'));
-
-        return redirect()->back();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\HomeSlider  $homeSlider
-     * @return \Illuminate\Http\Response
-     */
-    public function show(HomeSlider $homeSlider)
-    {
-        //
+        return redirect()->route('homeSliders.index')->with('success', 'Запись успешно создана');
     }
 
     /**
@@ -97,45 +80,20 @@ class HomeSliderController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        $requestData = request()->all();
-        $language = App::getLocale();
 
         $slide = HomeSlider::find($id);
 
-        $slideTranslate = $slide->translate($requestData['language']); // ищем запись по нашему языку
+        $originalFile = request()->file('file_path');
 
-
-
-
-        if ($slideTranslate != null && $slideTranslate->language == $language) { // текущий язык сайта совпадает с языком записи (перевод есть) -> обновляем
-            $slideRequestData = request()->only('file_path','is_image');
-
-            if (isset($requestData['file_path']) ) { // загрузили картинку
-                $imageExtension = ['jpg','jpeg','webp','png'];
-
-
-                $originalFile = request()->file('file_path');
-
-                $originalFileNewName = time() . $originalFile->getClientOriginalName();
-                $originalFile->move(public_path() . '/uploads/home_slides', $originalFileNewName);
-                $slideRequestData['file_path'] = '/uploads/home_slides/' . $originalFileNewName;
-
-                if (in_array($originalFile->getClientOriginalExtension(),$imageExtension)) {
-                    $slideRequestData['is_image'] = true;
-                }else{
-                    $slideRequestData['is_image'] = false;
-                }
-            }
-
-            $slide = $slide->update($slideRequestData);
-
-            $slideTranslate = $slideTranslate->update(request()->except('file_path','is_image','_token','_method','language'));
-
-        }else{ // создаём новый перевод
-            $slide->sliderTranslates()->create(request()->except('file_path','is_image','_token'));
+        if ($originalFile !== null) {
+            HomeSliderService::delete_media($slide);
+            HomeSliderService::create_media($originalFile);
         }
+//        $language = App::getLocale();
+        $slide->translate()->update(request()->except('file_path','is_image','_token','_method','language'));
 
-        return redirect()->back();
+
+        return redirect()->route('homeSliders.index')->with('success', 'Запись успешно создана');
     }
 
     /**
@@ -147,7 +105,17 @@ class HomeSliderController extends BaseController
     public function destroy(Request $request, $id)
     {
         $slide = HomeSlider::find($id);
+        if($slide->is_image){
+            HomeSliderService::delete_media($slide);
+            $slide->media->delete();
+        } else {
+            if ($slide->file_path !== null){
+                if (file_exists(public_path($slide->file_path))) {
+                    unlink(public_path($slide->file_path));
+                }
+            }
+        }
         $slide->delete();
-        return redirect()->back();
+        return redirect()->route('homeSliders.index')->with('success', 'Запись успешно создана');
     }
 }

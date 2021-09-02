@@ -19,7 +19,7 @@
                         </div>
                     @endif
 
-                    <form action="{{route('pages.update',$page->id)}}" method="POST">
+                    <form action="{{route('pages.update',$page->id)}}" method="POST" enctype="multipart/form-data">
                         {!! csrf_field() !!}
                         {{ method_field('PUT') }}
 

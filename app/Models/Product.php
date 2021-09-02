@@ -21,6 +21,11 @@ class Product extends BaseModel
         ];
     }
 
+    public function media()
+    {
+        return $this->morphMany(Media::class, 'imageable');
+    }
+
     public function category()
     {
         return $this->belongsToMany('App\Models\Category')->using('App\Models\CategoryProduct');

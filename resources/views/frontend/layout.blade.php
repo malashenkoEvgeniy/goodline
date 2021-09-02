@@ -17,6 +17,7 @@
     <link rel="alternate" hreflang="ru" href="{{ LaravelLocalization::getLocalizedURL('ru') }}">
     <link rel="alternate" hreflang="en" href="{{ LaravelLocalization::getLocalizedURL('en') }}">
       <link rel="alternate" hreflang="ua" href="{{ LaravelLocalization::getLocalizedURL('ua') }}">
+      <link href='{{ url('sitemap.xml') }}' rel='alternate' title='Sitemap' type='application/rss+xml'/>
 
 
 
@@ -65,9 +66,9 @@
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 {{--    <script src="{{asset('/js/my.js')}}"></script>--}}
-    <script src="{{asset('public/frontend/js/hamburger.js')}}"></script>
-    <script src="{{asset('public/frontend/js/layout.js')}}"></script>
-    <script src="{{asset('public/frontend/js/lazy_load.js')}}"></script>
+    <script src="{{asset('frontend/js/hamburger.js')}}"></script>
+    <script src="{{asset('frontend/js/layout.js')}}"></script>
+    <script src="{{asset('frontend/js/lazy_load.js')}}"></script>
     @yield('scripts')
   </body>
 </html>

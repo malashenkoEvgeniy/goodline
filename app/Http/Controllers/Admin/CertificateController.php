@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Certificates;
+use App\Services\BaseService;
+use App\Services\CategoryService;
+use App\Services\CertificateService;
 use Illuminate\Http\Request;
 
 class CertificateController extends BaseController
@@ -41,22 +44,20 @@ class CertificateController extends BaseController
      */
     public function store(Request $request)
     {
-
         $this->validate($request, [
             'image' => 'nullable|mimes:jpeg,jpg,png,gif',
         ], [
             'image.mimes' => 'Поле "Иконка для меню" должны обязательно иметь расширения: jpeg,jpg,png,gif',
         ]);
-
-        $req = request()->only('image' );
+//        $certificate = new Certificates();
+        $certificate = Certificates::create(['image'=>'']);
 
         if (request()->file('image') !== null) {
-            $file = $this->storeFile(request()->file('image'), $this->storePath);
-            $req['image'] = $file['path'];
+            BaseService::create_media($certificate, request()->file('image'), CertificateService::STORE_PATH, CertificateService::PARAMETERS);
         }
         $reqT = request()->except('image' );
 
-        $this->storeWithTranslation(new Certificates(), $req, $reqT);
+       $certificate->translations()->create($reqT);
 
         return redirect()->route('certificates.index')->with('success', 'Запись успешно создана');
     }
@@ -91,10 +92,7 @@ class CertificateController extends BaseController
         $reqTranslation = request()->except('image', 'icon', 'parent_id');
         $certificate = Certificates::find($id);
         if (request()->file('image') !== null) {
-            $this->deleteFile($certificate->image);
-            $file = $this->storeFile(request()->file('image'), $this->storePath);
-            $certificate->image = $file['path'];
-            $certificate->update(['image' => $certificate->image]);
+            BaseService::create_media($certificate, request()->file('image'), CategoryService::STORE_PATH, CertificateService::PARAMETERS);
         }
 
         $this->updateTranslation($certificate, $reqTranslation, $request);
@@ -112,9 +110,8 @@ class CertificateController extends BaseController
     public function destroy($id)
     {
         $certificate = Certificates::find($id);
-        if($certificate->image !== null){
-            unlink(public_path($certificate->image));
-        }
+        BaseService::delete_media($certificate);
+        $certificate->media()->delete();
         $certificate->delete();
 
         return redirect()->route('certificates.index')->with('success', 'Запись успешно удалена');

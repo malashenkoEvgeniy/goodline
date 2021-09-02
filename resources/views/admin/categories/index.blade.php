@@ -34,7 +34,7 @@
                             <tr>
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{ $category->translate()->title }}</td>
-                                <td><img src="{{$category->image !== null ? $category->image : '/uploads/category/a.jpg'}}" alt="img" width="100" height="50"></td>
+                                <td><img src="{{$category->media !== null ? $category->media->img_prev : '/uploads/category/a.jpg'}}" alt="img" width="100" height="50"></td>
                                 <td><img src="{{$category->banner !== null ? $category->banner : '/uploads/category/a.jpg'}}" alt="img" width="100" height="50"></td>
 {{--                                <td><img src="{{$category->icon !== null ? $category->icon : '/uploads/category/a.jpg'}}" alt="img" width="100" height="50"></td>--}}
                                 <td>@if($category->icon!=null){!! file_get_contents(public_path().$category->icon) !!}@endif</td>

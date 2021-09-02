@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
+use App\Services\BaseService;
+use App\Services\CategoryService;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -21,6 +23,7 @@ class CategoryController extends BaseController
      */
     public function index()
     {
+
         $categories = Category::orderby('id', 'desc')->paginate(5);
         return view('admin.categories.index',compact('categories'));
     }
@@ -32,6 +35,7 @@ class CategoryController extends BaseController
      */
     public function create()
     {
+
         $categories_parent = Category::where('parent_id', null)->get();
         return view('admin.categories.create', compact('categories_parent'));
     }
@@ -55,13 +59,9 @@ class CategoryController extends BaseController
             'icon.mimes' => 'Поле "Иконка для меню" должны обязательно иметь расширения: svg',
         ]);
 
-        $req = request()->only('parent_id','url','image', 'icon' );
+        $req = request()->only('parent_id','url', 'icon' );
         $req['url'] = SlugService :: createSlug ( Category :: class, 'url' , $request->title );
 
-        if (request()->file('image') !== null) {
-            $file = $this->storeFile(request()->file('image'), $this->storePath);
-            $req['image'] = $file['path'];
-        }
         if (request()->file('banner') !== null) {
             $file = $this->storeFile(request()->file('banner'), $this->storePath);
             $req['banner'] = $file['path'];
@@ -74,7 +74,13 @@ class CategoryController extends BaseController
         }
         $reqT = request()->except('parent_id','url','image', 'banner', 'icon' );
 
-         $this->storeWithTranslation(new Category(), $req, $reqT);
+
+         $model = $this->storeWithTranslation(new Category(), $req, $reqT)['model'];
+
+        if (request()->file('image') !== null) {
+            BaseService::create_media($model, request()->file('image'), CategoryService::STORE_PATH, CategoryService::PARAMETERS);
+
+        }
 
         return redirect()->route('categories.index')->with('success', 'Запись успешно создана');
     }
@@ -115,10 +121,7 @@ class CategoryController extends BaseController
         $reqTranslation = request()->except('image', 'icon','banner', 'parent_id');
         $category = Category::find($id);
         if (request()->file('image') !== null) {
-            $this->deleteFile($category->image);
-            $file = $this->storeFile(request()->file('image'), $this->storePath);
-            $category->image = $file['path'];
-            $category->update(['image' => $category->image]);
+            BaseService::create_media($category, request()->file('image'), CategoryService::STORE_PATH, CategoryService::PARAMETERS);
         }
         if (request()->file('banner') !== null) {
             $this->deleteFile($category->banner);
@@ -154,9 +157,8 @@ class CategoryController extends BaseController
 
           $category->products()->detach();
         }
-        if($category->image !== null){
-            unlink(public_path($category->image));
-        }
+        BaseService::delete_media($category);
+        $category->media->delete();
         if($category->icon !== null){
             unlink(public_path($category->icon));
         }

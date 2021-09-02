@@ -22,7 +22,7 @@
                     <form action="{{route('certificates.update',$certificate->id)}}" method="POST" enctype="multipart/form-data">
                         {!! csrf_field() !!}
                         {{ method_field('PUT') }}
-                        <img src="{{$certificate->image !== null ? $certificate->image : '/uploads/category/a.jpg'}}" alt="img" width="100" height="50">
+                        <img src="{{$certificate->media !== null ? $certificate->media->img_prev : '/uploads/category/a.jpg'}}" alt="img" width="100" height="50">
                         <div class="input-group mb-3">
                           <div class="input-group-prepend">
                             <span class="input-group-text">Картинка</span>

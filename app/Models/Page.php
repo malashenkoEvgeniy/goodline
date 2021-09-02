@@ -21,6 +21,11 @@ class Page extends BaseModel
         ];
     }
 
+    public function media()
+    {
+        return $this->morphOne(Media::class, 'imageable');
+    }
+
     public function pageTranslate()
     {
         return $this->hasMany('App\Models\PageTranslate');

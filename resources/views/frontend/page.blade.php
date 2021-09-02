@@ -66,7 +66,23 @@
 
                     <div class="catalog-item shadow">
                         <a href='{{ LaravelLocalization::localizeUrl("$item->url") }}'>
-                            <img class="catalog-item-page-img" src="{{$item->image}}" alt="{{ $item->translate()->title }}"></a>
+                            @if($item->media !== null )
+                                <img
+                                    src="{{asset('frontend/images/a.jpg')}}"
+                                    data-mobile="{{$item->media->img_m}}"
+                                    data-tablet="{{$item->media->img_t}}"
+                                    data-desc="{{$item->media->img_d}}"
+                                    data-or="{{$item->media->img_d}}"
+                                    alt="slide{{$item->media->id}}"
+                                    title="slide{{$item->media->id}}"
+                                    class="lazyload"
+                                    loading="lazy"
+                                    width="360"
+                                    height="270"
+                                    decoding="async"
+                                />
+                            @endif
+{{--                            <img class="catalog-item-page-img" src="{{$item->image}}" alt="{{ $item->translate()->title }}"></a>--}}
                         <a class="catalog-item__title" href='{{ LaravelLocalization::localizeUrl("$item->url") }}'>{{ $item->translate()->title }}</a>
                     </div>
                 @endforeach
@@ -82,7 +98,24 @@
                 <div class="catalog-items content-wrapper interesting-wrap">
                     @foreach ($interesting as $info)
                         <div class="interesting-item shadow">
-                            <a href='{{ LaravelLocalization::localizeUrl("$info->url") }}' ><img class="catalog-item-img" src="{{$info->image}}" alt="{{ $info->translate()->title }}"></a>
+                            <a href='{{ LaravelLocalization::localizeUrl("$info->url") }}' >
+                                @if($info->media !== null )
+                                    <img
+                                        src="{{asset('frontend/images/a.jpg')}}"
+                                        data-mobile="{{$info->media->img_m}}"
+                                        data-tablet="{{$info->media->img_t}}"
+                                        data-desc="{{$info->media->img_d}}"
+                                        data-or="{{$info->media->img_d}}"
+                                        alt="slide{{$info->media->id}}"
+                                        title="slide{{$info->media->id}}"
+                                        class="lazyload"
+                                        loading="lazy"
+                                        width="367"
+                                        height="330"
+                                        decoding="async"
+                                    />
+                                @endif
+                            </a>
                             <a class="interesting-item__title" href='{{ LaravelLocalization::localizeUrl("$info->url") }}'>{{ $info->translate()->title }}</a>
                         </div>
                     @endforeach
@@ -186,7 +219,23 @@
                             @foreach ($certificates as $certificate)
                                 <div class="certificates-item">
                                     <a data-fancybox="gallery"  href='{{asset($certificate->image)}}'>
-                                        <img  src="{{asset('frontend/images/a.jpg')}}" class="lazy"  data-src="{{$certificate->image}}" alt="{{ $certificate->translate()->title }}"></a>
+                                        @if($certificate->media !== null )
+                                            <img
+                                                src="{{asset('frontend/images/a.jpg')}}"
+                                                data-mobile="{{$certificate->media->img_m}}"
+                                                data-tablet="{{$certificate->media->img_t}}"
+                                                data-desc="{{$certificate->media->img_d}}"
+                                                data-or="{{$certificate->media->img_d}}"
+                                                alt="slide{{$certificate->media->id}}"
+                                                title="slide{{$certificate->media->id}}"
+                                                class="lazyload"
+                                                loading="lazy"
+                                                width="367"
+                                                height="330"
+                                                decoding="async"
+                                            />
+                                        @endif
+                                    </a>
                                     <h3 class="certificates-item__title" >{{ $certificate->translate()->title }}</h3>
                                     <p class="certificates-item__body">{{ $certificate->translate()->body }}</p>
                                 </div>

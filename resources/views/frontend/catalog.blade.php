@@ -19,7 +19,23 @@
 
 				<div class="catalog-tabs-item @if($page->url == $item->url ) active @endif">
 					<a class="catalog-tabs-item-content" href='{{ LaravelLocalization::localizeUrl("$item->url") }}'>
-						<img src="{{asset('frontend/images/a.jpg')}}" class="lazy-load lazy" data-src="{{ $item->image}}" alt="{{ $item->translate()->title}}" width="270" height="270">
+                        @if($item->media !== null )
+                            <img
+                                src="{{asset('frontend/images/a.jpg')}}"
+                                data-mobile="{{$item->media->img_m}}"
+                                data-tablet="{{$item->media->img_t}}"
+                                data-desc="{{$item->media->img_d}}"
+                                data-or="{{$item->media->img_d}}"
+                                alt="slide{{$item->media->id}}"
+                                title="slide{{$item->media->id}}"
+                                class="lazyload"
+                                loading="lazy"
+                                width="360"
+                                height="270"
+                                decoding="async"
+                            />
+                        @endif
+{{--						<img src="{{asset('frontend/images/a.jpg')}}" class="lazy-load lazy" data-src="{{ $item->image}}" alt="{{ $item->translate()->title}}" width="270" height="270">--}}
 						<h2 class="tab-title">{{ $item->translate()->title}}</h2>
 					</a>
 				</div>
@@ -32,7 +48,23 @@
 
 				<div class="catalog-tabs-item @if($page->url == $item->url ) active @endif">
 					<a class="catalog-tabs-item-content" href='{{ LaravelLocalization::localizeUrl("$item->url") }}'>
-						<img src="{{asset('frontend/images/a.jpg')}}" class="lazy-load lazy" data-src="{{ $item->image}}" alt="{{ $item->translate()->title}}" width="270" height="270">
+                        @if($item->media !== null )
+                                <img
+                                    src="{{asset('frontend/images/a.jpg')}}"
+                                    data-mobile="{{$item->media->img_m}}"
+                                    data-tablet="{{$item->media->img_t}}"
+                                    data-desc="{{$item->media->img_d}}"
+                                    data-or="{{$item->media->img_d}}"
+                                    alt="slide{{$item->media->id}}"
+                                    title="slide{{$item->media->id}}"
+                                    class="lazyload"
+                                    loading="lazy"
+                                    width="360"
+                                    height="270"
+                                    decoding="async"
+                                />
+                            @endif
+                        {{--						<img src="{{asset('frontend/images/a.jpg')}}" class="lazy-load lazy" data-src="{{ $item->image}}" alt="{{ $item->translate()->title}}" width="270" height="270">--}}
 						<h2 class="tab-title">{{ $item->translate()->title}}</h2>
 					</a>
 				</div>

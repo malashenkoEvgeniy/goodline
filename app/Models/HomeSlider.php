@@ -11,8 +11,14 @@ class HomeSlider extends BaseModel
     protected $table = 'home_sliders';
     protected $guarded = [];
 
+
     public function sliderTranslates(){
     	return $this->hasMany('App\Models\HomeSliderTranslate');
+    }
+
+    public function media()
+    {
+        return $this->morphOne(Media::class, 'imageable');
     }
 
 }

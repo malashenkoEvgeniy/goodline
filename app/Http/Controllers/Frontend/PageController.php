@@ -17,11 +17,8 @@ use Illuminate\Support\Facades\App;
 
 class PageController extends BaseFrontendController
 {
-
-
     public function __construct(){
         parent::__construct();
-
     }
 
     public function index(){
@@ -218,7 +215,6 @@ class PageController extends BaseFrontendController
             'current' => $title,
             'parent' => null
         ];
-
 
         return view('frontend.contact_us',compact('seo','page','breadcrumbs'));
     }

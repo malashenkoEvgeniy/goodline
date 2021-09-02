@@ -1,4 +1,36 @@
 "use strict";
+
+//lazy
+$(document).ready(function () {
+    let images = document.querySelectorAll('img[loading="lazy"]');
+    if($(window).width() >= 1024) {
+        images.forEach(function (img) {
+            if(img.dataset.desc.length) {
+                img.src = img.dataset.desc;
+            } else {
+                img.src = img.dataset.or;
+            }
+        });
+    }
+    if($(window).width() < 1024 && $(window).width() >= 768) {
+        images.forEach(function (img) {
+            if(img.dataset.tablet.length) {
+                img.src = img.dataset.tablet;
+            } else {
+                img.src = img.dataset.or;
+            }
+        });
+    }
+    if( $(window).width() < 768) {
+        images.forEach(function (img) {
+            if(img.dataset.mobile.length) {
+                img.src = img.dataset.mobile;
+            } else {
+                img.src = img.dataset.or;
+            }
+        });
+    }
+});
 function hideTopHeader(){
     $('.header-top').addClass("disabled");
     $('.header-bottom').addClass("remove-border");

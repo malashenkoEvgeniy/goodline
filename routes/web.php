@@ -22,7 +22,7 @@ Route::get('/clear', function () {
     Artisan::call('route:clear');
     Log::debug('CLEARED');
 });
-
+Route::get('sitemap.xml','SitemapController@index');
 
 Route::group(
     [

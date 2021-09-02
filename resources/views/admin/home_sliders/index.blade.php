@@ -14,7 +14,7 @@
                            <h5 class="card-title text-center">Картинка / Видео</h5>
                         </div>
 
-                        <div class="col-3"> 
+                        <div class="col-3">
                            <h5 class="card-title text-center"> Заголовок</h5>
                         </div>
 
@@ -27,19 +27,19 @@
                         </div>
                     </div>
 
-                    
+
                     @if(count($sliders)>0)
                         @foreach($sliders as $slide)
                         <div class="row mt-4">
                             <div class="col-3">
                                 @if($slide->is_image)
-                                    <img style="width: 100%; height: auto;" src="{{$slide->file_path}}" alt="">
+                                    <img style="width: 100%; height: auto;" src="{{$slide->media->img_prev}}" alt="">
                                 @else
                                     <iframe  style="width: 100%; height: auto;" src="{{$slide->file_path}}" frameborder="0"></iframe>
                                 @endif
                             </div>
 
-                            <div class="col-3"> 
+                            <div class="col-3">
                                 @isset($slide->translate()->title)
                                 <p>{{$slide->translate()->title}}</p>
                                 @endisset
@@ -49,7 +49,7 @@
                                 @isset($slide->translate()->sub_title)
                                 <p>{{$slide->translate()->sub_title}}</p>
                                 @endisset
-                                
+
                             </div>
                             <div class="col-3">
                                 <div class="row">
@@ -66,7 +66,7 @@
                     @else
                         <p>Слайдов нет</p>
                     @endif
-                    
+
                     <a href="{{ route('homeSliders.create' )}}" class="btn btn-primary" >Создать слайд</a>
                 </div>
             </div>
