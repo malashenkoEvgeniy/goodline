@@ -22,9 +22,9 @@
 
                     <div class="card-body">
                         <div class="row">
-                            @foreach($product->productImages()->get() as $slide)
+                            @foreach($product->media as $slide)
                             <div class="col-4">
-                                <img style="width:100%; height:auto; " src="{{$slide->image}}" alt="">
+                                <img style="width:100px; height:auto; " src="{{$slide->img_prev}}" alt="" >
                                 <form class="text-center mt-2" action="{{route('destroySlide')}}" method="POST" onsubmit="return confirm('Удалить?') ? true : false;">
                                     {!! csrf_field() !!}
                                     <input type="hidden" name="id" value="{{$slide->id}}">

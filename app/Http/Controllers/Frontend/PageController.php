@@ -26,8 +26,10 @@ class PageController extends BaseFrontendController
     	$seo = (object) [
             'title' => strip_tags($settings->translate()->seo_title),
             'description' => strip_tags($settings->translate()->seo_description),
-            'keywords' => strip_tags($settings->translate()->seo_keywords)
+            'keywords' => strip_tags($settings->translate()->seo_keywords),
+            'text_seo_block'=> $settings->translate()->text_seo_block
         ];
+
 
     	$homeSliders = HomeSlider::all();
         return view('frontend.home',compact('homeSliders', 'seo'));
@@ -78,7 +80,8 @@ class PageController extends BaseFrontendController
     	$seo = (object) [
             'title' => strip_tags($page->translate()->seo_title),
             'description' => strip_tags($page->translate()->seo_description),
-            'keywords' => strip_tags($page->translate()->seo_keywords)
+            'keywords' => strip_tags($page->translate()->seo_keywords),
+            'text_seo_block'=> $page->translate()->text_seo_block
         ];
         $parent = null;
         if($page->parent_id){
@@ -103,8 +106,12 @@ class PageController extends BaseFrontendController
     	$seo = (object) [
             'title' => strip_tags($category->translate()->seo_title),
             'description' => strip_tags($category->translate()->seo_description),
-            'keywords' => strip_tags($category->translate()->seo_keywords)
+            'keywords' => strip_tags($category->translate()->seo_keywords),
+            'text_seo_block'=> $category->translate()->text_seo_block
         ];
+
+    	$alt_seo = $category->translate()->title;
+
 
         $parents = $this->findAllParents($category);
         $parent = $category->parent()->get();
@@ -127,7 +134,7 @@ class PageController extends BaseFrontendController
 
         $quantityProducts = count($page->products()->get());
 
-        return view('frontend.catalog', compact('quantityProducts','page','seo','breadcrumbs','products','categoryChildren','parentCategoryChildren'));
+        return view('frontend.catalog', compact('quantityProducts','page','seo', 'alt_seo','breadcrumbs','products','categoryChildren','parentCategoryChildren'));
     }
 
     public function findAllParents($currentCategory){
@@ -179,13 +186,14 @@ class PageController extends BaseFrontendController
             'description' => strip_tags($product->translate()->seo_description),
             'keywords' => strip_tags($product->translate()->seo_keywords)
         ];
+        $alt_seo = $product->translate()->title;
 
         $breadcrumbs = (object) [
             'current' => strip_tags($product->translate()->title),
             'parent' => $parents
         ];
 
-        return view('frontend.product',compact('seo','product','breadcrumbs'));
+        return view('frontend.product',compact('seo','product','alt_seo','breadcrumbs'));
     }
 
 

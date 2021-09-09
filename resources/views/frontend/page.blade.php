@@ -132,88 +132,10 @@
                 </div>
             </div>
             @if($page->id == 3)
-                <style>
-                    .about-wrap {
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                        width: 100%;
-                        margin: 0 auto;
-                        font-size: 16px;
-                        line-height: 18px;
-                    }
-
-                    .about-wrap-item  img,
-                    .about-wrap-item  iframe {
-                        width: 50%;
-                        max-height: 400px;
-                    }
-
-                    .about-wrap-item {
-                        display: flex;
-                        align-items: flex-start;
-                        justify-content: space-between;
-                        background-color: #ffffff;
-
-                    }
-
-                    .about-description {
-                        background-color: #ffffff;
-                        width: 50%;
-                        padding: 50px;
-                        text-align: justify;
-                    }
-
-
-                    @media (max-width: 1024px){
-                        .about-wrap {
-                            width: 100%;
-                        }
-
-                        .about-wrap-item {
-                            display: block;
-                        }
-
-                        .about-wrap-item img, .about-wrap iframe {
-                            padding: 20px;
-                            float: left;
-                        }
-
-                        .about-description {
-
-                            width: 100%;
-                            padding: 0;
-                        }
-                    }
-
-                    @media (max-width: 768px){
-
-
-                        .about-wrap iframe,
-                        .about-wrap-item img {
-                            width: 100%;
-                        }
-                    }
-                    @media (max-width: 568px){
-                        .about-wrap {
-                            font-size: 16px;
-                            line-height: 24px;
-                        }
-                        .certificates .content-wrapper {
-                            min-height: 20vh;
-                        }
-
-
-                        .about-wrap iframe,
-                        .about-wrap-item img {
-                            padding: 0;
-                        }
-                    }
-                </style>
                 @if(count($certificates)>0)
                     <div class="certificates">
                         <div class="content-wrapper">
-                            <h2 class="title mb-5"><span>@lang('main.certificates')</span></h2>
+                            <h1 class="title mb-5"><span>@lang('main.certificates')</span></h1>
                         </div>
                         <div class="certificates-items content-wrapper">
                             @foreach ($certificates as $certificate)
@@ -243,61 +165,19 @@
 
                         </div>
                     </div>
+                    @isset($seo->text_seo_block)
+                        <div class="text_seo_block">
+                            <div class="content-wrapper">
+                                {!! $seo->text_seo_block !!}
+                            </div>
+                        </div>
+                    @endisset
                 @endif
             @elseif($page->id == 4)
-                <style>
-                    .cooperation-wrap {
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                        width: 100%;
-                        margin: 0 auto;
-                    }
-
-                    .cooperation-wrap-item {
-                        display: flex;
-                        align-items: flex-start;
-                        justify-content: space-between;
-
-                    }
-
-                    .cooperation-wrap-item img {
-                        height: 450px;
-                    }
-
-                    .cooperation-description {
-                        background-color: #ffffff;
-                        width: 50%;
-                        padding: 100px;
-                    }
-
-                    @media (max-width: 768px){
-                        .cooperation-wrap-item {
-                            display: unset;
-                        }
-
-                        .cooperation-wrap-item img {
-                            float: left;
-                            height: 380px;
-                            margin-right: 25px;
-                        }
-
-                        .cooperation-description {
-                            background-color: #ffffff;
-                            width: 100%;
-                            padding: unset;
-                        }
-
-                        .cooperate {
-                            width: 100%;
-                            padding: 0;
-                        }
-                    }
-                </style>
-                <div class="content-wrapper">
+                     <div class="content-wrapper">
                     <div class="cooperate">
                         <div class="cooperate-info">
-                            <h2>@lang('main.form.to_contact_us')</h2>
+                            <h1>@lang('main.form.to_contact_us')</h1>
                         </div>
                         <div class="cooperate-form">
                             <form action="{{route('sendForm')}}" method="POST">
@@ -352,7 +232,9 @@
             @endif
 
     @endif
+
 @endif
+
 @endsection
 @section('scripts')
 @endsection

@@ -22,9 +22,9 @@
                 @include('frontend.includes.svg.social.share_linkedin')
             </a>
 
-            <a class="share__button " target="_blank" href="https://mail.google.com/mail/u/0/?ui=2&view=cm&fs=1&tf=1&body=https://good-line.com.ua/">
-                @include('frontend.includes.svg.social.share_google')
-            </a>
+{{--            <a class="share__button " target="_blank" href="https://mail.google.com/mail/u/0/?ui=2&view=cm&fs=1&tf=1&body=https://good-line.com.ua/">--}}
+{{--                @include('frontend.includes.svg.social.share_google')--}}
+{{--            </a>--}}
 
             <a class="share__button" target="_blank" href="https://web.skype.com/share?url=https://good-line.com.ua/">
                 @include('frontend.includes.svg.social.share_skype')
@@ -58,10 +58,10 @@
             <li class="mobile-first-column"><a href='{{ LaravelLocalization::localizeUrl($pages[3]->url) }}'>{{$pages[3]->translate()->title}}</a></li>
             <li  class="mobile-first-column"><a href='{{ LaravelLocalization::localizeUrl($pages[0]->url) }}'>{{$pages[0]->translate()->title}}</a></li>
             <li  class="mobile-first-column"><a href='{{ LaravelLocalization::localizeUrl("/contacts") }}'>@lang('main.contacts')</a></li>
-            <li class="mobile-second-column footer-top-contact"><a href="tel:{{$settings->phone_1}}" class="footer-contacts-link">@include('frontend.includes.svg.tel'){{$settings->phone_1}}</a></li>
-            <li class="mobile-second-column footer-top-contact" ><a href="tel:{{$settings->phone_2}}" class="footer-contacts-link">@include('frontend.includes.svg.tel'){{$settings->phone_2}}</a></li>
+            <li class="mobile-second-column footer-top-contact"><a href="tel:{{trim($settings->phone_1)}}" class="footer-contacts-link">@include('frontend.includes.svg.tel'){{$settings->phone_1}}</a></li>
+            <li class="mobile-second-column footer-top-contact" ><a href="tel:{{trim($settings->phone_2)}}" class="footer-contacts-link">@include('frontend.includes.svg.tel'){{$settings->phone_2}}</a></li>
             <li class="mobile-second-column footer-top-email">
-                <a href="mailto:{{$settings->email}}">@include('frontend.includes.svg.email'){{$settings->email}}</a>
+                <a href="mailto:{{trim($settings->email)}}">@include('frontend.includes.svg.email'){{$settings->email}}</a>
             </li>
         </ul>
  		<ul class="footer-bottom">

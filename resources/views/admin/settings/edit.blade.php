@@ -80,12 +80,17 @@
                         </div>
 
                         <h5 class="card-title">Описание (Главная страница)</h5>
-                        <div class="mb-3">
-                          <textarea  name="body" id="editor1">
+                        <div class="mb-12">
+                          <textarea  name="body" id="editor1" style="width: 100%">
                             @isset($settings->translate()->body){{$settings->translate()->body}}@endisset
                           </textarea>
                         </div>
-
+                        <div class="input-group ">
+                            <h5 class="card-title ">Текст для сео-блока</h5>
+                        </div>
+                        <div class="mb-12 mb-3">
+                            <textarea  name="text_seo_block" style="width: 100%" class="editor1" > @isset($settings->translate()->text_seo_block){{$settings->translate()->text_seo_block}}@endisset</textarea>
+                        </div>
 
                         <div class="input-group mb-3">
                           <div class="input-group-prepend">
@@ -94,17 +99,18 @@
                           <input type="text" class="form-control" name="seo_title" value="@isset($settings->translate()->seo_title){{$settings->translate()->seo_title}}@endisset">
                         </div>
 
+
                         <h5 class="card-title">Seo Описание (Главная страница)</h5>
-                        <div class="mb-3">
-                          <textarea  name="seo_description" id="editor2" >
+                        <div class="mb-12">
+                          <textarea  name="seo_description"  style="width: 100%">
                             @isset($settings->translate()->seo_description){{$settings->translate()->seo_description}}@endisset
                           </textarea>
                         </div>
 
                         <h5 class="card-title">Seo ключевые слова (Главная страница)</h5>
 
-                        <div class="mb-3">
-                          <textarea  name="seo_keywords" id="editor3" >
+                        <div class="mb-12">
+                          <textarea  name="seo_keywords" style="width: 100%">
                              @isset($settings->translate()->seo_keywords){{$settings->translate()->seo_keywords}}@endisset
                           </textarea>
                         </div>

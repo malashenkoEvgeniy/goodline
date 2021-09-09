@@ -14,11 +14,11 @@
 	<div class="contact_us">
         <div class="contact_us-wrapper">
             <div class="contact_us-info">
-                <h2>{{$page->translate()->title}}</h2>
+                <h1>{{$page->translate()->title}}</h1>
                 <p class="contact_link">@include('frontend.includes.svg.map'){{$page->translate()->address}}</p>
-                <div class="contact_us-link"><a class="email contact_link" href="mailto:{{$page->email}}">@include('frontend.includes.svg.email'){{$page->email}}</a></div>
-                <div class="contact_us-link"><a class="phone contact_link" href="tel:{{$page->phone_1}}">@include('frontend.includes.svg.tel'){{$page->phone_1}}</a></div>
-                <div class="contact_us-link"><a class="phone contact_link" href="tel:{{$page->phone_2}}">@include('frontend.includes.svg.tel'){{$page->phone_2}}</a></div>
+                <div class="contact_us-link"><a class="email contact_link" href="mailto:{{trim($page->email)}}">@include('frontend.includes.svg.email'){{$page->email}}</a></div>
+                <div class="contact_us-link"><a class="phone contact_link" href="tel:{{trim($page->phone_1)}}">@include('frontend.includes.svg.tel'){{$page->phone_1}}</a></div>
+                <div class="contact_us-link"><a class="phone contact_link" href="tel:{{trim($page->phone_2)}}">@include('frontend.includes.svg.tel'){{$page->phone_2}}</a></div>
 
 
             </div>
@@ -55,9 +55,9 @@
             <div class="contact_us-info">
                 <h2>{{$page->translate()->title}}</h2>
                 <p class="contact_link">@include('frontend.includes.svg.map'){{$page->translate()->address}}</p>
-                <div class="contact_us-link"><a class="email contact_link" href="mailto:{{$page->email}}">@include('frontend.includes.svg.email'){{$page->email}}</a></div>
-                <div class="contact_us-link"><a class="phone contact_link" href="tel:{{$page->phone_1}}">@include('frontend.includes.svg.tel'){{$page->phone_1}}</a></div>
-                <div class="contact_us-link"><a class="phone contact_link" href="tel:{{$page->phone_2}}">@include('frontend.includes.svg.tel'){{$page->phone_2}}</a></div>
+                <div class="contact_us-link"><a class="email contact_link" href="mailto:{{trim($page->email)}}">@include('frontend.includes.svg.email'){{$page->email}}</a></div>
+                <div class="contact_us-link"><a class="phone contact_link" href="tel:{{trim($page->phone_1)}}">@include('frontend.includes.svg.tel'){{$page->phone_1}}</a></div>
+                <div class="contact_us-link"><a class="phone contact_link" href="tel:{{trim($page->phone_2)}}">@include('frontend.includes.svg.tel'){{$page->phone_2}}</a></div>
 
 
             </div>

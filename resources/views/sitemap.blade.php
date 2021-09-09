@@ -46,19 +46,19 @@
     @endforeach
     <url>
         <loc>{{url('/contacts')}}</loc>
-        <lastmod>0</lastmod>
+        <lastmod>{{gmdate('Y-m-d\TH:i:s\Z',strtotime($contacts->updated_at))}}</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
         <loc>{{url('ru/contacts')}}</loc>
-        <lastmod>0</lastmod>
+        <lastmod>{{gmdate('Y-m-d\TH:i:s\Z',strtotime($contacts->updated_at))}}</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
         <loc>{{url('en/contacts')}}</loc>
-        <lastmod>0</lastmod>
+        <lastmod>{{gmdate('Y-m-d\TH:i:s\Z',strtotime($contacts->updated_at))}}</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.6</priority>
     </url>

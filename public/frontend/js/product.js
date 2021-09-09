@@ -56,7 +56,7 @@ $('#product-form-bg .close-form').click(function(){
 });
 
 $('#product-form-bg').click(function(e){
-    var form_bg = $('#product-form-bg');
+    let form_bg = $('#product-form-bg');
     if ( form_bg.is(e.target ) && form_bg.has(e.target).length === 0) {
         $('#product-form-bg').fadeToggle();
     }

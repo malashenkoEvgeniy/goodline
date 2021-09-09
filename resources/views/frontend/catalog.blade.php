@@ -36,7 +36,7 @@
                             />
                         @endif
 {{--						<img src="{{asset('frontend/images/a.jpg')}}" class="lazy-load lazy" data-src="{{ $item->image}}" alt="{{ $item->translate()->title}}" width="270" height="270">--}}
-						<h2 class="tab-title">{{ $item->translate()->title}}</h2>
+						<h1 class="tab-title">{{ $item->translate()->title}}</h1>
 					</a>
 				</div>
 
@@ -91,7 +91,20 @@
 			@foreach($products as $product)
 			<div class="catalog-item ">
 				<a href='{{ LaravelLocalization::localizeUrl("$product->url") }}' class="img-src">
-                    <img src="{{asset('frontend/images/a.jpg')}}" width="270" height="270" class="lazy-load lazy" data-src="@isset($product->productImages()->first()->image){{$product->productImages()->first()->image}}@endisset" alt="{{$product->translate()->title}}" data-widget=""></a>
+                    <img
+                        src="{{asset('frontend/images/a.jpg')}}"
+                        data-mobile="{{$product->media[0]->img_t}}"
+                        data-tablet="{{$product->media[0]->img_t}}"
+                        data-desc="{{$product->media[0]->img_d}}"
+                        data-or="{{$product->media[0]->img_d}}"
+                        alt=" {{ $product->translate()->title}}"
+                        class="lazyload"
+                        loading="lazy"
+                        width="270"
+                        height="270"
+                        decoding="async"
+                    />
+{{--                    <img src="{{asset('frontend/images/a.jpg')}}" width="270" height="270" class="lazy-load lazy" data-src="@isset($product->productImages()->first()->image){{$product->productImages()->first()->image}}@endisset" alt="{{$product->translate()->title}}" data-widget=""></a>--}}
 				<div class="catalog-item-hidden-desc">
 					<div class="catalog-item-hidden-desc-bg">
 						<a class="catalog-item__title" href='{{ LaravelLocalization::localizeUrl("$product->url") }}'>{{$product->translate()->title}}</a>
@@ -136,6 +149,13 @@
 
 </div>
 @endif
+@isset($seo->text_seo_block)
+    <div class="text_seo_block">
+        <div class="content-wrapper">
+            {!! $seo->text_seo_block !!}
+        </div>
+    </div>
+@endisset
 @endsection
 @section('scripts')
     <script src="{{asset('/js/catalog.js')}}"></script>

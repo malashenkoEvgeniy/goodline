@@ -13,12 +13,12 @@
           </li>
           <li class="header-top-item header-top-contacts">
               <ul class="header-top-contacts-list">
-                  <li><a href="tel:{{$settings->phone_1}}">@include('frontend.includes.svg.tel'){{$settings->phone_1}}</a></li>
-                  <li><a href="tel:{{$settings->phone_2}}">@include('frontend.includes.svg.tel'){{$settings->phone_2}}</a></li>
+                  <li><a href="tel:{{trim($settings->phone_1)}}">@include('frontend.includes.svg.tel'){{$settings->phone_1}}</a></li>
+                  <li><a href="tel:{{trim($settings->phone_2)}}">@include('frontend.includes.svg.tel'){{$settings->phone_2}}</a></li>
               </ul>
           </li>
           <li class="header-top-item header-top-item-email">
-              <a href="mailto:{{$settings->email}}">@include('frontend.includes.svg.email'){{$settings->email}}</a>
+              <a href="mailto:{{trim($settings->email)}}">@include('frontend.includes.svg.email'){{$settings->email}}</a>
           </li>
           <li class="header-top-item header-top-item-lang">
               <div class="lang-selector">

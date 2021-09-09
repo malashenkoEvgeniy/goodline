@@ -53,7 +53,19 @@
 	</div>
 
 	<div class="about-us-content">
-		<img src="{{asset('/frontend/images/about-company.jpg')}}" alt=">@lang('main.about_company')" width="840" height="600">
+        <img
+            src="{{asset('frontend/images/a.jpg')}}"
+            data-mobile="{{asset('/frontend/images/about-company-m.jpg')}}"
+            data-tablet="{{asset('/frontend/images/about-company-t.jpg')}}"
+            data-desc="{{asset('/frontend/images/about-company.jpg')}}"
+            data-or="{{asset('/frontend/images/about-company.jpg')}}"
+            alt="@lang('main.about_company')"
+            class="lazyload"
+            loading="lazy"
+            width="320"
+            height="270"
+            decoding="async"
+        />
 		<div class="about-us-description">
 			{!! $settings->translate()->body !!}
 
@@ -170,6 +182,13 @@
         </div>
     </div>
 @endif
+@isset($seo->text_seo_block)
+ <div class="text_seo_block">
+     <div class="content-wrapper">
+     {!! $seo->text_seo_block !!}
+     </div>
+ </div>
+@endisset
 @endsection
 
 @section('scripts')

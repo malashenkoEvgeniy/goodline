@@ -20,6 +20,12 @@ return [
     "items_per_page" => "Items per page",
     "show_more" => "Show more",
     'share_buttons_title'=>'Share on social networks:',
+    'seo'=>[
+        'title_first'=>'Купить ',
+        'title_second'=>' по низкой цене от производителя безглютеновых продуктов Good Line',
+        'desc_first'=>'Заказать ',
+        'desc_second'=>'  недорого от компании Гудлайн. Вкусная безглютеновая продукция от украинского производителя Good Line. Высокое качество, выгодная стоимость, быстрая доставка по Киеву и Украине.',
+    ],
 
 
 

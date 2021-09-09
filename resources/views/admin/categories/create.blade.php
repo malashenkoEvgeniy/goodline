@@ -66,6 +66,12 @@
 
                           </textarea>
                         </div>
+                        <div class="input-group mb-3">
+                            <h5 class="card-title mb-3">Текст для сео-блока</h5>
+                        </div>
+                        <div class="mb-12">
+                          <textarea  name="text_seo_block" style="width: 100%" class="editor1"   >  </textarea>
+                        </div>
 
                         <div class="input-group mb-3">
                           <div class="input-group-prepend">

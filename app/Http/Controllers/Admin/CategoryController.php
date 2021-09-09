@@ -24,7 +24,7 @@ class CategoryController extends BaseController
     public function index()
     {
 
-        $categories = Category::orderby('id', 'desc')->paginate(5);
+        $categories = Category::orderby('id', 'desc')->paginate(20);
         return view('admin.categories.index',compact('categories'));
     }
 
@@ -157,8 +157,10 @@ class CategoryController extends BaseController
 
           $category->products()->detach();
         }
-        BaseService::delete_media($category);
-        $category->media->delete();
+        if(isset($category->media)) {
+            BaseService::delete_media($category);
+            $category->media->delete();
+        }
         if($category->icon !== null){
             unlink(public_path($category->icon));
         }

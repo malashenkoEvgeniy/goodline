@@ -24,7 +24,7 @@
     font-style: normal;
     font-weight: 500;
     font-size: 24px;
-    line-height: 28px;
+    line-height: 42px;
     text-transform: uppercase;
     color: #C71F25;
 }
@@ -32,7 +32,144 @@
 .catalog-item-page-img {
     width: 340px;
 }
+
+.about-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 18px;
+}
+
+.about-wrap-item  img,
+.about-wrap-item  iframe {
+    width: 50%;
+    max-height: 400px;
+}
+
+.about-wrap-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    background-color: #ffffff;
+
+}
+
+.about-description {
+    background-color: #ffffff;
+    width: 50%;
+    padding: 50px;
+    text-align: justify;
+}
+
+.cooperation-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.cooperation-wrap-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+}
+
+.cooperation-wrap-item img {
+    height: 450px;
+}
+
+.cooperation-description {
+    background-color: #ffffff;
+    width: 50%;
+    padding: 100px;
+}
+
+.about_us_wrap {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+
+.about_us_wrap p {
+    width: 48%;
+}
+
+.about_us_wrap img {
+    width: 100% !important;
+    height: 400px!important;
+}
+
+@media (max-width: 1024px){
+    .about-wrap {
+        width: 100%;
+    }
+
+    .about-wrap-item {
+        display: block;
+    }
+
+    .about-wrap-item img, .about-wrap iframe {
+        padding: 20px;
+        float: left;
+    }
+
+    .about-description {
+
+        width: 100%;
+        padding: 0;
+    }
+}
+
+@media (max-width: 768px){
+
+
+    .about-wrap iframe,
+    .about-wrap-item img {
+        width: 100%;
+    }
+
+    .cooperation-wrap-item {
+        display: unset;
+    }
+
+    .cooperation-wrap-item img {
+        float: left;
+        height: 380px;
+        margin-right: 25px;
+    }
+
+    .cooperation-description {
+        background-color: #ffffff;
+        width: 100%;
+        padding: unset;
+    }
+
+    .cooperate {
+        width: 100%;
+        padding: 0;
+    }
+}
 @media (max-width: 568px){
+    .about-wrap {
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .certificates .content-wrapper {
+        min-height: 20vh;
+    }
+
+
+    .about-wrap iframe,
+    .about-wrap-item img {
+        padding: 0;
+    }
+
 
     .content-wrapper {
         min-height: unset;

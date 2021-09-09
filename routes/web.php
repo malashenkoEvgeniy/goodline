@@ -75,7 +75,7 @@ Route::get('/register', function (){
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+        'middleware' => [ 'localizationRedirect', 'localeViewPath' ]
     ], function(){
 
 

@@ -67,7 +67,6 @@ if(window.screen.width < 1024){
             $('.sub-categories-items.active').removeClass('active');
             $('li.categories-item.active').removeClass('active');
             $('.categories-link').removeClass('active');
-
         }
     });
 

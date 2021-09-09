@@ -1,6 +1,7 @@
 @extends('frontend.layout')
 
 @section('links')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
     <link rel="stylesheet" href="{{asset('/frontend/css/product.css')}}">
 @endsection
 
@@ -13,15 +14,29 @@
         <div class="product-card-top">
             <div class="product-card__slider">
                 <div class="product-slider">
-                    @if($product->productImages()->count() > 1)
+                    @if(count($product->media) > 1)
                     <div class="slider-items">
                         @php
                         $i = 1;
                         @endphp
-                        @foreach($product->productImages()->get() as $key => $item)
+                        @foreach($product->media as  $item)
+
                         <div class="slider-item">
-                            <a data-fancybox="gallery" href="{{$item->image}}">
-                                <img src="{{asset('frontend/images/a.jpg')}}" class="lazy"  data-src="{{$item->image}}" alt="{{ $product->translate()->title . $i }}" width="550" height="400">
+                            <a data-fancybox="gallery" href="{{$item->img_f}}">
+                                <img
+                                    src="{{asset('frontend/images/a.jpg')}}"
+                                    data-mobile="{{$item->img_t}}"
+                                    data-tablet="{{$item->img_t}}"
+                                    data-desc="{{$item->img_d}}"
+                                    data-or="{{$item->img_d}}"
+                                    alt="{{ $product->translate()->title }}"
+                                    class="lazyload"
+                                    loading="lazy"
+                                    width="270"
+                                    height="270"
+                                    decoding="async"
+                                />
+{{--                                <img src="{{asset('frontend/images/a.jpg')}}" class="lazy"  data-src="{{$item->image}}" alt="{{ $product->translate()->title . $i }}" width="550" height="400">--}}
                             </a>
                         </div>
                         @php
@@ -34,10 +49,10 @@
                         @php
                         $i = 1;
                         @endphp
-                        @foreach($product->productImages()->get() as $key => $item)
+                        @foreach($product->media as  $item)
 
                         <div class="slider-nav-item">
-                            <img src="{{asset('frontend/images/a.jpg')}}" class="lazy"  data-src="{{$item->image}}" alt="{{ $product->translate()->title . $i }}" width="80" height="80">
+                            <img src="{{asset('frontend/images/a.jpg')}}" class="lazy"  data-src="{{$item->img_prev}}" alt="{{ $product->translate()->title . $i }}" width="80" height="80">
                         </div>
                         @php
                         $i++;
@@ -133,7 +148,7 @@
 
 @endsection
 @section('scripts')
-{{--<script src="{{asset('/js/product.js')}}"></script>--}}
-<script src="{{asset('public/frontend/js/product.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script src="{{asset('frontend/js/product.js')}}"></script>
 
 @endsection

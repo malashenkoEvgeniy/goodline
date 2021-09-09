@@ -58,9 +58,9 @@
                 <a href="{{route('message.index')}}" class="nav-link">
                     <i class="nav-icon fas fa-edit"></i>
                     <p>
-                        Заявки@if($viewed>0)
-                        <span class="badge badge-info right">
-                            {{$viewed}}</span> @endif
+                        Заявки @if($viewed>0)
+                        <span class="badge badge-info right">{{ $viewed }}</span>
+                        @endif
                     </p>
                 </a>
             </li>

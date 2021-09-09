@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Characteristics;
+use App\Models\Media;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\Category;
+use App\Services\BaseService;
+use App\Services\ProductService;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use File;
 use Illuminate\Http\Request;
@@ -60,15 +63,7 @@ class ProductController extends BaseController
         $product = $this->storeWithTranslation(new Product(), $req, $reqT);
         if ( request()->file('image') !== null) {
             foreach (request()->file('image') as $image) {
-                $fileNewName = time() . $image->getClientOriginalName();
-                $image->move(public_path() . '/uploads/product', $fileNewName);
-                $categoryRequestData['image'] = '/uploads/product/' . $fileNewName;
-
-                $imageData = [
-                    'image'=> $categoryRequestData['image']
-                ];
-
-                $product['model']->productImages()->create($imageData);
+                ProductService::create_media($product['model'], $image, ProductService::STORE_PATH, ProductService::PARAMETERS);
             }
         }
 
@@ -100,7 +95,6 @@ class ProductController extends BaseController
         foreach($productCategories as $category){
             $selectedCategories[] = $category->id;
         }
-//        dd($product);
         return view('admin.product.edit',compact('categories','characteristics','productProperties', 'selectedCategories','product'));
     }
 
@@ -112,14 +106,7 @@ class ProductController extends BaseController
         $product = Product::find($id);
         if ( request()->file('image') !== null) {
             foreach (request()->file('image') as $image) {
-                $fileNewName = time() . $image->getClientOriginalName();
-                $image->move(public_path() . '/uploads/product', $fileNewName);
-                $categoryRequestData['image'] = '/uploads/product/' . $fileNewName;
-
-                $imageData = [
-                    'image'=> $categoryRequestData['image']
-                ];
-                $product->productImages()->create($imageData);
+                ProductService::create_media($product, $image, ProductService::STORE_PATH, ProductService::PARAMETERS);
             }
         }
 
@@ -149,8 +136,8 @@ class ProductController extends BaseController
         $product = Product::find($id);
         $product->category()->detach();
         $product->properties()->detach();
-        foreach($product->productImages()->get() as $slide){
-            unlink(public_path($slide->image));
+        foreach($product->media as $slide){
+            ProductService::delete_media($slide);
             $slide->delete();
         }
         $product->delete();
@@ -159,12 +146,9 @@ class ProductController extends BaseController
 
     public function destroySlide(Request $request)
     {
-        $slide = ProductImage::find($request['id']);
-        if ($slide->image !== null && file_exists(public_path($slide->image))) {
-            unlink(public_path($slide->image));
-        }
-
-        $slide->delete();
+        $media = Media::find($request['id']);
+       ProductService::delete_media($media);
+        $media->delete();
 
         return redirect()->back();
     }

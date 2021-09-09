@@ -21,10 +21,12 @@ class SitemapController extends Controller
         $pages = Page::orderBy('id','desc')->get();
         $categories = Category::orderBy('id','desc')->get();
         $products = Product::orderBy('id','desc')->get();
+        $contacts = Settings::first();
+
         return response()->view('sitemap', compact(
                     'main_page',
             'pages',
-            'categories',
+            'categories', 'contacts',
             'products'
         ))
             ->header('Content-Type', 'text/xml');

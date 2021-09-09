@@ -4,13 +4,23 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1.0, width=device-width">
+     @if(empty($seo->title))
+          @if(isset($alt_seo))
+          <title>@lang('main.seo.title_first'){{ $alt_seo  }} @lang('main.seo.title_second')</title>
+          @else
+              <title>{{$page->translate()->title}}</title>
+          @endif
+         @else
+          <title>{{ $seo->title }}</title>
+      @endif
+      @if(empty($seo->title) && isset($alt_seo))
+          <meta name="description" content="@lang('main.seo.desc_first'){{ $alt_seo  }} @lang('main.seo.desc_second')">
+      @else
+          <meta name="description" content="{{ $seo->description }}">
+      @endif
 
-    <title>{{ $seo->title }}</title>
-    <meta name="description" content="{{ $seo->description }}">
     <meta name="keywords" content="{{ $seo->keywords }}">
 
-    <meta property="og:title" content='{{ $seo->title }}'/>
-    <meta property="og:description" content='{{ $seo->description }}'/>
     <meta property="og:url" content="{{url('/')}}">
     <meta property="og:type" content="website">
 
@@ -34,18 +44,18 @@
       <link rel="preconnect" href="https://fonts.gstatic.com">
       <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&family=Roboto:wght@400;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-{{--    <link rel="stylesheet" href="{{asset('/css/my.css')}}">--}}
-      <link rel="stylesheet" href="{{asset('/frontend/css/normalize.css')}}">
-      <link rel="stylesheet" href="{{asset('/frontend/css/hamburger.css')}}">
-      <link rel="stylesheet" href="{{asset('/frontend/css/layout.css')}}"> <!-- ( header - footer ) css -->
-      <link rel="stylesheet" href="{{asset('/frontend/css/social_buttons.css')}}">
-      <link rel="stylesheet" href="{{asset('/frontend/css/popup_form.css')}}">
-      <link rel="stylesheet" href="{{asset('/frontend/css/page.css')}}">
-      <link rel="stylesheet" href="/frontend/css/home.css">
-      <link rel="stylesheet" href="/frontend/css/breadcrumbs.css">
+
+    <link rel="stylesheet" href="{{asset('/css/my.css')}}">
+{{--      <link rel="stylesheet" href="{{asset('/frontend/css/normalize.css')}}">--}}
+{{--      <link rel="stylesheet" href="{{asset('/frontend/css/hamburger.css')}}">--}}
+{{--      <link rel="stylesheet" href="{{asset('/frontend/css/layout.css')}}"> <!-- ( header - footer ) css -->--}}
+{{--      <link rel="stylesheet" href="{{asset('/frontend/css/social_buttons.css')}}">--}}
+{{--      <link rel="stylesheet" href="{{asset('/frontend/css/popup_form.css')}}">--}}
+{{--      <link rel="stylesheet" href="{{asset('/frontend/css/page.css')}}">--}}
+{{--      <link rel="stylesheet" href="/frontend/css/home.css">--}}
+{{--      <link rel="stylesheet" href="/frontend/css/breadcrumbs.css">--}}
     @yield('links')
-      1
+
   </head>
 
   <body id="body">
@@ -63,12 +73,12 @@
     </div>
 
     <script  src="https://code.jquery.com/jquery-3.5.1.min.js"  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="   crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-{{--    <script src="{{asset('/js/my.js')}}"></script>--}}
-    <script src="{{asset('frontend/js/hamburger.js')}}"></script>
-    <script src="{{asset('frontend/js/layout.js')}}"></script>
-    <script src="{{asset('frontend/js/lazy_load.js')}}"></script>
+    <script src="{{asset('/js/my.js')}}"></script>
+{{--    <script src="{{asset('frontend/js/hamburger.js')}}"></script>--}}
+{{--    <script src="{{asset('frontend/js/layout.js')}}"></script>--}}
+{{--    <script src="{{asset('frontend/js/lazy_load.js')}}"></script>--}}
     @yield('scripts')
   </body>
 </html>
