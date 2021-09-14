@@ -2,86 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="27ac8b37-86e0-4e50-b6f3-9123b594012a" name="Default Changelist" comment="optimize img">
-      <change beforePath="$PROJECT_DIR$/.idea/goodline.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/goodline.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/PageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/BaseService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/BaseService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/CategoryService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/CategoryService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/PageService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/PageService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/ProductService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/ProductService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/catalog.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/catalog.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/my.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/my.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/frontend/css/breadcrumbs.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/frontend/css/breadcrumbs.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/frontend/css/catalog.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/frontend/css/catalog.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/frontend/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/frontend/css/home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/css/hamburger.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/frontend/css/hamburger.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/frontend/css/layout.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/frontend/css/layout.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/catalog.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/catalog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/my.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/my.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/product.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/product.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/d1630580856katychiny.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/d1630580877keks.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/d1630580900hlib.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/d1630580928batonchiki.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/d1630580949cykerki.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/d16305809631.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/d16305886251.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/d16305886753.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/d16305886974.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/d16305887165.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/d16305887296.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/f1630580856katychiny.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/f1630580877keks.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/f1630580900hlib.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/f1630580928batonchiki.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/f1630580949cykerki.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/f16305809631.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/f16305886251.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/f16305886753.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/f16305886974.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/f16305887165.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/f16305887296.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/m1630580856katychiny.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/m1630580877keks.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/m1630580900hlib.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/m1630580928batonchiki.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/m1630580949cykerki.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/m16305809631.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/m16305886251.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/m16305886753.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/m16305886974.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/m16305887165.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/m16305887296.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/p1630580856katychiny.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/p1630580877keks.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/p1630580900hlib.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/p1630580928batonchiki.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/p1630580949cykerki.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/p16305809631.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/p16305886251.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/p16305886753.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/p16305886974.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/p16305887165.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/p16305887296.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/t1630580856katychiny.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/t1630580877keks.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/t1630580900hlib.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/t1630580928batonchiki.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/t1630580949cykerki.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/t16305809631.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/t16305886251.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/t16305886753.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/t16305886974.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/t16305887165.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/t16305887296.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/ua/main.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/ua/main.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/catalog.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/catalog.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/page.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/page.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/css/page.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/frontend/css/page.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/includes/svg/dropdown_angle.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/includes/svg/dropdown_angle.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -383,7 +309,9 @@
       <workItem from="1631194869138" duration="154000" />
       <workItem from="1631523725871" duration="75000" />
       <workItem from="1631525596182" duration="4668000" />
-      <workItem from="1631608886443" duration="3909000" />
+      <workItem from="1631608886443" duration="4473000" />
+      <workItem from="1631623764445" duration="1670000" />
+      <workItem from="1631628506744" duration="1983000" />
     </task>
     <task id="LOCAL-00001" summary="commit for backup">
       <created>1624532480153</created>
@@ -399,7 +327,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624629753708</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="optimize img">
+      <created>1631621158015</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1631621158015</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

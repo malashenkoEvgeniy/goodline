@@ -86,7 +86,7 @@ header ul,footer ul{
 
 .text_seo_block ,
 .text_seo_block * {
-    line-height: 14px;
+    line-height: 20px;
 }
 
 header{
@@ -1186,8 +1186,15 @@ footer{
 
 @media (max-width: 568px){
 
+    .header-top-item-logo img {
+        width: 85px;
+        height: 50px;
+    }
+
     .lang-selector .current-lang {
         width: 60px;
+        font-size: 16px;
+        font-weight: bold;
     }
 
 

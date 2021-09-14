@@ -105,6 +105,10 @@
     height: 400px!important;
 }
 
+.certificates img {
+    max-height: 325px;
+}
+
 @media (max-width: 1024px){
     .about-wrap {
         width: 100%;
