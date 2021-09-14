@@ -332,6 +332,10 @@
 	    text-align: center;
 	}
 
+    .home-slider .slider-item {
+        height: 230px;
+    }
+
 
 
 	.home-slider .sub-title {
@@ -368,6 +372,11 @@
 
     .certificates {
         margin-bottom: 0;
+    }
+
+    .subcategories-link {
+        align-items: flex-start!important;
+        text-align: left;
     }
 
 }

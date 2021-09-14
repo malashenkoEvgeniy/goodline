@@ -116,6 +116,7 @@
     transition: line-height .4s ease-out;
     transition-delay: .3s;
     width: 85%;
+    padding-bottom: 0;
 }
 
 .catalog-item-hidden-desc {

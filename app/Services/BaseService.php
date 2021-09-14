@@ -4,6 +4,7 @@ namespace App\Services;
 
 use Intervention\Image\Facades\Image;
 use Intervention\Image\ImageManager;
+//use Intervention\Image\ImageManagerStatic as Image;/
 
 class BaseService
 {
@@ -53,41 +54,41 @@ class BaseService
                 $image->resize($start_img['img_f_w'], null, function ($img) {
                     $img->aspectRatio();
                 });
-                $image->save($strF,75);
+                $image->save($strF,95);
             } else {
-                $image->save($strF,75);
+                $image->save($strF,95);
             }
             if( $parameters['img_d_w'] < $width ) {
                 $image->resize($parameters['img_d_w'], null, function ($img) {
                     $img->aspectRatio();
                 });
-                $image->save($strD,75);
+                $image->save($strD,95);
             } else {
-                $image->save($strD,75);
+                $image->save($strD,95);
             }
             if( $parameters['img_t_w'] < $width ) {
                 $image->resize($parameters['img_t_w'], null, function ($img) {
                     $img->aspectRatio();
                 });
-                $image->save($strT,75);
+                $image->save($strT,95);
             } else {
-                $image->save($strT,75);
+                $image->save($strT,95);
             }
             if( $parameters['img_m_w'] < $width ) {
                 $image->resize($parameters['img_m_w'], null, function ($img) {
                     $img->aspectRatio();
                 });
-                $image->save($strM,75);
+                $image->save($strM,95);
             } else {
-                $image->save($strM,75);
+                $image->save($strM,95);
             }
             if( $parameters['img_p_w'] < $width ) {
                 $image->resize($parameters['img_p_w'], null, function ($img) {
                     $img->aspectRatio();
                 });
-                $image->save($strP,75);
+                $image->save($strP,95);
             } else {
-                $image->save($strP,75);
+                $image->save($strP,95);
             }
 
         } else {
@@ -95,41 +96,41 @@ class BaseService
                 $image->resize(null, $start_img['img_f_h'],  function ($img) {
                     $img->aspectRatio();
                 });
-                $image->save($strF,75);
+                $image->save($strF,95);
             } else {
-                $image->save($strF,75);
+                $image->save($strF,95);
             }
             if( $parameters['img_d_h'] < $height ) {
                 $image->resize(null, $parameters['img_d_h'],  function ($img) {
                     $img->aspectRatio();
                 });
-                $image->save($strD,75);
+                $image->save($strD,95);
             } else {
-                $image->save($strD,75);
+                $image->save($strD,95);
             }
             if( $parameters['img_t_h'] < $height ) {
                 $image->resize(null, $parameters['img_t_h'],  function ($img) {
                     $img->aspectRatio();
                 });
-                $image->save($strT,75);
+                $image->save($strT,95);
             } else {
-                $image->save($strT,75);
+                $image->save($strT,95);
             }
             if( $parameters['img_m_h'] < $height ) {
                 $image->resize(null, $parameters['img_m_h'],  function ($img) {
                     $img->aspectRatio();
                 });
-                $image->save($strM,75);
+                $image->save($strM,95);
             } else {
-                $image->save($strM,75);
+                $image->save($strM,95);
             }
             if( $parameters['img_p_h'] < $height ) {
                 $image->resize(null, $parameters['img_p_h'],  function ($img) {
                     $img->aspectRatio();
                 });
-                $image->save($strP,75);
+                $image->save($strP,95);
             } else {
-                $image->save($strP,75);
+                $image->save($strP,95);
             }
         }
 

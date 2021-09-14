@@ -124,7 +124,7 @@
                     @if($info->media !== null )
                         <img
                             src="{{asset('frontend/images/a.jpg')}}"
-                            data-mobile="{{$info->media->img_m}}"
+                            data-mobile="{{$info->media->img_d}}"
                             data-tablet="{{$info->media->img_t}}"
                             data-desc="{{$info->media->img_d}}"
                             data-or="{{$info->media->img_d}}"
@@ -183,7 +183,7 @@
     </div>
 @endif
 @isset($seo->text_seo_block)
- <div class="text_seo_block">
+ <div class="text_seo_block" >
      <div class="content-wrapper">
      {!! $seo->text_seo_block !!}
      </div>

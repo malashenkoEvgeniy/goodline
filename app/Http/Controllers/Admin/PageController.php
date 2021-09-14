@@ -9,6 +9,7 @@ use App\Services\PageService;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Intervention\Image\Facades\Image;
 
 class PageController extends  BaseController
 {

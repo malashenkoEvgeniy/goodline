@@ -68,7 +68,7 @@
     .page-thumbnail .breadcrumbs a,
     .page-thumbnail .breadcrumbs,
     .page-thumbnail .breadcrumbs .current {
-        color: #000000;
+        color: #000000!important;
     }
 
     .page-thumbnail .breadcrumbs .bread-sep svg path{

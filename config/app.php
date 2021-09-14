@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class
 
     ],
 
@@ -228,6 +229,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
+        'Image'     => Intervention\Image\Facades\Image::class
 
     ],
 

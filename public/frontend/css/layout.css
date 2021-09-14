@@ -82,9 +82,11 @@ header ul,footer ul{
 
 .text_seo_block {
     padding-top: 45px;
-    color: #fff;
-    text-shadow: 1px 1px 2px black, 0 0 1em #000000;
-    background: url("../frontend/images/gluten-free.jpg") no-repeat center;
+}
+
+.text_seo_block ,
+.text_seo_block * {
+    line-height: 14px;
 }
 
 header{
@@ -739,7 +741,7 @@ footer{
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    width: 30%;
+    width: 60%;
     margin: 0 auto;
     text-align: center;
 }

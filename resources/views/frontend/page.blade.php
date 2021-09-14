@@ -166,7 +166,7 @@
                         </div>
                     </div>
                     @isset($seo->text_seo_block)
-                        <div class="text_seo_block">
+                        <div class="text_seo_block" >
                             <div class="content-wrapper">
                                 {!! $seo->text_seo_block !!}
                             </div>
